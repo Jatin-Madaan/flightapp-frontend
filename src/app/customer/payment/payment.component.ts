@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerService } from '../customerservice/customer.service';
-import { Booking } from '../models/Booking';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({

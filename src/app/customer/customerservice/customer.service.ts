@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Booking } from '../models/Booking';
-import { Schedule } from '../models/Schedule';
+import { Booking } from '../../models/Booking';
+import { Schedule } from '../../models/Schedule';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class CustomerService {
   }
 
   getBookings(userId:number){
-    return this.http.get<Booking[]>(this.url+"customer/bookings/"+userId);
+    return this.http.get<Booking[]>(this.url+"customer/bookings/"+userId.toString());
   }
 
   cancelBooking(bookingId:number){
