@@ -2,8 +2,8 @@
     <thead class="thead-dark">
         <tr>
             <th><a class="btn btn-info flip" scope="col" style="width: 100%;">ScheduleFlight ID</a></th>
-            <th><a class="btn btn-info flip" scope="col" style="width: 100%;">D.Airport</a></th>
-            <th><a class="btn btn-info flip" scope="col" style="width: 100%;">A.Airport</a></th>
+            <th><a class="btn btn-info flip" scope="col" style="width: 100%;">Source Airport</a></th>
+            <th><a class="btn btn-info flip" scope="col" style="width: 100%;">Destination Airport</a></th>
             <th><a class="btn btn-info flip" scope="col" style="width: 100%;">Departure Time</a></th>
             <th><a class="btn btn-info flip" scope="col" style="width: 100%;">Arival Time</a></th> 
             <th><a class="btn btn-danger flip" scope="col" style="width: 100%;">Delete</a></th>
@@ -12,13 +12,62 @@
     </thead>
     <tbody>
         <tr>
-            <th scope="row"><a class="btn btn-light" style="width: 100%;"> ScheduleFlight ID</a></th>
-            <td><a class="btn btn-light" style="width: 100%;"> D.Airport</a></td>
-            <td><a class="btn btn-light" style="width: 100%;"> A.Airport</a></td>
-            <td><a class="btn btn-light" style="width: 100%;"> D.time</a></td>
-            <td><a class="btn btn-light" style="width: 100%;"> A.time</a></td>
-            <td><a class="zoom flip btn btn-outline-warning mx-auto" style="width: 100%;">Delete</a></td>
-            <td><a class="zoom flip btn btn-outline-danger mx-auto" style="width: 100%;">Reschedule</a></td>
+        <tr *ngFor="let p of scheduleFlightsList; let i=index">
+            <th scope="row"><a class="btn btn-light" style="width: 100%;">{{p.scheduleFlightId}}</a></th>
+            <td><a class="btn btn-light" style="width: 100%;">{{p.schedule.sourceAirport.airportName}}</a></td>
+            <td><a class="btn btn-light" style="width: 100%;">{{p.schedule.destinationAirport.airportName}}</a></td>
+            <td><a class="btn btn-light" style="width: 100%;">{{p.schedule.departureTime}}</a></td>
+            <td><a class="btn btn-light" style="width: 100%;">{{p.schedule.arrivalTime}}</a></td>
+            <td><a (click)="deleteScheduleFlight(scheduleFlightsList[i])" class="zoom flip btn btn-outline-warning mx-auto" style="width: 100%;">Delete</a></td>
+            <td><a (click)="reschedule(scheduleFlightsList[i])" (dblclick)="cancelRescheduling()" class="zoom flip btn btn-outline-danger mx-auto" style="width: 100%;">Reschedule</a></td>
         </tr>
     </tbody>
 </table><hr><hr>
+<!-- <form *ngIf=!flag3 #formdata="ngForm" (ngSubmit)="submitFunc()" >
+    <table class="table table-sm table-bordered table-hover shadow-lg p-3 mb-5 bg-white rounded zoom3 mx-auto" style="width: 80%;">
+        <thead class="thead-light">
+            <tr>
+                <th colspan="2" style="text-align: center;">
+                    <h2><label>Update Form</label></h2>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><div class="form-group">Name:</div></td>
+                <td><div><input class="form-control customInputTag" type="text" name="name" [(ngModel)]="tempCust.name" #usr="ngModel" required minlength="3" maxlength="50" pattern="[a-zA-Z\\s ]*"></div></td>
+            </tr>
+            <tr>
+                <td><div class="form-group">Aadhar:</div></td>
+                <td><div><input class="form-control customInputTag" type="text" name="aadhar" [(ngModel)]="tempCust.aadhar" #usr="ngModel" required minlength="12" maxlength="12" pattern="[0-9]{12}"></div></td>
+            </tr>
+            <tr>
+                <td><div class="form-group"> Contact Number: </div></td>
+                <td><div><input class="form-control customInputTag" type="text" name="contactNumber" [(ngModel)]="tempCust.contactNumber" #usr="ngModel" required minlength="10" maxlength="10" pattern="[0-9]{10}"></div></td>
+            </tr>
+            <tr>
+                <td><div class="form-group">DOB:</div></td>
+                <td><div><input class="form-control" type="text" name="dob" [(ngModel)]="tempCust.dob" #usr="ngModel" required minlength="10" maxlength="10" pattern="[0-9]{2}\\-[0-9]{2}\\-[0-9]{4}"></div></td>
+            </tr>
+            <tr>
+                <td><div class="form-group">Gender:</div></td>
+                <td>
+                    <div>
+                        <select class="form-control customInputTag" type="text" name="gender" [(ngModel)]="tempCust.gender" #usr="ngModel" required>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><div class="form-group">Pan Card:</div></td>
+                <td><div><input class="form-control customInputTag" type="text" name="panCard" [(ngModel)]="tempCust.panCard" #usr="ngModel" required minlength="9" maxlength="9" pattern="[A-Z]{4}[0-9]{4}[A-Z]"></div></td>
+            </tr>
+            <tr>
+                <td><div class="form-group"></div></td>
+                <td><div class="form-group"><input class="btn btn-dark" style="width: 200px;" type="submit" [disabled]="formdata.invalid" [disabled]="usr.untouched" value="Enter"><a style="width: 200px; margin-left: 5%;" (click)="cancelUpdate()" class="btn btn-outline-danger">Cancel</a></div></td>
+            </tr>
+        </tbody>
+    </table> 
+</form>  -->
