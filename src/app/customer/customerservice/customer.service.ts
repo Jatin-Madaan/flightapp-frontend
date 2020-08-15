@@ -12,6 +12,14 @@ export class CustomerService {
 
   url:string="http://localhost:8085/";
 
+  setbookingstatus(bookingid:any,userid:any,status:any,amount:any){
+    return this.http.get(this.url+"setbookingstatusbyid/"+bookingid+"/"+userid+"/"+status+"/"+amount);
+  }
+
+  getbookingdetails(bookingid:any){
+    return this.http.get(this.url+"getbookingbyid/"+bookingid);
+  }
+
   getBookings(userId:number){
     return this.http.get<Booking[]>(this.url+"customer/bookings/"+userId);
   }
