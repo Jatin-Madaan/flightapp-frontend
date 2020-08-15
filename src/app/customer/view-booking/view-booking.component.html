@@ -1,6 +1,6 @@
 <h3>Your Bookings</h3>
 
-<table>
+<table class="table-hover table-bordered table-striped">
     <tr>
         <td>Booking Id</td>
         <td>Source</td>
@@ -10,12 +10,17 @@
         <td>Action</td>
     </tr>
 
-    <tr>
+    <tr *ngFor="let book of bookings">
+        <td>{{book.bookingId}}</td>
+        <!-- <td>{{book.scheduleFlight.schedule.sourceAirport.address}}</td> -->
         <td></td>
         <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>{{book.bookingDate}}</td>
+        <td>{{book.bookingTime}}</td>
+        <td>
+            <button class="btn btn-sm btn-info">View Flight</button>
+            <button class="btn btn-sm btn-info">View Passengers</button>
+            <button class="btn btn-sm btn-success" routerLink="/customer/modifyBooking">Modify Booking</button>
+        </td>
     </tr>
 </table>
