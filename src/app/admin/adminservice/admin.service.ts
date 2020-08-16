@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ScheduleFlight } from 'src/app/models/scheduleFlight';
-import { Timestamp } from 'rxjs';
-import { Time } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -24,8 +22,8 @@ export class AdminService {
     return this.http.delete(this.url+"deleteSchedule/"+scheduleFlightId);
   }
 
-  // rescheduleFlightSchedule(rescheduleId:number, arrivalTime:Time, departureTime:Time)
-  // {
-  //   return this.http.put(this.url+"/rescheduleFlightSchedule/"+rescheduleId+arrivalTime+departureTime);
-  // }
+  rescheduleFlightSchedule(rescheduleId:number, updatedSchedule:ScheduleFlight)
+  {
+    return this.http.put(this.url+"rescheduleFlightSchedule/"+rescheduleId,updatedSchedule,{ responseType: 'text' as 'json' });
+  }
 }
