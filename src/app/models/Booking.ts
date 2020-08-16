@@ -1,4 +1,7 @@
 import { Time } from '@angular/common';
+import { Schedule } from './Schedule';
+import { Flight } from './Flight';
+import { Passenger } from './Passenger';
 
 export class Booking{
     bookingId:number;
@@ -7,4 +10,7 @@ export class Booking{
     ticketPrice:number;
     status:string;
     bookingStatus:string;
+    schedule:Schedule;
+    flight:Flight;
+    passengers:Passenger[];
 }

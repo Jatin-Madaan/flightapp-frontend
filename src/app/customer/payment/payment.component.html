@@ -1,1 +1,112 @@
-<p>payment works!</p>
+<div class="row" style="margin-top: 3%;">
+    <div class="col-lg-12">
+        <div class="offset-lg-1">
+            <h2 style="text-align: center;">Payment Details</h2>
+            <div class="container">
+                <form [formGroup]="PaymentForm" style="margin-left: 3%;margin-right: 3%;">
+                 <br>
+                    <h5>Accepted Cards </h5>
+                    <div class="icon-container" style="font-size: 30px;margin-bottom: 20px;">
+                        <i class="fa fa-cc-visa" style="color:navy;padding-right: 30px;"></i>
+                        <i class="fa fa-cc-amex" style="color:blue;padding-right: 30px;"></i>
+                        <i class="fa fa-cc-mastercard" style="color:red;padding-right: 30px;"></i>
+                        <i class="fa fa-cc-discover" style="color:orange;padding-right: 30px;"></i>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="offset-lg-1 col-lg-10">
+
+
+                                <label for="password"><i class="fa fa-key" aria-hidden="true"></i>
+                                    <h5>Password: </h5>
+                                </label>
+                                <input type="text" class="form-control" formControlName="password"
+                                    placeholder="Enter your password">
+                                <div *ngIf=" submitted  && PaymentForm.controls.password.errors">
+                                    <div class="text-danger" *ngIf="PaymentForm.controls.password.errors.required">
+                                        Password is Required...
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="offset-lg-1 col-lg-5">
+                            <div class="form-group">
+                                <label for="name"><i class="fa fa-user"></i>
+                                    <h5>Name on Card: </h5>
+                                </label>
+                                <input type="text" class="form-control" formControlName="name"
+                                    placeholder="Ex: Prithve">
+                                <div *ngIf=" submitted && PaymentForm.controls.name.errors">
+                                    <div class="text-danger" *ngIf="PaymentForm.controls.name.errors.required">
+                                        Name is Required...
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="form-group">
+                                <label for="cardnumber"><i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+                                    <h5>Card Number: </h5>
+                                </label>
+                                <input type="number" class="form-control" formControlName="cardnumber"
+                                    placeholder="xxxx xxxx xxxx xxxx">
+                                <div *ngIf=" submitted  && PaymentForm.controls.cardnumber.errors">
+                                    <div class="text-danger" *ngIf="PaymentForm.controls.cardnumber.errors.required">
+                                        Card Number is Required...
+                                    </div>
+                                    <div class="text-warning" *ngIf="PaymentForm.controls.cardnumber.errors.pattern">
+                                        Card Number is of 16 Digits...
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="offset-lg-1 col-lg-5">
+                            <div class="form-group">
+                                <label for="year"><i class="fa fa-calendar" aria-hidden="true"></i>
+                                    <h5>Exp Year: </h5>
+                                </label>
+                                <input type="number" class="form-control" formControlName="year" placeholder="Ex: YYYY">
+                                <div *ngIf=" submitted  && PaymentForm.controls.year.errors">
+                                    <div class="text-danger" *ngIf="PaymentForm.controls.year.errors.required">
+                                        Year is Required...
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="form-group">
+                                <label for="month"><i class="fa fa-calendar" aria-hidden="true"></i>
+                                    <h5>Exp Month: </h5>
+                                </label>
+                                <input type="number" class="form-control" formControlName="month" placeholder="Ex: MM">
+                                <div *ngIf=" submitted  && PaymentForm.controls.month.errors">
+                                    <div class="text-danger" *ngIf="PaymentForm.controls.month.errors.required">
+                                        Month is Required...
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="text-align: center; font-weight: bolder;font-size: large;">
+                        BookingId : {{bookingid}} &nbsp;&nbsp;&nbsp;<span>Price: {{amount | currency:"INR" }}</span>
+                    </div>
+                    <br>
+                    <div class="row" style="margin-left: 15%;">
+
+                        <button class="btn btn-success" (click)="submit()" style="width: 40%;">Proceed with Payment
+                        </button>&nbsp;
+                        <button class="btn btn-danger" (click)="cancel()" style="width: 40%;">Cancel Payment
+                        </button>&nbsp;
+                    </div>
+                    <br>
+                    <br>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

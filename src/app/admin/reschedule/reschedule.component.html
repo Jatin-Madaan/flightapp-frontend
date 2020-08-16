@@ -1,0 +1,25 @@
+<hr><hr><table class="table table-sm table-bordered table-hover zoom1 shadow-lg p-3 mb-5 bg-white rounded mx-auto" style="background-color: aliceblue;">
+    <thead class="thead-dark">
+        <tr>
+            <th><a class="btn btn-info flip" scope="col" style="width: 100%;">ScheduleFlight ID</a></th>
+            <th><a class="btn btn-info flip" scope="col" style="width: 100%;">Source Airport</a></th>
+            <th><a class="btn btn-info flip" scope="col" style="width: 100%;">Destination Airport</a></th>
+            <th><a class="btn btn-info flip" scope="col" style="width: 100%;">Departure Time</a></th>
+            <th><a class="btn btn-info flip" scope="col" style="width: 100%;">Arival Time</a></th> 
+            <th><a class="btn btn-danger flip" scope="col" style="width: 100%;">Delete</a></th>
+            <th><a class="btn btn-warning flip" scope="col" style="width: 100%;">Reschedule</a></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+        <tr *ngFor="let p of scheduleFlightsList; let i=index">
+            <th scope="row"><a class="btn btn-light" style="width: 100%;">{{p.scheduleFlightId}}</a></th>
+            <td><a class="btn btn-light" style="width: 100%;">{{p.schedule.sourceAirport.airportName}}</a></td>
+            <td><a class="btn btn-light" style="width: 100%;">{{p.schedule.destinationAirport.airportName}}</a></td>
+            <td><a class="btn btn-light" style="width: 100%;">{{p.schedule.departureTime | date:'medium'}}</a></td>
+            <td><a class="btn btn-light" style="width: 100%;">{{p.schedule.arrivalTime | date:'medium'}}</a></td>
+            <td><a (click)="deleteScheduleFlight(scheduleFlightsList[i])" class="zoom flip btn btn-outline-warning mx-auto" style="width: 100%;">Delete</a></td>
+            <td><a (click)="reschedule(scheduleFlightsList[i])" (dblclick)="cancelRescheduling()" class="zoom flip btn btn-outline-danger mx-auto" style="width: 100%;">Reschedule</a></td>
+        </tr>
+    </tbody>
+</table><hr><hr>
