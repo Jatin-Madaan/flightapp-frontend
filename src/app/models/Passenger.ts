@@ -1,3 +1,4 @@
+
 import { Booking } from './Booking';
 
 export class Passenger{
