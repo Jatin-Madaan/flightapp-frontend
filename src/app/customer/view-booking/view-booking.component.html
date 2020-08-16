@@ -10,17 +10,17 @@
         <td>Action</td>
     </tr>
 
-    <tr *ngFor="let book of bookings">
+    <tr *ngFor="let book of bookings,let i of index">
         <td>{{book.bookingId}}</td>
         <!-- <td>{{book.scheduleFlight.schedule.sourceAirport.address}}</td> -->
-        <td></td>
-        <td></td>
+        <!-- <td>{{book.scheduleFlight.schedule.destinationAirport.address}}</td> -->
         <td>{{book.bookingDate}}</td>
         <td>{{book.bookingTime}}</td>
         <td>
-            <button class="btn btn-sm btn-info">View Flight</button>
-            <button class="btn btn-sm btn-info">View Passengers</button>
-            <button class="btn btn-sm btn-success" routerLink="/customer/modifyBooking">Modify Booking</button>
+            <button class="btn btn-sm btn-info" (click)="viewFlight(i)">View Flight</button>
+            <button class="btn btn-sm btn-info" (click)="viewPassenger(i)">View Passengers</button>
+            <button class="btn btn-sm btn-success">Reschedule</button>
+            <button class="btn btn-sm btn-danger">Cancel</button>
         </td>
     </tr>
 </table>
