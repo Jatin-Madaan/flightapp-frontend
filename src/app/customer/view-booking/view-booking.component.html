@@ -7,20 +7,125 @@
         <td>Destination</td>
         <td>Date</td>
         <td>Time</td>
+        <td>Status</td>
         <td>Action</td>
     </tr>
 
-    <tr *ngFor="let book of bookings,let i of index">
+    <tr *ngFor="let book of bookings,let i=index">
         <td>{{book.bookingId}}</td>
-        <!-- <td>{{book.scheduleFlight.schedule.sourceAirport.address}}</td> -->
-        <!-- <td>{{book.scheduleFlight.schedule.destinationAirport.address}}</td> -->
+        <!-- <td>{{book.scheduleFlight.schedule.sourceAirport.address}}</td>
+        <td>{{book.scheduleFlight.schedule.destinationAirport.address}}</td> -->
+        <td></td>
+        <td></td>
         <td>{{book.bookingDate}}</td>
         <td>{{book.bookingTime}}</td>
+        <td>{{book.bookingStatus}}</td>
         <td>
-            <button class="btn btn-sm btn-info" (click)="viewFlight(i)">View Flight</button>
-            <button class="btn btn-sm btn-info" (click)="viewPassenger(i)">View Passengers</button>
-            <button class="btn btn-sm btn-success">Reschedule</button>
-            <button class="btn btn-sm btn-danger">Cancel</button>
+            <button class="btn btn-sm btn-info" (click)="viewFlight(i)"  data-toggle="modal" data-target="#flightModal">View Flight</button>
+            <button class="btn btn-sm btn-info" (click)="viewPassenger(i)" data-toggle="modal" data-target="#passengerModal">View Passengers</button>
+            <button class="btn btn-sm btn-success" (click)="setIndex(i)" data-toggle="modal" data-target="#modifyModal">Reschedule</button>
+            <button class="btn btn-sm btn-danger" (click)="setIndex(i)" data-toggle="modal" data-target="#cancelModal">Cancel</button>
         </td>
     </tr>
 </table>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="flightModal" tabindex="-1" role="dialog" aria-labelledby="flightModalTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Flight Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center" *ngIf="checkFlight">
+          Flight Id: {{flight.flightId}}
+          Carrier: {{flight.carrierName}} <br>
+          Model: {{flight.flightModel}}
+          Capacity: {{flight.seatCapacity}}
+      </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="passengerModal" tabindex="-1" role="dialog" aria-labelledby="passengerModalTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Passenger Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center" *ngIf="checkPassenger">
+          <div  *ngFor="let pass of passenger">
+            PNR: {{pass.pnrNumber}}
+            Name:{{pass.passengerName}}
+            Age: {{pass.age}}
+            Luggage: {{pass.luggage}}
+            Seat Number: {{pass.seatNumber}}
+            Class: {{pass.travelClass}} <br>
+          </div>
+        
+      </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="flightModalTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cancel Booking</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+          Are you sure you want to cancel this booking?
+      </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Take me Back</button>
+          <button class="btn btn-sm btn-danger" (click)="cancelBooking()">Yes, Sure</button>
+        </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modifyModal" tabindex="-1" role="dialog" aria-labelledby="flightModalTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Reschedule Booking</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+          Are you sure you want to cancel this booking?
+      </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Take me Back</button>
+          <button class="btn btn-sm btn-danger" (click)="cancelBooking()">Yes, Sure</button>
+        </div>
+    </div>
+  </div>
+</div>
