@@ -6,6 +6,8 @@ import { PaymentComponent } from './payment/payment.component';
 import { InvoiceComponent } from './invoice/invoice.component';
 
 import { ModifyBookingComponent } from './modify-booking/modify-booking.component';
+import { SearchFlightComponent } from './search-flight/search-flight.component';
+import { ListFlightsComponent } from './list-flights/list-flights.component';
 
 
 
@@ -16,7 +18,9 @@ const routes: Routes = [
     {path:'pay/:bookingid',component:PaymentComponent},
     {path:'invoice/:bookingid',component:InvoiceComponent},
 
-    {path:'modifyBooking',component:ModifyBookingComponent}
+    {path:'modifyBooking',component:ModifyBookingComponent},
+	{ path: "searchFlights", component: SearchFlightComponent },
+  { path: "listFlights/:from/:to/:date/:count", component: ListFlightsComponent }
 
   ]}
 ];

@@ -45,4 +45,20 @@ export class AdminService {
   getScheduleById(id: number){
     return this.http.get<Schedule>(this.url + "/Schedule/id/" + id);
   }
+  
+  getSchedulesFlights()
+  {
+    return this.http.get<ScheduleFlight[]>(this.url+"scheduleFlight/viewAll");
+  }
+
+  removeSchedule(scheduleFlightId:number)
+  {
+    console.log(scheduleFlightId);
+    return this.http.delete(this.url+"deleteSchedule/"+scheduleFlightId);
+  }
+
+  rescheduleFlightSchedule(rescheduleId:number, updatedSchedule:ScheduleFlight)
+  {
+    return this.http.put(this.url+"rescheduleFlightSchedule/"+rescheduleId,updatedSchedule,{ responseType: 'text' as 'json' });
+  }
 }
