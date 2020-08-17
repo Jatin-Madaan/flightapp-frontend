@@ -6,18 +6,21 @@ import { PaymentComponent } from './payment/payment.component';
 import { InvoiceComponent } from './invoice/invoice.component';
 
 import { ModifyBookingComponent } from './modify-booking/modify-booking.component';
+import { AddBookingComponent } from './add-booking/add-booking.component';
 
 
 
-const routes: Routes = [
-  { path:'',component:HomeComponent, children: [
-    {path:'viewBooking',component:ViewBookingComponent},
+const routes: Routes = 
+[
+  {path:'',component:HomeComponent, children:
+  [ 
+    { path: 'addBooking',component:AddBookingComponent},
+  
+    { path: 'viewBooking',component:ViewBookingComponent},
+    { path: 'modifyBooking',component:ModifyBookingComponent},
 
-    {path:'pay/:bookingid',component:PaymentComponent},
-    {path:'invoice/:bookingid',component:InvoiceComponent},
-
-    {path:'modifyBooking',component:ModifyBookingComponent}
-
+    { path: 'pay/:bookingid',component:PaymentComponent},
+    { path: 'invoice/:bookingid',component:InvoiceComponent}
   ]}
 ];
 

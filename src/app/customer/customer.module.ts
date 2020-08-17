@@ -10,11 +10,12 @@ import{ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { InvoiceComponent } from './invoice/invoice.component';
 import { ModifyBookingComponent } from './modify-booking/modify-booking.component';
+import { AddBookingComponent } from './add-booking/add-booking.component';
 
 
 
 @NgModule({
-  declarations: [HomeComponent,ViewBookingComponent, PaymentComponent, ModifyBookingComponent,InvoiceComponent],
+  declarations: [HomeComponent,ViewBookingComponent, PaymentComponent, ModifyBookingComponent,InvoiceComponent, AddBookingComponent],
   imports: [
     CommonModule,
     CustomerRoutingModule,
