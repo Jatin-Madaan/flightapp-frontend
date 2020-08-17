@@ -69,7 +69,7 @@ export class InvoiceComponent implements OnInit {
     if(data.bookingStatus == "Payment Cancelled"|| data.bookingStatus == "Cancelled"){
       this.paymentcancel = data.bookingStatus;
     }
-    if(data.bookingStatus == "Payment Success" || data.bookingStatus == "Success"){
+    if(data.bookingStatus == "Payment Successful" || data.bookingStatus == "Successful"){
       this.paymentsuccess = data.bookingStatus;
     }
     this.flight = data.flight;
