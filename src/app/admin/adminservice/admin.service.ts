@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Airport } from 'src/app/models/Airport';
+import { Schedule } from 'src/app/models/Schedule';
+import { Flight } from 'src/app/models/Flight';
+import { ScheduleFlight } from 'src/app/models/scheduleFlight';
 
 @Injectable({
   providedIn: 'root'
@@ -7,4 +11,38 @@ import { HttpClient } from '@angular/common/http';
 export class AdminService {
 
   constructor(private http:HttpClient) { }
+
+  url:string="http://localhost:8085/";
+
+  getAllAirports(){
+    return this.http.get<Airport[]>(this.url+"/airports/all");
+  }
+
+  addAirport(airport : Airport){
+    return this.http.post<Airport>(this.url + "airports/add", airport);
+  }
+
+  getFlights(){
+    return this.http.get<Flight[]>(this.url + "/getFlights");
+  }
+
+  addSchedule(schedule: Schedule){
+    return this.http.post<Schedule>(this.url + "Schedule/add", schedule);
+  }
+
+  addScheduleFlight(scheduleFlight: ScheduleFlight){
+    return this.http.post<ScheduleFlight>(this.url + "/scheduleFlight/add", scheduleFlight);
+  }
+
+  getFlightById(id: number){
+    return this.http.get<Flight>(this.url + "getFlights/" + id);
+  }
+
+  getAirportById(id: number){
+    return this.http.get<Airport>(this.url + "/airports/id/" + id); 
+  }
+
+  getScheduleById(id: number){
+    return this.http.get<Schedule>(this.url + "/Schedule/id/" + id);
+  }
 }

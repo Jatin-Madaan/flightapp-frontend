@@ -7,7 +7,7 @@ import { ScheduleFlightComponent } from './schedule-flight/schedule-flight.compo
 
 const routes: Routes = [
   { path:'',component:DashboardComponent, children: [
-    { path:'reschedule', component:RescheduleComponent },
+    { path: 'reschedule', component:RescheduleComponent },
     { path: 'scheduleFlight', component:ScheduleFlightComponent }
   ]}
 ];
