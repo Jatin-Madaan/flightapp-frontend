@@ -15,7 +15,7 @@
             <div class="offset-lg-5">
                 <img src="/assets/paymentsuccess.gif" style="width: 25%;">
             </div>
-            <h2 style="text-align: center;font-family: 'Segoe UI';font-size: 40px;color: forestgreen">Payment Success
+            <h2 style="text-align: center;font-family: 'Segoe UI';font-size: 40px;color: forestgreen">Payment Successful
             </h2>
         </div>
     </div>
@@ -37,10 +37,8 @@
         <div class="row" style="margin-left: 15%;margin-right: 15%;margin-top: 1%;font-size: larger;">
             <i class="fa fa-book fa-2x"></i>&nbsp;&nbsp;&nbsp;<span>BookingId:
                 {{bookingdata.bookingId}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <span>BookingDate:
-                {{bookingdata.bookingDate}}16-08-2020</span>&nbsp;&nbsp;&nbsp;&nbsp;
-            <span>BookingTime:
-                {{bookingdata.bookingTime}}07:30:00</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span>Booking Date and Time:
+                {{bookingdata.bookingDate | date:'medium'}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
             <span>Price: {{bookingdata.ticketPrice | currency:"INR"}}</span>
         </div>
         <div class="row" style="margin-top: 2%;font-size: xx-large;font-weight: bolder;">
