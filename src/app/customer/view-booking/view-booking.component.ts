@@ -17,7 +17,8 @@ export class ViewBookingComponent implements OnInit {
   passenger:Passenger[];
   checkFlight:boolean=false;
   checkPassenger:boolean=false;
-  index:number;
+  index:number=0;
+  errorMessage:string;
 
   constructor(private service:CustomerService) { }
 
@@ -48,8 +49,11 @@ export class ViewBookingComponent implements OnInit {
     this.service.cancelBooking(this.bookings[this.index].bookingId).subscribe(data=>{
       this.bookings[this.index]=data;
       $('#cancelModal').modal('hide');
+      alert('Booking Cancelled..!!');
     },err=>{
-      console.log(err);
+      $('#cancelModal').modal('hide');
+      this.errorMessage=err.error;
+      alert(this.errorMessage);
     });
   }
 }
