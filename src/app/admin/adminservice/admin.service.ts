@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ScheduleFlight } from 'src/app/models/scheduleFlight';
+import { Booking } from 'src/app/models/Booking';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,11 @@ export class AdminService {
   getSchedulesFlights()
   {
     return this.http.get<ScheduleFlight[]>(this.url+"scheduleFlight/viewAll");
+  }
+
+  getBookings()
+  {
+    return this.http.get<Booking[]>(this.url+"customer/bookings/");
   }
 
   removeSchedule(scheduleFlightId:number)
