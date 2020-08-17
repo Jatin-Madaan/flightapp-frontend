@@ -5,6 +5,6 @@ export class Schedule{
     scheduleId:number;
     sourceAirport:Airport;
     destinationAirport:Airport;
-    departureTime:Time;
-    arrivalTime:Time;
+    departureTime:Date;
+    arrivalTime:Date;
 }

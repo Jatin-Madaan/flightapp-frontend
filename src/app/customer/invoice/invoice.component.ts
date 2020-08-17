@@ -8,7 +8,7 @@ import { User } from 'src/app/models/User';
 import { Passenger } from 'src/app/models/Passenger';
 import { Airport } from 'src/app/models/Airport';
 import { Schedule } from 'src/app/models/Schedule';
-import { jsPDF } from 'jspdf';
+//import { jsPDF } from 'jspdf';
 
 
 @Component({
@@ -54,10 +54,10 @@ export class InvoiceComponent implements OnInit {
     console.log(this.passenger)
   }
   downloadPDF(){
-    const doc = new jsPDF('p')
+ //   const doc = new jsPDF('p')
     const ta = document.getElementById('content');
-    doc.fromHTML(ta, 15, 15);
-    doc.save('demo.pdf')
+  //  doc.fromHTML(ta, 15, 15);
+  //  doc.save('demo.pdf')
   }
 
   ifbookingnotfound(error){
@@ -69,7 +69,7 @@ export class InvoiceComponent implements OnInit {
     if(data.bookingStatus == "Payment Cancelled"|| data.bookingStatus == "Cancelled"){
       this.paymentcancel = data.bookingStatus;
     }
-    if(data.bookingStatus == "Payment Success" || data.bookingStatus == "Success"){
+    if(data.bookingStatus == "Payment Successful" || data.bookingStatus == "Successful"){
       this.paymentsuccess = data.bookingStatus;
     }
     this.flight = data.flight;

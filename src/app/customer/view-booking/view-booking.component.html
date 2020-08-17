@@ -5,21 +5,21 @@
         <td>Booking Id</td>
         <td>Source</td>
         <td>Destination</td>
-        <td>Date</td>
-        <td>Time</td>
+        <td>Booking Date</td>
+        <td>Departure</td>
+        <td>Arrival</td>
         <td>Status</td>
         <td>Action</td>
     </tr>
 
     <tr *ngFor="let book of bookings,let i=index">
         <td>{{book.bookingId}}</td>
-        <!-- <td>{{book.scheduleFlight.schedule.sourceAirport.address}}</td>
-        <td>{{book.scheduleFlight.schedule.destinationAirport.address}}</td> -->
-        <td></td>
-        <td></td>
-        <td>{{book.bookingDate}}</td>
-        <td>{{book.bookingTime}}</td>
-        <td>{{book.bookingStatus}}</td>
+        <td>{{book.scheduleFlight.schedule.sourceAirport.address}}</td>
+        <td>{{book.scheduleFlight.schedule.destinationAirport.address}}</td>
+        <td>{{book.bookingDate | date :'mediumDate'}}</td>
+        <td>{{book.scheduleFlight.schedule.departureTime | date:'medium'}}</td>
+        <td>{{book.scheduleFlight.schedule.arrivalTime | date:'medium'}}</td>
+        <td>{{book.status}}</td>
         <td>
             <button class="btn btn-sm btn-info" (click)="viewFlight(i)"  data-toggle="modal" data-target="#flightModal">View Flight</button>
             <button class="btn btn-sm btn-info" (click)="viewPassenger(i)" data-toggle="modal" data-target="#passengerModal">View Passengers</button>
@@ -99,6 +99,7 @@
       </div>
       <div class="modal-body text-center">
           Are you sure you want to cancel this booking?
+          <h6 *ngIf="bookings">Refund Amount: &#8377; {{bookings[index].ticketPrice}}</h6>
       </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Take me Back</button>
@@ -120,11 +121,11 @@
         </button>
       </div>
       <div class="modal-body text-center">
-          Are you sure you want to cancel this booking?
+          
       </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Take me Back</button>
-          <button class="btn btn-sm btn-danger" (click)="cancelBooking()">Yes, Sure</button>
+          <button class="btn btn-sm btn-success" (click)="modifyBooking()">Reschedule</button>
         </div>
     </div>
   </div>
