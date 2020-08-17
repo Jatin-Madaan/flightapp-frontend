@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Booking } from '../../models/Booking';
 import { Schedule } from '../../models/Schedule';
+import { ScheduleFlight } from 'src/app/models/scheduleFlight';
 
 @Injectable({
   providedIn: 'root'
@@ -34,5 +35,10 @@ export class CustomerService {
 
   modifyBooking(bookingId:number,schedule:Schedule){
     return this.http.put(this.url+"customer/modifyBookings/"+bookingId,schedule,{ responseType: 'text' as 'json' });
+  }
+  
+  getFlights(source:string, destination: string, dest_date:string, passengers:number)
+  {
+    return this.http.get<ScheduleFlight[]>(this.url+"customer/getFlights/"+source+"/"+destination+"/"+dest_date+"/"+passengers);
   }
 }
