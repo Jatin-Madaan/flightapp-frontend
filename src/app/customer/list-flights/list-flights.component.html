@@ -1,0 +1,42 @@
+<!-- <p>hgdfdfg</p>
+<table>
+  <tr *ngFor="let scr of sc">
+    <td>{{ scr.scheduleFlightId }}</td>
+  </tr>
+</table> -->
+<div style="margin-left: 10%; margin-right: 10%; margin-top: 2%;">
+  <div id="content">
+    <hr style="border-width: thin; border-block-end-style: dotted;" />
+
+    <div
+      class="row"
+      style="margin-top: 2%; font-size: xx-large; font-weight: bolder;"
+    >
+      <div class="offset-3"></div>
+      <div class="col-md-2" style="text-align: center;">
+        <span>{{ from }}</span>
+      </div>
+      <div class="col-md-2" style="text-align: center;">
+        <span><i class="fa fa-arrow-right fa-1x"></i></span>
+      </div>
+      <div class="col-md-2" style="text-align: center;">
+        <span>{{ to }}</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="offset-1"></div>
+      <div class="r1 col-md-10">
+        <div class="col-md-2">
+          <img class="col-md-2" src="assets/images/a4.jpg" alt="V&m" />
+        </div>
+        <div class="col-md-2" *ngFor="let scr of sc">
+          {{ scr.scheduleFlightId }}
+        </div>
+      </div>
+
+      <br /><br /><br /><br />
+      <br /><br /><br />
+    </div>
+  </div>
+</div>

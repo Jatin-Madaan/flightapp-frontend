@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminService } from '../adminservice/admin.service';
+import { ScheduleFlight } from 'src/app/models/scheduleFlight';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,5 +13,5 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  
 }
