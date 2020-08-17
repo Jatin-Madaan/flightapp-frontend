@@ -33,7 +33,7 @@
         </button>
     </div>
     <div class="modal-body">
-        <!-- <form #formdata="ngForm" (ngSubmit)="submitFunc()" >
+        <form [formGroup]="rescheduleFlightForm" (ngSubmit)="submitFunc()" >
             <table class="table table-sm table-bordered table-hover shadow-lg p-3 mb-5 bg-white rounded mx-auto" style="width: 80%;">
                 <thead class="thead-light">
                     <tr>
@@ -45,23 +45,23 @@
                 <tbody>
                     <tr>
                         <td><div class="form-group"> ScheduleFlight ID: </div></td>
-                        <td><div><label [(ngModel)]="updatedSchedule.scheduleFlightId" #usr="ngModel" ></label></div></td>
+                        <td><div><label class="form-control" id="scheduleFlightId" formControlName="scheduleFlightId" value={{updatedSchedule.scheduleFlightId}}>{{updatedSchedule.scheduleFlightId}}</label></div></td>
                     </tr>
                     <tr>
                         <td><div class="form-group"> Departure Time: </div></td>
-                        <td><div><input class="form-control customInputTag" type="datetime" name="departureTime" [(ngModel)]="updatedSchedule.departureTime" #usr="ngModel" required></div></td>
+                        <td><div><input class="form-control customInputTag" type="datetime-local" id="departureTime" formControlName="departureTime" required value="updatedSchedule.schedule.departureTime">{{updatedSchedule.schedule.departureTime}}</div></td>
                     </tr>
                     <tr>
                         <td><div class="form-group"> Arival Time: </div></td>
-                        <td><div><input class="form-control customInputTag" type="datetime" name="arrivalTime" [(ngModel)]="updatedSchedule.arrivalTime" #usr="ngModel" required></div></td>
+                        <td><div><input class="form-control customInputTag" type="datetime-local" id="arrivalTime" formControlName="arrivalTime" required value="updatedSchedule.schedule.arrivalTime">{{updatedSchedule.schedule.arrivalTime}}</div></td>
                     </tr>
                     <tr>
                         <td><div class="form-group"></div></td>
-                        <td><div class="form-group"><input class="btn btn-dark" style="width: 200px;" type="submit" [disabled]="formdata.invalid" [disabled]="usr.untouched" value="Enter"></div></td>
+                        <td><div><input class="btn btn-dark" style="width: 200px;" type="submit" [disabled]="formdata.invalid" [disabled]="usr.untouched" value="Enter"></div></td>
                     </tr>
                 </tbody>
             </table> 
-        </form> -->
+        </form>
     </div>
     <div class="modal-footer">
         

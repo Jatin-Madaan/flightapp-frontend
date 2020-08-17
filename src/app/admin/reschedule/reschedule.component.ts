@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AdminService } from '../adminservice/admin.service';
 import { ScheduleFlight } from 'src/app/models/scheduleFlight';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -16,8 +16,12 @@ export class RescheduleComponent implements OnInit {
   scheduleFlightsList:ScheduleFlight[];
   updatedSchedule:ScheduleFlight;
   rescheduleId:number;
-  // @ViewChild("formdata")
-  // form: NgForm;
+  
+  rescheduleFlightForm = new FormGroup({
+    scheduleFlightId: new FormControl(0),
+    departureTime: new FormControl(''),
+    arrivalTime: new FormControl('')
+  });
 
   ngOnInit(): void 
   {
