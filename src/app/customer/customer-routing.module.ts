@@ -6,6 +6,20 @@ import { PaymentComponent } from './payment/payment.component';
 import { InvoiceComponent } from './invoice/invoice.component';
 
 import { ModifyBookingComponent } from './modify-booking/modify-booking.component';
+<<<<<<< HEAD
+import { AddBookingComponent } from './add-booking/add-booking.component';
+
+
+
+const routes: Routes = 
+[
+  {path:'',component:HomeComponent, children:
+  [ 
+    { path: 'addBooking',component:AddBookingComponent},
+  
+    { path: 'viewBooking',component:ViewBookingComponent},
+    { path: 'modifyBooking',component:ModifyBookingComponent},
+=======
 import { SearchFlightComponent } from './search-flight/search-flight.component';
 import { ListFlightsComponent } from './list-flights/list-flights.component';
 
@@ -21,7 +35,10 @@ const routes: Routes = [
     {path:'modifyBooking',component:ModifyBookingComponent},
 	{ path: "searchFlights", component: SearchFlightComponent },
   { path: "listFlights/:from/:to/:date/:count", component: ListFlightsComponent }
+>>>>>>> 2a835862473a46a6911ed146136caba10f872a73
 
+    { path: 'pay/:bookingid',component:PaymentComponent},
+    { path: 'invoice/:bookingid',component:InvoiceComponent}
   ]}
 ];
 

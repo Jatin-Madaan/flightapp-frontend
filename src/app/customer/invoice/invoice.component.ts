@@ -54,10 +54,17 @@ export class InvoiceComponent implements OnInit {
     console.log(this.passenger)
   }
   downloadPDF(){
+<<<<<<< HEAD
+    //const doc = new jsPDF('p')
+    //const ta = document.getElementById('content');
+    //doc.fromHTML(ta, 15, 15);
+   // doc.save('demo.pdf')
+=======
  //   const doc = new jsPDF('p')
     const ta = document.getElementById('content');
   //  doc.fromHTML(ta, 15, 15);
   //  doc.save('demo.pdf')
+>>>>>>> 2a835862473a46a6911ed146136caba10f872a73
   }
 
   ifbookingnotfound(error){
