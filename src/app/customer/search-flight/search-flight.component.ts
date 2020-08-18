@@ -21,7 +21,7 @@ export class SearchFlightComponent implements OnInit {
       date: ["", [Validators.required]],
       passengers: [
         "",
-        [Validators.required, Validators.min(1), Validators.max(4)],
+        [Validators.required, Validators.min(1), Validators.max(1)],
       ],
     });
   }
