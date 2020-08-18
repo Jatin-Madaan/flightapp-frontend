@@ -85,4 +85,11 @@ export class InvoiceComponent implements OnInit {
     console.log(data);
   }
 
+  home(){
+    this.router.navigate(["/customer/"]);
+  }
+  mybooking(){
+    this.router.navigate(["/customer/viewBooking/"]);
+  }
+
 }
