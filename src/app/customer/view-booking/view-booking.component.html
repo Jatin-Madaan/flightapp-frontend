@@ -1,109 +1,135 @@
-<h3>Your Bookings</h3>
-
-<table class="table-hover table-bordered table-striped">
-    <tr>
-        <td>Booking Id</td>
-        <td>Source</td>
-        <td>Destination</td>
-        <td>Booking Date</td>
-        <td>Departure</td>
-        <td>Arrival</td>
-        <td>Status</td>
-        <td>Action</td>
-    </tr>
-
-    <tr *ngFor="let book of bookings,let i=index">
-        <td>{{book.bookingId}}</td>
-        <td>{{book.scheduleFlight.schedule.sourceAirport.address}}</td>
-        <td>{{book.scheduleFlight.schedule.destinationAirport.address}}</td>
-        <td>{{book.bookingDate | date :'mediumDate'}}</td>
-        <td>{{book.scheduleFlight.schedule.departureTime | date:'medium'}}</td>
-        <td>{{book.scheduleFlight.schedule.arrivalTime | date:'medium'}}</td>
-        <td>{{book.status}}</td>
-        <td>
-            <button class="btn btn-sm btn-info" (click)="viewFlight(i)"  data-toggle="modal" data-target="#flightModal">View Flight</button>
-            <button class="btn btn-sm btn-info" (click)="viewPassenger(i)" data-toggle="modal" data-target="#passengerModal">View Passengers</button>
-            <button class="btn btn-sm btn-danger" (click)="setIndex(i)" data-toggle="modal" data-target="#cancelModal">Cancel</button>
-        </td>
-    </tr>
-</table>
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="flightModal" tabindex="-1" role="dialog" aria-labelledby="flightModalTitle"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Flight Details</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body text-center" *ngIf="checkFlight">
-          Flight Id: {{flight.flightId}}
-          Carrier: {{flight.carrierName}} <br>
-          Model: {{flight.flightModel}}
-          Capacity: {{flight.seatCapacity}}
-      </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-    </div>
-  </div>
-</div>
-
-
-<!-- Modal -->
-<div class="modal fade" id="passengerModal" tabindex="-1" role="dialog" aria-labelledby="passengerModalTitle"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Passenger Details</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body text-center" *ngIf="checkPassenger">
-          <div  *ngFor="let pass of passenger">
-            PNR: {{pass.pnrNumber}}
-            Name:{{pass.passengerName}}
-            Age: {{pass.age}}
-            Luggage: {{pass.luggage}}
-            Seat Number: {{pass.seatNumber}}
-            Class: {{pass.travelClass}} <br>
+<div class="container-fluid">
+  <div class="row">
+    <div class="offset-lg-1 col-lg-10">
+      <h4>My Bookings</h4>
+  
+      <div class="card mb-3 mt-1 shadow-lg p-3 bg-light rounded" *ngFor="let book of bookings,let i=index">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-lg-4">
+              <span style="float:left;color: green;" *ngIf="status[i]"><b>Booked</b></span>
+              <span style="float:left;color: red;" *ngIf="!status[i]"><b>Cancelled</b></span>
+            </div>
+            <div class="col-lg-4 text-center">
+              <b style="text-transform: uppercase;font-size:20px;"> {{book.scheduleFlight.schedule.sourceAirport.address}}-{{book.scheduleFlight.schedule.destinationAirport.address}}</b>
+            </div>
+            <div class="col-lg-4">
+              <span style="float:right;">Booking ID: &nbsp; {{book.bookingId}}</span>
+            </div>
           </div>
-        
-      </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
         </div>
-    </div>
-  </div>
-</div>
-
-
-<!-- Modal -->
-<div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="flightModalTitle"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Cancel Booking</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body text-center">
-          Are you sure you want to cancel this booking?
-          <h6 *ngIf="bookings">Refund Amount: &#8377; {{bookings[index].ticketPrice}}</h6>
-      </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Take me Back</button>
-          <button class="btn btn-sm btn-danger" (click)="cancelBooking()">Yes, Sure</button>
+        <div class="card-body text-center">
+          <span style="float:left;"><b>Departure:</b>&nbsp;
+            {{book.scheduleFlight.schedule.departureTime | date:'medium'}}</span>
+          <b>Arrival</b>:&nbsp; {{book.scheduleFlight.schedule.arrivalTime | date:'medium'}}
+          <span style="float:right;"><b>Booking Date:</b> &nbsp; {{book.bookingDate | date :'mediumDate'}}</span>
         </div>
+        <div class="card-footer text-center">
+          <button class="btn btn-sm btn-outline-success" (click)="viewFlight(i)" data-toggle="modal"
+            data-target="#flightModal">View Flight</button> &nbsp;
+          <button class="btn btn-sm btn-outline-success" (click)="viewPassenger(i)" data-toggle="modal"
+            data-target="#passengerModal">View Passengers</button> &nbsp;
+          <button class="btn btn-sm btn-outline-danger" (click)="setIndex(i)" data-toggle="modal"
+            data-target="#cancelModal">Cancel</button>
+        </div>
+      </div>
+  
+      <!-- Modal -->
+      <div class="modal fade bg-primary" id="flightModal" tabindex="-1" role="dialog" aria-labelledby="flightModalTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content bg-light">
+            <div class="modal-header">
+              <h5 class="modal-title">Flight Details</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body rounded" *ngIf="checkFlight">
+              <table class="table table-sm table-bordered shadow-lg p-3 bg-white rounded">
+                <tr class="text-center">
+                  <td class="bg-primary text-light">Flight Id</td>
+                  <td class="bg-primary text-light">Carrier</td>
+                  <td class="bg-primary text-light">Model</td>
+                  <td class="bg-primary text-light">Capacity</td>
+                </tr>
+                <tr class="text-center">
+                  <td>{{flight.flightId}}</td>
+                  <td>{{flight.carrierName}}</td>
+                  <td>{{flight.flightModel}}</td>
+                  <td>{{flight.seatCapacity}}</td>
+                </tr>
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
+      <!-- Modal -->
+      <div class="modal fade bg-success" id="passengerModal" tabindex="-1" role="dialog"
+        aria-labelledby="passengerModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Passenger Details</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body text-center" *ngIf="checkPassenger">
+              <table class="table table-sm table-bordered shadow-lg p-3 bg-white rounded">
+                <tr class="text-center">
+                  <td class="bg-success text-light">PNR</td>
+                  <td class="bg-success text-light">Name</td>
+                  <td class="bg-success text-light">Age</td>
+                  <td class="bg-success text-light">Luggage</td>
+                  <td class="bg-success text-light">Seat No</td>
+                  <td class="bg-success text-light">Class</td>
+                </tr>
+                <tr *ngFor="let pass of passenger" class="text-center">
+                  <td>{{pass.pnrNumber}}</td>
+                  <td>{{pass.passengerName}}</td>
+                  <td>{{pass.age}}</td>
+                  <td>{{pass.luggage}}</td>
+                  <td>{{pass.seatNumber}}</td>
+                  <td>{{pass.travelClass}}</td>
+                </tr>
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
+      <!-- Modal -->
+      <div class="modal fade bg-danger" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="flightModalTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Cancel Booking</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body text-center">
+              <h6 style="color:red;">Are you sure you want to cancel this booking?</h6>
+              <h6 *ngIf="bookings">Refund Amount: &#8377; {{bookings[index].ticketPrice}}</h6>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Take me Back</button>
+              <button class="btn btn-sm btn-danger" (click)="cancelBooking()">Yes, Sure</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
