@@ -2,10 +2,7 @@
   <div id="content">
     <hr style="border-width: thin; border-block-end-style: dotted;" />
 
-    <div
-      class="row"
-      style="margin-top: 2%; font-size: xx-large; font-weight: bolder;"
-    >
+    <div class="row" style="margin-top: 2%; font-size: xx-large; font-weight: bolder;">
       <div class="offset-3"></div>
       <div class="col-md-2" style="text-align: center; color: crimson;">
         <span>{{ from }}</span>
@@ -14,60 +11,79 @@
         <span><i class="fa fa-arrow-right fa-1x"></i></span>
       </div>
       <div class="col-md-2" style="text-align: center; color: darkorange;">
-        <span>{{ to }}</span>       
+        <span>{{ to }}</span>
       </div>
-    <div class="col-md-12" style="text-align: center; font-size:medium;">
-      <span>{{ datechange }}</span>
+      <div class="col-md-12" style="text-align: center; font-size: medium;">
+        <span>{{ datechange }}</span>
       </div>
     </div>
     <hr style="border-width: thin; border-block-end-style: dotted;" />
-    <div class="row" style="color: blue; font-weight: bold; margin-left: 15px;">
-      <div class="offset-1"></div>
-      <div class="col-md-2"><p class="btn ">Carrier Name</p></div>
-      <div class="col-md-2"><p class="btn ">Departure</p></div>
-      <div class="col-md-2"><p class="btn ">Arrival</p></div>
-      <div class="col-md-2"><p class="btn " (click)="sorted()">Price</p></div>
-    </div>
-    <ng-container *ngIf="(sc | sort:flag ) as result">
-    <div class="row r1" *ngFor="let scr of result" style="margin-top: 20px;">
-      <br />
-      <div class="col-md-1">
-        <img src="assets\{{ scr.flight.carrierName }}.jpg" />
-      </div>
-      <div class="col-md-2">
-        <h4>{{ scr.flight.carrierName }}</h4>
-      </div>
-      <div class="col-md-1">
-        <h6>{{ scr.schedule.departureTime | date: "shortTime" }}</h6>
-      </div>
-      <div class="col-md-1">
-        <h6 style="color: skyblue;">Nonstop</h6>
-      </div>
-      <div class="col-md-2">
-        <h6>{{ scr.schedule.arrivalTime | date: "shortTime" }} ({{scr.schedule.arrivalTime | date: "mediumDate"}})</h6>
-      </div>
-      <div class="col-md-2">
-        <h5>{{ scr.ticketCost*count | currency: "INR"}}</h5>
+    <div *ngIf="!flightFlag">
+      <div class="row" style="margin-left: 15px;">
+        <div class="offset-1"></div>
+        <div class="col-md-2">
+          <p class="btn" style="color: blue; font-weight: bold;">
+            Carrier Name
+          </p>
+        </div>
+        <div class="col-md-2">
+          <p class="btn" style="color: blue; font-weight: bold;">Departure</p>
+        </div>
+        <div class="col-md-2">
+          <p class="btn" style="color: blue; font-weight: bold;">Arrival</p>
+        </div>
+        <div class="col-md-2">
+          <p class="btn" (click)="sorted()" style="color: blue; font-weight: bold;">
+            Price
+          </p>
+        </div>
       </div>
 
-      <div class="col-md-2">
-        <button class="btn btn-success" style="margin-left: 50px;">
-          Book Now
-        </button>
+      <div class="row r1" *ngFor="let scr of sc">
+        <div class="col-md-1" style="margin-top: 15px;">
+          <img src="assets\{{ scr.flight.carrierName }}.jpg" />
+        </div>
+        <div class="col-md-2" style="margin-top: 15px;">
+          <h4>{{ scr.flight.carrierName }}</h4>
+        </div>
+        <div class="col-md-1" style="margin-top: 15px;">
+          <h6>{{ scr.schedule.departureTime | date: "shortTime" }}</h6>
+        </div>
+        <div class="col-md-1" style="margin-top: 15px;">
+          <h6 style="color: skyblue;">Nonstop</h6>
+        </div>
+        <div class="col-md-2" style="margin-top: 15px;">
+          <h6>
+            {{ scr.schedule.arrivalTime | date: "shortTime" }} ({{
+              scr.schedule.arrivalTime | date: "mediumDate"
+            }})
+          </h6>
+        </div>
+        <div class="col-md-2" style="margin-top: 15px;">
+          <h5>{{ scr.ticketCost * count | currency: "INR" }}</h5>
+        </div>
+
+        <div class="col-md-2" style="margin-top: 15px;">
+          <button class="btn btn-success" style="margin-left: 50px;" (click)="bookFlight(scr)">
+            Book Now
+          </button>
+        </div>
+        <p class="col-md-1" style="font-size: x-small; margin-left: 120px; margin-top: -25px;">
+          {{ scr.flight.flightModel }}
+        </p>
+        <p class="col-md-1" style="font-size: x-small; margin-left: 100px; margin-top: -30px;">
+          {{ from }}
+        </p>
+        <p class="col-md-1" style="font-size: x-small; margin-left: 105px; margin-top: -30px;">
+          {{ to }}
+        </p>
+        <p class="col-md-2" style="font-size: x-small; margin-left: 105px; margin-top: -30px;">
+          ({{ scr.ticketCost }} x {{ count }} nos.)
+        </p>
       </div>
-      <p class="col-md-1" style="font-size: x-small; margin-left: 120px; margin-top: -25px;">
-        {{  scr.flight.flightModel }}
-      </p>
-      <p class="col-md-1" style="font-size: x-small; margin-left: 100px; margin-top: -30px;">
-        {{ from }}
-      </p>
-      <p class="col-md-1" style="font-size: x-small; margin-left: 105px; margin-top: -30px;">
-        {{ to }}
-      </p>
-      <p class="col-md-2" style="font-size: x-small; margin-left: 105px; margin-top: -30px;">
-        ({{scr.ticketCost}} x {{count}} nos.)
-      </p>
     </div>
-    </ng-container>
+    <div *ngIf="flightFlag">
+      <h1 style="text-align: center; margin-top: 10%;">{{ errorMsg }}!</h1>
+    </div>
   </div>
 </div>

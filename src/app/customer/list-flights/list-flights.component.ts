@@ -18,7 +18,9 @@ export class ListFlightsComponent implements OnInit {
   convertDate: string;
   datechange: any;
   sc: ScheduleFlight[];
-  flag:number=1;
+  flag: number = 1;
+  flightFlag: boolean = false;
+  errorMsg: string;
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -37,9 +39,16 @@ export class ListFlightsComponent implements OnInit {
     this.convertDate = formatDate(this.date, "yyyy-MM-dd", "en_US");
     this.customerService
       .getFlights(this.from, this.to, this.convertDate, this.count)
-      .subscribe((data) => {
-        this.flightHandler(data);
-      });
+      .subscribe(
+        (data) => {
+          this.flightHandler(data);
+        },
+        (error) => {
+          this.flightFlag = true;
+          this.errorMsg = error.error;
+          console.log(this.errorMsg);
+        }
+      );
 
     this.datechange = formatDate(this.date, "EEE, d MMM y", "en_US");
   }
@@ -49,14 +58,17 @@ export class ListFlightsComponent implements OnInit {
   }
 
   sorted() {
-    if (this.flag ==1) {
+    if (this.flag == 1) {
       this.flag = 0;
       return;
     }
 
-    if(this.flag == 0)
-    {
+    if (this.flag == 0) {
       this.flag = 1;
     }
+  }
+
+  bookFlight(scr:{scheduleFlightId:number}) {
+    this.router.navigate(["customer/addBooking", scr.scheduleFlightId]);
   }
 }
