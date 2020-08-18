@@ -67,7 +67,7 @@ export class ScheduleFlightComponent implements OnInit {
         this.schedule.destinationAirport = data;
         this.adminService.addSchedule(this.schedule).subscribe(data => {
           this.scheduleSubmitted = data;
-          this.scheduleSubmitted.scheduleId = 0;
+          //this.scheduleSubmitted.scheduleId = 0;
           this.scheduleFlight.schedule = this.scheduleSubmitted;
           this.adminService.getFlightById(this.scheduleFlightForm.controls.flights.value).subscribe(data => {
             this.scheduleFlight.flight = data;
