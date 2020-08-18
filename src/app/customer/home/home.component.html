@@ -28,36 +28,7 @@
         <a class="btn btn-primary btn-dark" href="/addBooking" role="button"> Book Now! </a>
       </p>
     </div>
-
-    <div class="container p-2 my-2 border" >
-        <div class="flightSearch" class="shadow-lg p-3 mb-5 bg-white rounded">
-            <form [formGroup]="flightSearchForm" class="container" (ngSubmit)="flightSearch()">
-                
-                <div class="form-row">
-                    <div class="col">
-                        <input type="text" class="form-control" placeholder="From">
-                    </div>
-                    <div class="col">
-                        <input type="text" class="form-control" placeholder="To">
-                    </div>
-                </div>
-                <br>
-                <div class="input-group">
-                    <input type="date" class="form-control" id="BirthDate" name="BirthDate"
-                    [ngModel]="BirthDate | date:'yyyy-MM-dd'"  formControlName="BirthDate">
-                </div>
-                <br>
-                <div class="col">
-                    <input type="text" class="form-control" placeholder="No. of Passengers">
-                </div>
-                <br>
-                <p>
-                    <input type="submit" value="Search Flight" class="btn btn-info navbar-btn" >
-                </p>
-
-            </form>
-        </div>
-    </div>
+</div>
   <router-outlet></router-outlet>
       
   
