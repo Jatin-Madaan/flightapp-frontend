@@ -13,8 +13,7 @@ const routes: Routes = [
       { path: 'adminpage', component: DashboardComponent },
       { path: 'flights', component: FlightsComponent },
       { path: 'reschedule', component: RescheduleComponent },
-      { path: 'scheduleFlight', component: ScheduleFlightComponent },
-      { path: 'flights', component: FlightsComponent },
+      { path: 'scheduleFlight', component: ScheduleFlightComponent }
     ]
   }
 ];
