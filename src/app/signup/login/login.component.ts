@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   constructor(private loginService : UserserviceService) { }
   error : any;
   user : User;
-
+  errorpass : string;
   ngOnInit() {
   }
 
@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
       }
       else{
         console.log("loggin Unsuccessful");
+        this.errorpass = "Password did not match";
       }
     }, error => {
       this.error = error;
