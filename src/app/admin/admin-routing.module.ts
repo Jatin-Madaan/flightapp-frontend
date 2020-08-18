@@ -10,14 +10,9 @@ import { ScheduleFlightComponent } from './schedule-flight/schedule-flight.compo
 const routes: Routes = [
   {
     path: '', component: DashboardComponent, children: [
-<<<<<<< HEAD
-      { path: 'adminpage', component: DashboardComponent },
       { path: 'flights', component: FlightsComponent },
-=======
->>>>>>> b871c4e38af8ce01b9939651b199affc06c3eb9e
       { path: 'reschedule', component: RescheduleComponent },
-      { path: 'scheduleFlight', component: ScheduleFlightComponent },
-      { path: 'flights', component: FlightsComponent },
+      { path: 'scheduleFlight', component: ScheduleFlightComponent }
     ]
   }
 ];
