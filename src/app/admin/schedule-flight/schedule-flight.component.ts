@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup,FormControl } from '@angular/forms';
+import { FormGroup,FormControl, Validators } from '@angular/forms';
 import { AdminService } from '../adminservice/admin.service';
 import { Airport } from 'src/app/models/Airport';
 import { Flight } from 'src/app/models/Flight';
