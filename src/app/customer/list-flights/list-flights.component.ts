@@ -46,7 +46,7 @@ export class ListFlightsComponent implements OnInit {
         (error) => {
           this.flightFlag = true;
           this.errorMsg = error.error;
-          console.log(this.errorMsg)
+          console.log(this.errorMsg);
         }
       );
 
@@ -68,9 +68,7 @@ export class ListFlightsComponent implements OnInit {
     }
   }
 
-  bookFlight()
-  {
-    alert(5)
-   // this.router.navigate([""])
+  bookFlight(scr:{scheduleFlightId:number}) {
+    this.router.navigate(["customer/addBooking", scr.scheduleFlightId]);
   }
 }

@@ -11,6 +11,7 @@ import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { InvoiceComponent } from "./invoice/invoice.component";
 import { SortPipe } from "./customerpipes/sort.pipe";
+import { AddBookingComponent } from './add-booking/add-booking.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { SortPipe } from "./customerpipes/sort.pipe";
     ViewBookingComponent,
     PaymentComponent,
     InvoiceComponent,
+    AddBookingComponent,
     SearchFlightComponent,
     ListFlightsComponent,
     SortPipe,
