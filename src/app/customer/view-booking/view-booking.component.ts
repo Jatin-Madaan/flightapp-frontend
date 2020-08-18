@@ -19,12 +19,21 @@ export class ViewBookingComponent implements OnInit {
   checkPassenger:boolean=false;
   index:number=0;
   errorMessage:string;
+  status:number[]=[];
 
   constructor(private service:CustomerService) { }
 
   ngOnInit() {
     this.service.getBookings(10001).subscribe(data=>{
       this.bookings=data;
+      for(let i=0;i<this.bookings.length;i++){
+        if(this.bookings[i].status=="Booked"){
+          this.status[i]=1;
+        }
+        else{
+          this.status[i]=0;
+        }
+      }
       console.log(this.bookings);
     },err=>{
       console.log(err);
