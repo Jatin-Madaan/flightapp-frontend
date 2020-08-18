@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../adminservice/admin.service';
 import { ScheduleFlight } from 'src/app/models/scheduleFlight';
-import { NgForm, FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -57,9 +57,6 @@ export class RescheduleComponent implements OnInit {
   {
     this.submitted=true
     if(this.rescheduleFlightForm.invalid)
-    return;
-    
-
     this.updatedSchedule.schedule.departureTime = this.rescheduleFlightForm.controls.departureTime.value;
     this.updatedSchedule.schedule.arrivalTime = this.rescheduleFlightForm.controls.arrivalTime.value;
     this.service.rescheduleFlightSchedule(this.rescheduleId,this.updatedSchedule).subscribe(data => {
@@ -68,7 +65,6 @@ export class RescheduleComponent implements OnInit {
           this.scheduleFlightsList = data;
         });
     });
-    
-    
+    window.location.reload(true);
   }
 }

@@ -18,10 +18,10 @@ import { SortPipe } from "./customerpipes/sort.pipe";
     ViewBookingComponent,
     PaymentComponent,
     InvoiceComponent,
+    AddBookingComponent,
     SearchFlightComponent,
     ListFlightsComponent,
-    SortPipe,
-    AddBookingComponent,
+    SortPipe
   ],
   imports: [
     CommonModule,

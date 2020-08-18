@@ -3,6 +3,7 @@ import { CustomerService } from '../customerservice/customer.service';
 import {Booking} from '../../models/Booking';
 import { Flight } from 'src/app/models/Flight';
 import { Passenger } from 'src/app/models/Passenger';
+import { Router } from '@angular/router';
 declare var $: any;
 
 @Component({
@@ -19,16 +20,31 @@ export class ViewBookingComponent implements OnInit {
   checkPassenger:boolean=false;
   index:number=0;
   errorMessage:string;
+  status:number[]=[];
 
-  constructor(private service:CustomerService) { }
+  constructor(private service:CustomerService,private router:Router) { }
 
   ngOnInit() {
-    this.service.getBookings(10001).subscribe(data=>{
-      this.bookings=data;
-      console.log(this.bookings);
-    },err=>{
-      console.log(err);
-    });
+    if(localStorage.userId!=null){
+      this.service.getBookings(localStorage.userId).subscribe(data=>{
+        this.bookings=data;
+        for(let i=0;i<this.bookings.length;i++){
+          if(this.bookings[i].status=="Booked"){
+            this.status[i]=1;
+          }
+          else{
+            this.status[i]=0;
+          }
+        }
+        console.log(this.bookings);
+      },err=>{
+        console.log(err);
+      });
+    }
+    else{
+     this.router.navigate(['/login']);
+    }
+    
   }
 
   viewFlight(index:number){
