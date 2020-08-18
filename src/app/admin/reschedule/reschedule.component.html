@@ -6,8 +6,8 @@
             <th><a class="btn btn-info flip" scope="col" style="width: 100%;">Destination Airport</a></th>
             <th><a class="btn btn-info flip" scope="col" style="width: 100%;">Departure Time</a></th>
             <th><a class="btn btn-info flip" scope="col" style="width: 100%;">Arival Time</a></th> 
-            <th><a class="btn btn-danger flip" scope="col" style="width: 100%;">Delete</a></th>
-            <th><a class="btn btn-warning flip" scope="col" style="width: 100%;">Reschedule</a></th>
+            <th><a class="btn btn-warning flip" scope="col" style="width: 100%;">Delete</a></th>
+            <th><a class="btn btn-danger flip" scope="col" style="width: 100%;">Reschedule</a></th>
         </tr>
     </thead>
     <tbody>
@@ -23,8 +23,8 @@
         </tr>
     </tbody>
 </table><hr><hr>
-<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-<div class="modal-dialog">
+<div class="modal fade" id="staticBackdrop" #modal data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg">
     <div class="modal-content">
     <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">Rescheduling Form</h5>
@@ -34,7 +34,7 @@
     </div>
     <div class="modal-body">
         <form [formGroup]="rescheduleFlightForm" (ngSubmit)="submitFunc()" >
-            <table class="table table-sm table-bordered table-hover shadow-lg p-3 mb-5 bg-white rounded mx-auto" style="width: 80%;">
+            <table class="table table-sm table-bordered table-hover shadow-lg p-3 mb-5 bg-white rounded mx-auto">
                 <thead class="thead-light">
                     <tr>
                         <th colspan="2" style="text-align: center;">
@@ -67,7 +67,7 @@
                     </tr>
                     <tr>
                         <td><div class="form-group"></div></td>
-                        <td><div><button class="btn btn-dark" style="width: 200px;" type="submit">Enter</button></div></td>
+                        <td><div><button class="btn btn-dark" style="width: 200px;" [disabled]="rescheduleFlightForm.invalid" type="submit">Enter</button></div></td>
                     </tr>
                 </tbody>
             </table> 
