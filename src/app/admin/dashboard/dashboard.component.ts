@@ -12,6 +12,9 @@ export class DashboardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    if(localStorage.length == 0){
+      window.location.href = "/login";
+    }
   }
   
 }
