@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
+import { Passenger } from 'src/app/models/Passenger';
 
 @Component({
   selector: 'app-add-booking',
@@ -11,6 +12,7 @@ export class AddBookingComponent implements OnInit
   DetailsForm: any;
   formBuilder: any;
 
+  passenger: Passenger = new Passenger();
   gender: any = ['Mr', 'Mrs', 'Ms.']
 
   constructor(public fb: FormBuilder) { }
@@ -20,10 +22,7 @@ export class AddBookingComponent implements OnInit
 
   ngOnInit(): void 
   {
-    this.DetailsForm = this.formBuilder.group({
-      userMail: ['', Validators.required],
-      userPassword: ['', Validators.required]
-    });
+    
   }
   
   proceedToPayment()
