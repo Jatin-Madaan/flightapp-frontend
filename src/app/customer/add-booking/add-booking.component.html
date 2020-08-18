@@ -1,1 +1,74 @@
-<p>add-booking works!</p>
+<div class="container-fluid" >
+    <nav class="navbar navbar-expand-sm bg-info navbar-dark fixed-top">
+      <a class="navbar-brand " routerLink="/home"> <i class='fas fa-plane'></i> Flight Booking System </a>
+    </nav>
+</div>
+
+<div class="jumbotron" class="shadow-lg p-3 mb-5 bg-white rounded">
+    <h1 class="display-4">Booking Review</h1>
+</div>
+  
+  <div class="container p-3 my-3 border">
+    <section class = "col-md-2 mx-auto" class="shadow-lg p-3 mb-5 bg-white rounded"> 
+      <h2 class = "text-center"> Traveller Details! </h2>
+      <form #frm="ngForm">
+    
+        <div class="jumbotron" class="shadow-lg p-3 mb-5 bg-white rounded">
+            <label for="mail"> Email Id </label>
+            <div> <input type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" name="userMail" [(ngModel)]="user.userMail" required #modeluserMail="ngModel" class="form-control" id="email" aria-describedby="emailHelpBlock" required> </div>
+            <small id="emailHelpBlock" class="form-text text-muted">
+              Type in small characters.
+            </small>
+            <div class="alert alert-danger" *ngIf="modeluserMail.invalid && modeluserMail.touched"> Mail is Required </div>
+            <div class="alert alert-dark" *ngIf="modeluserMail.invalid && modeluserMail.dirty">Please use correct Email syntax</div>
+        
+            <label for="contact"> Contact </label>
+            <div><input type="number" pattern="[6-9]{1}[0-9]{9}" name="userContact" [(ngModel)]="user.userContact" required #modeluserContact="ngModel" class="form-control"> </div>
+            <div class="alert alert-danger" *ngIf="modeluserContact.invalid && modeluserContact.touched"> Contact is Required </div>
+            <div class="alert alert-dark" *ngIf="modeluserContact.invalid && modeluserContact.dirty"> Putting wrong contact number. </div>
+    
+            <p class="lead">Your booking details will be sent to this email address and mobile number.</p>
+        </div>
+        
+
+        <hr class="my-4">
+        
+        
+        <div class="jumbotron" class="shadow-lg p-3 mb-5 bg-white rounded">
+            <h6 class="display-4">Traveller Information</h6>
+            <p class="lead">Important Note: Please ensure that the names of the passengers on the travel documents is the same as on their government issued identity proof.</p>
+
+            <div class = "row">
+                <div class = "col">
+                    <select formControlName="name">
+                    <option> Title </option>
+                    <option> Mr. </option>
+                    <option> Mrs. </option>
+                    <option> Ms. </option>
+                    <option *ngFor="let gen of gender">{{gen}}</option>
+                    </select>
+                </div>
+                <div class = "col">
+                    <label for="name"> First Name </label>
+                    <div><input type="text" pattern="[A-Za-z]{1,10}" name="userName" [(ngModel)]="user.userName" required #modeluserName="ngModel" class="form-control" required> </div>
+                    <div class="alert alert-danger" *ngIf="modeluserName.invalid && modeluserName.touched"> Name is Required </div>
+                    <div class="alert alert-dark" *ngIf="modeluserName.invalid && modeluserName.dirty"> Name should not have any special symbol.</div>
+                </div>
+                <div class="col">
+                    <label for="name"> Last Name </label>
+                    <div><input type="text" pattern="[A-Za-z]{1,10}" name="userName" [(ngModel)]="user.userName" required #modeluserName="ngModel" class="form-control" required> </div>
+                    <div class="alert alert-danger" *ngIf="modeluserName.invalid && modeluserName.touched"> Name is Required </div>
+                    <div class="alert alert-dark" *ngIf="modeluserName.invalid && modeluserName.dirty"> Name should not have any special symbol.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-2 text-center">
+         <input type="submit" class="btn btn-dark"  value="Proceed for Payment" [disabled]="!frm.valid"  data-toggle="modal" data-target="#cnfrmReg"/>
+        </div>
+      </form>
+     
+      <div class = "alert alert-success" *ngIf="msg!=undefined" > {{msg}} </div>
+      <div class = "alert alert-danger" *ngIf="errorMsg!=undefined" [innerHTML]="errorMsg"></div>   
+    </section>
+    </div>
