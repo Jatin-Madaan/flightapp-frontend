@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-
+import { AddBookingComponent } from "./add-booking/add-booking.component";
 import { CustomerRoutingModule } from "./customer-routing.module";
 import { HomeComponent } from "./home/home.component";
 import { ViewBookingComponent } from "./view-booking/view-booking.component";
@@ -21,6 +21,7 @@ import { SortPipe } from "./customerpipes/sort.pipe";
     SearchFlightComponent,
     ListFlightsComponent,
     SortPipe,
+    AddBookingComponent,
   ],
   imports: [
     CommonModule,
