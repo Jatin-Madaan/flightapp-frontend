@@ -13,7 +13,7 @@
       <div class="col-md-2" style="text-align: center; color: darkorange;">
         <span>{{ to }}</span>
       </div>
-      <div class="col-md-12" style="text-align: center; font-size:medium;">
+      <div class="col-md-12" style="text-align: center; font-size: medium;">
         <span>{{ datechange }}</span>
       </div>
     </div>
@@ -22,48 +22,54 @@
       <div class="row" style="margin-left: 15px;">
         <div class="offset-1"></div>
         <div class="col-md-2">
-          <p class="btn " style="color: blue; font-weight: bold;">Carrier Name</p>
+          <p class="btn" style="color: blue; font-weight: bold;">
+            Carrier Name
+          </p>
         </div>
         <div class="col-md-2">
-          <p class="btn " style="color: blue; font-weight: bold;">Departure</p>
+          <p class="btn" style="color: blue; font-weight: bold;">Departure</p>
         </div>
         <div class="col-md-2">
-          <p class="btn " style="color: blue; font-weight: bold;">Arrival</p>
+          <p class="btn" style="color: blue; font-weight: bold;">Arrival</p>
         </div>
         <div class="col-md-2">
-          <p class="btn " (click)="sorted()" style="color: blue; font-weight: bold;">Price</p>
+          <p class="btn" (click)="sorted()" style="color: blue; font-weight: bold;">
+            Price
+          </p>
         </div>
       </div>
 
       <div class="row r1" *ngFor="let scr of sc">
-
-        <div class="col-md-1" style="margin-top:15px;">
+        <div class="col-md-1" style="margin-top: 15px;">
           <img src="assets\{{ scr.flight.carrierName }}.jpg" />
         </div>
-        <div class="col-md-2" style="margin-top:15px;">
+        <div class="col-md-2" style="margin-top: 15px;">
           <h4>{{ scr.flight.carrierName }}</h4>
         </div>
-        <div class="col-md-1" style="margin-top:15px;">
+        <div class="col-md-1" style="margin-top: 15px;">
           <h6>{{ scr.schedule.departureTime | date: "shortTime" }}</h6>
         </div>
-        <div class="col-md-1" style="margin-top:15px;">
-          <h6 style="color:skyblue;">Nonstop</h6>
+        <div class="col-md-1" style="margin-top: 15px;">
+          <h6 style="color: skyblue;">Nonstop</h6>
         </div>
-        <div class="col-md-2" style="margin-top:15px;">
-          <h6>{{ scr.schedule.arrivalTime | date: "shortTime" }} ({{scr.schedule.arrivalTime | date: "mediumDate"}})
+        <div class="col-md-2" style="margin-top: 15px;">
+          <h6>
+            {{ scr.schedule.arrivalTime | date: "shortTime" }} ({{
+              scr.schedule.arrivalTime | date: "mediumDate"
+            }})
           </h6>
         </div>
-        <div class="col-md-2" style="margin-top:15px;">
-          <h5>{{ scr.ticketCost*count | currency: "INR"}}</h5>
+        <div class="col-md-2" style="margin-top: 15px;">
+          <h5>{{ scr.ticketCost * count | currency: "INR" }}</h5>
         </div>
 
-        <div class="col-md-2" style="margin-top:15px;">
-          <button class="btn btn-success" style="margin-left: 50px;" (click)="bookFlight()">
+        <div class="col-md-2" style="margin-top: 15px;">
+          <button class="btn btn-success" style="margin-left: 50px;" (click)="bookFlight(scr)">
             Book Now
           </button>
         </div>
         <p class="col-md-1" style="font-size: x-small; margin-left: 120px; margin-top: -25px;">
-          {{  scr.flight.flightModel }}
+          {{ scr.flight.flightModel }}
         </p>
         <p class="col-md-1" style="font-size: x-small; margin-left: 100px; margin-top: -30px;">
           {{ from }}
@@ -72,12 +78,12 @@
           {{ to }}
         </p>
         <p class="col-md-2" style="font-size: x-small; margin-left: 105px; margin-top: -30px;">
-          ({{scr.ticketCost}} x {{count}} nos.)
+          ({{ scr.ticketCost }} x {{ count }} nos.)
         </p>
       </div>
     </div>
     <div *ngIf="flightFlag">
-      <h1 style="text-align: center; margin-top: 10%;">{{errorMsg}}!</h1>
+      <h1 style="text-align: center; margin-top: 10%;">{{ errorMsg }}!</h1>
     </div>
   </div>
 </div>
