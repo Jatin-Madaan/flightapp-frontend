@@ -7,7 +7,6 @@ import { InvoiceComponent } from './invoice/invoice.component';
 import { AddBookingComponent } from './add-booking/add-booking.component';
 import { SearchFlightComponent } from './search-flight/search-flight.component';
 import { ListFlightsComponent } from './list-flights/list-flights.component';
-  
 
 const routes: Routes = [
   {
