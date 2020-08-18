@@ -54,6 +54,10 @@ export class InvoiceComponent implements OnInit {
     console.log(this.passenger)
   }
   downloadPDF(){
+    //const doc = new jsPDF('p')
+    //const ta = document.getElementById('content');
+    //doc.fromHTML(ta, 15, 15);
+   // doc.save('demo.pdf')
  //   const doc = new jsPDF('p')
     const ta = document.getElementById('content');
   //  doc.fromHTML(ta, 15, 15);
@@ -69,7 +73,7 @@ export class InvoiceComponent implements OnInit {
     if(data.bookingStatus == "Payment Cancelled"|| data.bookingStatus == "Cancelled"){
       this.paymentcancel = data.bookingStatus;
     }
-    if(data.bookingStatus == "Payment Success" || data.bookingStatus == "Success"){
+    if(data.bookingStatus == "Payment Successful" || data.bookingStatus == "Successful"){
       this.paymentsuccess = data.bookingStatus;
     }
     this.flight = data.flight;

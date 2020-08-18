@@ -52,17 +52,12 @@ export class PaymentComponent implements OnInit {
  
   cancel(){
     alert("Cancel the payment.")
-    this.entry = this.PaymentForm.controls.password.value;
-    if(this.entry == this.password){
       this.ser.setbookingstatus(this.bookingid,this.userid,"Payment Cancelled",this.amount).subscribe(
         data => {
           return this.setstatus(data);
         },
         error=>this.handleerror(error));  
-      }
-      else{
-        alert("Incorrect Password")
-      }
+     
   }
 
   submit(){
@@ -72,7 +67,7 @@ export class PaymentComponent implements OnInit {
 
     this.entry = this.PaymentForm.controls.password.value;
     if(this.entry == this.password){
-      this.ser.setbookingstatus(this.bookingid,this.userid,"Payment Success",this.amount).subscribe(
+      this.ser.setbookingstatus(this.bookingid,this.userid,"Payment Successful",this.amount).subscribe(
         data => {
           return this.setstatus(data);
         },

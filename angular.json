@@ -120,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "flightapp-frontend"
+    }
+  },
+  "defaultProject": "flightapp-frontend",
+  "cli": {
+    "analytics": "51e501e6-9386-4348-b576-9c03b54d7ed7"
+  }
 }
