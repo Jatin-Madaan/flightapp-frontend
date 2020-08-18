@@ -10,7 +10,6 @@ import { ListFlightsComponent } from "./list-flights/list-flights.component";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { InvoiceComponent } from "./invoice/invoice.component";
-//import { ModifyBookingComponent } from "./modify-booking/modify-booking.component";
 import { SortPipe } from "./customerpipes/sort.pipe";
 
 @NgModule({
@@ -18,7 +17,6 @@ import { SortPipe } from "./customerpipes/sort.pipe";
     HomeComponent,
     ViewBookingComponent,
     PaymentComponent,
-    // ModifyBookingComponent,
     InvoiceComponent,
     SearchFlightComponent,
     ListFlightsComponent,
