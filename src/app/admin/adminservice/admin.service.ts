@@ -49,7 +49,7 @@ export class AdminService {
   
   getSchedulesFlights()
   {
-    return this.http.get<ScheduleFlight[]>(this.url+"scheduleFlight/viewAll");
+    return this.http.get<ScheduleFlight[]>(this.url+"admin/scheduleFlight/viewAll");
   }
 
   getBookings()
@@ -60,11 +60,11 @@ export class AdminService {
   removeSchedule(scheduleFlightId:number)
   {
     console.log(scheduleFlightId);
-    return this.http.delete(this.url+"deleteSchedule/"+scheduleFlightId);
+    return this.http.delete(this.url+"admin/deleteSchedule/"+scheduleFlightId);
   }
 
   rescheduleFlightSchedule(rescheduleId:number, updatedSchedule:ScheduleFlight)
   {
-    return this.http.put(this.url+"rescheduleFlightSchedule/"+rescheduleId,updatedSchedule,{ responseType: 'text' as 'json' });
+    return this.http.put(this.url+"admin/rescheduleFlightSchedule/"+rescheduleId,updatedSchedule,{ responseType: 'text' as 'json' });
   }
 }

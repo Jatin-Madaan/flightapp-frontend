@@ -8,7 +8,6 @@ import { PaymentComponent } from './payment/payment.component';
 import { ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { InvoiceComponent } from './invoice/invoice.component';
-import { ModifyBookingComponent } from './modify-booking/modify-booking.component';
 import { AddBookingComponent } from './add-booking/add-booking.component';
 import { SearchFlightComponent } from "./search-flight/search-flight.component";
 import { ListFlightsComponent } from "./list-flights/list-flights.component";
@@ -20,12 +19,12 @@ import { ListFlightsComponent } from "./list-flights/list-flights.component";
     AddBookingComponent,
     ViewBookingComponent,
     PaymentComponent,
-    ModifyBookingComponent,
     InvoiceComponent,
     SearchFlightComponent,
     ListFlightsComponent,
+    AddBookingComponent
   ],
-
+  
   imports: [
     CommonModule,
     CustomerRoutingModule,
