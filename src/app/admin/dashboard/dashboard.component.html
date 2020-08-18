@@ -17,22 +17,12 @@
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              FLight
+              Flight
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#"> Add Flight </a>
-              <a class="dropdown-item" href="#"> Modify Flight </a>
-              <a class="dropdown-item" href="#"> Remove Flight </a>
-            </div>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Schedule
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#"> Add Schedule </a>
-              <a class="dropdown-item" href="#"> Modify Schedule </a>
-              <a class="dropdown-item" href="#"> Delete Schedule </a>
+              <a class="dropdown-item" routerLink="/admin/flights"> Add Flight </a>
+              <a class="dropdown-item" routerLink=""> Modify Flight </a>
+              <a class="dropdown-item" routerLink=""> Remove Flight </a>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -40,10 +30,9 @@
               FlightSchedule
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#"> Add FlightSchedule </a>
-              <a class="dropdown-item" href="#"> Modify FlightSchedule </a>
-              <a class="dropdown-item" href="#"> Delete FlightSchedule </a>
-            </div>
+              <a class="dropdown-item" routerLink="/admin/scheduleFlight"> Add FlightSchedule </a>
+              <a class="dropdown-item" routerLink="/admin/reschedule"> Modify FlightSchedule </a>
+              </div>
           </li>
       <ul class="nav justify-content-end">
         <li class="nav-item">

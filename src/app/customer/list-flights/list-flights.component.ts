@@ -16,7 +16,9 @@ export class ListFlightsComponent implements OnInit {
   date: Date;
   count: number;
   convertDate: string;
-  sc = [];
+  datechange: any;
+  sc: ScheduleFlight[];
+  flag:number=1;
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -38,9 +40,23 @@ export class ListFlightsComponent implements OnInit {
       .subscribe((data) => {
         this.flightHandler(data);
       });
+
+    this.datechange = formatDate(this.date, "EEE, d MMM y", "en_US");
   }
   flightHandler(data) {
     this.sc = data;
     console.log(this.sc);
+  }
+
+  sorted() {
+    if (this.flag ==1) {
+      this.flag = 0;
+      return;
+    }
+
+    if(this.flag == 0)
+    {
+      this.flag = 1;
+    }
   }
 }
