@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -9,18 +10,28 @@ import { PaymentComponent } from './payment/payment.component';
 import{ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { InvoiceComponent } from './invoice/invoice.component';
+import { AddBookingComponent } from './add-booking/add-booking.component';
 
 
+import { SearchFlightComponent } from "./search-flight/search-flight.component";
+import { ListFlightsComponent } from "./list-flights/list-flights.component";
 
 @NgModule({
-  declarations: [HomeComponent,ViewBookingComponent, PaymentComponent,InvoiceComponent],
+  declarations: [
+    HomeComponent,
+    ViewBookingComponent,
+    PaymentComponent,
+    InvoiceComponent,
+    SearchFlightComponent,
+    ListFlightsComponent,
+    AddBookingComponent
+  ],
   imports: [
     CommonModule,
     CustomerRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-
-  ]
+  ],
 })
-export class CustomerModule { }
+export class CustomerModule {}
