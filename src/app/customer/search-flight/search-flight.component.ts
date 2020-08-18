@@ -40,10 +40,10 @@ export class SearchFlightComponent implements OnInit {
       alert(`Source and Destination can't be same`);
       return;
     }
-    // if (date < currentdate) {
-    //   alert("Departure date can't be below than current date");
-    //   return;
-    // }
+    if (date < currentdate) {
+      alert("Departure date can't be below than current date");
+      return;
+    }
     this.router.navigate(["customer/listFlights", from, to, date, count]);
   }
 }
