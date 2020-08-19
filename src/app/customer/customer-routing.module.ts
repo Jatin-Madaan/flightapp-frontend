@@ -13,11 +13,8 @@ const routes: Routes = [
   {
 
     path: '', component: HomeComponent, children: [
-<<<<<<< HEAD
       { path: 'addBooking/:scheduleflightid', component: AddBookingComponent},
-=======
       { path: 'addBooking/:id', component: AddBookingComponent},
->>>>>>> 986e6bff5320aeae446e26c0be82524b6dac6683
       { path: 'viewBooking', component: ViewBookingComponent },
       { path: 'pay/:bookingid', component: PaymentComponent },
       { path: 'invoice/:bookingid', component: InvoiceComponent },

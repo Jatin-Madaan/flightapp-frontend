@@ -60,7 +60,7 @@ export class AddBookingComponent implements OnInit {
       .customerService
       .addPassenger(this.passenger)
       .subscribe((data) => {
-        console.log("Add Passenger");};
+        console.log("Add Passenger")});
   }
   
   // addPassenger() {
@@ -85,7 +85,6 @@ export class AddBookingComponent implements OnInit {
     this.router.navigate(["customer/addBooking/", id.BookingId]);
         this.msg = undefined;
         this.router.navigateByUrl("pay/:bookingid");
-      }
-    );
   }
-}
+    
+  }
