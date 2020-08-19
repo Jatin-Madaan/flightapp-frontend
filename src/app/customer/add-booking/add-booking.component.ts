@@ -35,28 +35,28 @@ export class AddBookingComponent implements OnInit
     private router: Router,
     private route: ActivatedRoute
   ) {
-    // this.route.params.subscribe((params) => {
-    //   this.id = params["id"];
-    //   console.log(this.id);
-    // });
+    this.route.params.subscribe(params => {
+      this.id = params["scheduleflightid"];
+      console.log(this.id);
+    });
   }
 
   ngOnInit() {
-    // console.log(this.id);
-    // this.customerService
-    //   .findScheduleFlightById(this.id)
-    //   .subscribe((data) => this.handler(data));
+    console.log(this.id);
+    this.customerService
+      .findScheduleFlightById(this.id)
+      .subscribe((data) => this.handler(data));
   }
 
   get f() {
     return this.form.controls;
   }
 
-  // handler(data) {
-  //   console.log(data);
-  //   this.sc = data;
-  //   console.log(this.sc);
-  // }
+  handler(data) {
+    console.log(data);
+    this.sc = data;
+    console.log(this.sc);
+  }
 
   addPassenger() 
   {
