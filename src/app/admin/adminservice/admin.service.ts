@@ -54,7 +54,12 @@ export class AdminService {
 
   getBookings()
   {
-    return this.http.get<Booking[]>(this.url+"customer/bookings/");
+    return this.http.get<Booking[]>(this.url+"viewAllBooking");
+  }
+
+  deleteBooking(booking: Booking) 
+  {
+    return this.http.delete<Booking>(this.url+ "deleteBooking" + "/"+ booking.bookingId);
   }
 
   removeSchedule(scheduleFlightId:number)

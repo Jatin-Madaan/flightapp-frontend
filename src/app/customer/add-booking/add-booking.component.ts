@@ -14,9 +14,8 @@ import { Schedule } from "src/app/models/Schedule";
   templateUrl: "./add-booking.component.html",
   styleUrls: ["./add-booking.component.css"],
 })
-export class AddBookingComponent implements OnInit 
-{
-  
+export class AddBookingComponent implements OnInit {
+
   passenger: Passenger = new Passenger();
   user: User = new User();
   msg: string;
@@ -35,53 +34,51 @@ export class AddBookingComponent implements OnInit
     private router: Router,
     private route: ActivatedRoute
   ) {
-    // this.route.params.subscribe((params) => {
-    //   this.id = params["id"];
-    //   console.log(this.id);
-    // });
+    this.route.params.subscribe((params) => {
+      this.id = params["id"];
+      console.log(this.id);
+    });
   }
 
   ngOnInit() {
-    // console.log(this.id);
-    // this.customerService
-    //   .findScheduleFlightById(this.id)
-    //   .subscribe((data) => this.handler(data));
+    console.log(this.id);
+    this.customerService
+      .findScheduleFlightById(this.id)
+      .subscribe((data) => this.handler(data));
   }
 
   get f() {
     return this.form.controls;
   }
 
-  // handler(data) {
-  //   console.log(data);
-  //   this.sc = data;
-  //   console.log(this.sc);
-  // }
+  handler(data) {
+    console.log(data);
+    this.sc = data;
+    console.log(this.sc);
+  }
 
-  addPassenger() 
-  {
+  addPassenger() {
     this.customerService.addPassenger(this.passenger).subscribe(
-    (data) => {
-       console.log("new user added");
-       this.msg = data;
+      (data) => {
+        console.log("new user added");
+        this.msg = undefined;
         this.errorMsg = undefined;
-       this.passenger = new Passenger();
+        this.passenger = new Passenger();
         this.router.navigateByUrl("/login");
-     },
-     (error) => {
+      },
+      (error) => {
         this.errorMsg = JSON.parse(error.error).message;
         console.log(error.error);
         this.msg = undefined
         this.router.navigateByUrl("customer/pay",)
-    });  
-  }  
+      });
+  }
 
-  ProceedPayment(id:{BookingId:number}) 
-  {
+  ProceedPayment(id: { BookingId: number }) {
     console.log("Proceeding to Payment");
     this.router.navigate(["customer/addBooking/", id.BookingId]);
-        this.msg = undefined;
-        this.router.navigateByUrl("pay/:bookingid");
+    this.msg = undefined;
+    this.router.navigateByUrl("pay/:bookingid");
   }
-    
-  }
+
+}

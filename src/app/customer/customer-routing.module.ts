@@ -13,7 +13,6 @@ const routes: Routes = [
     //routing for the customer module
     path: '', component: HomeComponent, children: [
       { path: 'addBooking/:scheduleflightid', component: AddBookingComponent },
-      { path: 'addBooking/:id', component: AddBookingComponent },
       { path: 'viewBooking', component: ViewBookingComponent },
       { path: 'pay/:bookingid', component: PaymentComponent },
       { path: 'invoice/:bookingid', component: InvoiceComponent },
