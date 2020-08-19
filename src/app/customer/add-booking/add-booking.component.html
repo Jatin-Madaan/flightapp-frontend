@@ -1,11 +1,13 @@
-<div class="container-fluid" >
-    <nav class="navbar navbar-expand-sm bg-info navbar-dark fixed-top">
-      <a class="navbar-brand " routerLink="/home"> <i class='fas fa-plane'></i> Flight Booking System </a>
-    </nav>
+<div class="container-fluid">
+  <nav class="navbar navbar-expand-sm bg-info navbar-dark fixed-top">
+    <a class="navbar-brand" routerLink="/home">
+      <i class="fas fa-plane"></i> Flight Booking System
+    </a>
+  </nav>
 </div>
 
 <div class="jumbotron" class="shadow-lg p-3 mb-5 bg-white rounded">
-    <h1 class="display-4">Booking Review</h1>
+  <h1 class="display-4">Booking Review</h1>
 
 </div>
   
@@ -29,15 +31,107 @@
             <div class="alert alert-dark" *ngIf="modelphone.invalid && modelphone.dirty"> Putting wrong contact number. </div>
     
             <p class="lead">Your booking details will be sent to this email address and mobile number.</p>
-        </div>
-        
+  <div class="row">
+    <div class="row r1" *ngFor="let scr of sc" style="margin-left: 20px;">
+      <div class="col-md-1" style="margin-top: 15px;">
+        <img src="assets\{{ scr.flight.carrierName }}.jpg" />
+      </div>
+      <div class="col-md-2" style="margin-top: 15px;">
+        <h4>{{ scr.flight.carrierName }}</h4>
+      </div>
+      <div class="col-md-3" style="margin-top: 15px;">
+        <h6>{{ scr.schedule.departureTime | date: "shortTime" }}</h6>
+      </div>
+      <div class="col-md-1" style="margin-top: 15px;">
+        <h6 style="color: skyblue; font-size: 30px;">
+          <span><i class="fa fa-arrow-right fa-1x"></i></span>
+        </h6>
+      </div>
+      <div class="col-md-3" style="margin-top: 15px;">
+        <h6>
+          {{ scr.schedule.arrivalTime | date: "shortTime" }} ({{
+            scr.schedule.arrivalTime | date: "mediumDate"
+          }})
+        </h6>
+        <h6>8:40 AM (31-12-2020)</h6>
+      </div>
+      <div class="col-md-2" style="margin-top: 15px; color: blue;">
+        <!-- <h4>{{ scr.ticketCost * count | currency: "INR" }}</h4> -->
+        <h4><span style="font-size: 10px;">Total Fare:</span>9000</h4>
+      </div>
+      <p class="col-md-1" style="
+          font-size: x-small;
+          font-weight: bold;
+          margin-left: 95px;
+          margin-top: -25px;
+          color: crimson;
+        ">
+        <!-- {{ scr.flight.flightModel }} -->
+        Airbus 852
+      </p>
+      <p class="col-md-1" style="
+          font-size: x-small;
+          font-weight: bold;
+          margin-left: 80px;
+          margin-top: -30px;
+          color: crimson;
+        ">
+        <!-- {{ from }} -->
+        Chennai
+      </p>
+      <p class="col-md-1" style="
+          font-size: x-small;
+          font-weight: bold;
+          margin-left: 255px;
+          margin-top: -30px;
+          color: crimson;
+        ">
+        <!-- {{ to }} -->
+        Ranchi
+      </p>
+    </div>
+  </div>
+</div>
 
-        <hr class="my-4">
-        
-        
-        <div class="jumbotron" class="shadow-lg p-3 mb-5 bg-white rounded">
-            <h6 class="display-4">Traveller Information</h6>
-            <p class="lead">Important Note: Please ensure that the names of the passengers on the travel documents is the same as on their government issued identity proof.</p>
+<!-- <div class="container p-3 my-3 border">
+  <section class="col-md-2 mx-auto" class="shadow-lg p-3 mb-5 bg-white rounded">
+    <h2 class="text-center">Traveller Details!</h2>
+    <form #frm="ngForm">
+      <div class="jumbotron" class="shadow-lg p-3 mb-5 bg-white rounded">
+        <label for="mail"> Email Id </label>
+        <div>
+          <input type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" name="userMail" [(ngModel)]="user.email"
+            required #modeluserMail="ngModel" class="form-control" id="email" aria-describedby="emailHelpBlock"
+            required />
+        </div>
+        <small id="emailHelpBlock" class="form-text text-muted">
+          Type in small characters.
+        </small>
+        <div class="alert alert-danger" *ngIf="modeluserMail.invalid && modeluserMail.touched">
+          Mail is Required
+        </div>
+        <div class="alert alert-dark" *ngIf="modeluserMail.invalid && modeluserMail.dirty">
+          Please use correct Email syntax
+        </div>
+
+        <label for="contact"> Contact </label>
+        <div>
+          <input type="number" pattern="[6-9]{1}[0-9]{9}" name="userContact" [(ngModel)]="user.userContact" required
+            #modeluserContact="ngModel" class="form-control" />
+        </div>
+        <div class="alert alert-danger" *ngIf="modeluserContact.invalid && modeluserContact.touched">
+          Contact is Required
+        </div>
+        <div class="alert alert-dark" *ngIf="modeluserContact.invalid && modeluserContact.dirty">
+          Putting wrong contact number.
+>>>>>>> 986e6bff5320aeae446e26c0be82524b6dac6683
+        </div>
+
+        <p class="lead">
+          Your booking details will be sent to this email address and mobile
+          number.
+        </p>
+      </div>
 
             <label for="name"> Full Name </label>
               <div><input type="text" pattern="[A-Za-z]{1,10}" name="passengerName" [(ngModel)]="passenger.passengerName" required #modelpassengerName="ngModel" class="form-control" required> </div>
@@ -94,9 +188,93 @@
                 </select>
               </div>  
             </div>
-        </div>
+=======
+      <hr class="my-4" />
 
-         
+      <div class="jumbotron" class="shadow-lg p-3 mb-5 bg-white rounded">
+        <h6 class="display-4">Traveller Information</h6>
+        <p class="lead">
+          Important Note: Please ensure that the names of the passengers on the
+          travel documents is the same as on their government issued identity
+          proof.
+        </p>
+
+        <select formControlName="gender">
+          <option disabled> Title </option>
+          <option> Mr. </option>
+          <option> Mrs. </option>
+          <option> Ms. </option>
+          <option *ngFor="let gen of gender">{{ gen }}</option>
+        </select>
+        <br />
+        <label for="name"> Full Name </label>
+        <div>
+          <input type="text" pattern="[A-Za-z]{1,10}" name="passengerName" [(ngModel)]="passenger.passengerName"
+            required #modelpassengerName="ngModel" class="form-control" required />
+        </div>
+        <div class="alert alert-danger" *ngIf="modelpassengerName.invalid && modelpassengerName.touched">
+          Name is Required
+        </div>
+        <div class="alert alert-dark" *ngIf="modelpassengerName.invalid && modelpassengerName.dirty">
+          Name should not have any special symbol.
+        </div>
+        <br />
+        <div class="row">
+          <div class="col">
+            <label for="luggage"> User Luggage Option: </label>
+            <br />
+            <select formControlName="luggageForm">
+              <option> Usual luggage </option>
+              <option> Extra luggage </option>
+              <option *ngFor="let lug of luggage">{{ lug }}</option>
+            </select>
+          </div>
+          <div class="col">
+            <label for="seat"> Choose a seat: </label>
+            <br />
+            <select formControlName="luggageForm">
+              <option> 1A </option>
+              <option> 1B </option>
+              <option> 1C </option>
+              <option> 1D </option>
+              <option> 1E </option>
+              <option> 1F </option>
+              <option> 2A </option>
+              <option> 2B </option>
+              <option> 2C </option>
+              <option> 2D </option>
+              <option> 2E </option>
+              <option> 2F </option>
+              <option> 3A </option>
+              <option> 3B </option>
+              <option> 3C </option>
+              <option> 3D </option>
+              <option> 3E </option>
+              <option> 3F </option>
+              <option> 4A </option>
+              <option> 4B </option>
+              <option> 4C </option>
+              <option> 4D </option>
+              <option> 4E </option>
+              <option> 4F </option>
+              <option> 5A </option>
+              <option> 5B </option>
+              <option> 5C </option>
+              <option> 5D </option>
+              <option> 5E </option>
+              <option> 5F </option>
+              <option *ngFor="let lug of luggage">{{ lug }}</option>
+            </select>
+          </div>
+>>>>>>> 986e6bff5320aeae446e26c0be82524b6dac6683
+        </div>
+      </div>
+
+      <div class="mt-2 text-center">
+        <input type="submit" class="btn btn-dark" value="Proceed for Payment" [disabled]="!frm.valid"
+          data-toggle="modal" data-target="#cnfrmReg" />
+      </div>
+    </form>
 
         <div class="mt-2 text-center">
          <input type="submit" (click)="ProceedPayment(id)" class="btn btn-dark"  value="Proceed for Payment" [disabled]="!frm.valid"  data-toggle="modal" data-target="#cnfrmReg"/>
@@ -107,3 +285,8 @@
       <div class = "alert alert-danger" *ngIf="errorMsg!=undefined" [innerHTML]="errorMsg"></div>   
     </section>
   </div>
+=======
+    <div class="alert alert-success" *ngIf="msg != undefined">{{ msg }}</div>
+    <div class="alert alert-danger" *ngIf="errorMsg != undefined" [innerHTML]="errorMsg"></div>
+  </section>
+</div> -->
