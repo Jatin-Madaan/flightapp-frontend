@@ -43,7 +43,7 @@ export class CustomerService {
     );
   }
   addPassenger(passenger: Passenger) {
-    return this.http.post(this.url + passenger, { responseType: "text" });
+    return this.http.post<Passenger>(this.url+"addPassenger", passenger);
   }
 
   findScheduleFlightById(id: string) {
@@ -52,6 +52,6 @@ export class CustomerService {
 
   addBooking(bookFlight : Booking)
   {
-    return this.http.post(this.url+"/addBooking"+bookFlight,{ responseType: "json" });
+    return this.http.post<Booking>(this.url + "/addBooking", bookFlight);
   }
 }

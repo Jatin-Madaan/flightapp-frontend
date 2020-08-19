@@ -24,7 +24,7 @@
             <td><a class="btn btn-light" style="width: 100%;">{{booking.bookingStatus}}</a></td>
             <td><a class="btn btn-light" style="width: 100%;">{{booking.user.userName}}</a></td>
             <td><a class="btn btn-light" style="width: 100%;">{{booking.flight.flightId}}</a></td>
-            <td><button class="btn btn-danger" (click)="deleteBookings(booking)" data-toggle="modal" data-target="#rowDeleted"> Cancel Booking </button></td>   
+            <td><button class="btn btn-danger" (click)="cancelBooking(booking)" data-toggle="modal" data-target="#rowDeleted"> Cancel Booking </button></td>   
         </tr>
     </tbody>
 </table><hr><hr>

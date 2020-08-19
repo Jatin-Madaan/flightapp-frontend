@@ -64,6 +64,11 @@ export class AdminService {
     return this.http.delete<Booking>(this.url+ "deleteBooking" + "/"+ booking.bookingId);
   }
 
+  modifyBooking(booking: Booking)
+  {
+    return this.http.put<Booking>(this.url+ "modifyBooking", booking);
+  }
+
   removeSchedule(scheduleFlightId:number)
   {
     console.log(scheduleFlightId);

@@ -16,6 +16,7 @@ export class CancelBookingComponent implements OnInit {
   errorpass: string;
   bookings: Booking[] = [];
 
+
   constructor(private adminService:AdminService, private route:Router, private formBuilder:FormBuilder ) { }
 
   ngOnInit(): void 
@@ -30,13 +31,24 @@ export class CancelBookingComponent implements OnInit {
       });
   }
 
-deleteBookings(booking: Booking): void {
-    console.log("Row Deleted!!")
-    this.adminService.deleteBooking(booking)
-      .subscribe(data => {
-        this.bookings = this.bookings.filter(u => u !== booking);
-        console.log("Selected data deleted.");
-      })
-  };
+cancelBooking(booking: Booking)
+{
+  booking.status = "Cancelled";
+  this.adminService
+      .modifyBooking(booking)
+      .subscribe();
+}
+
+
+// deleteBookings(booking: Booking): void {
+//     console.log("Row Deleted!!")
+//     this.adminService.deleteBooking(booking)
+//       .subscribe(data => {
+//         this.bookings = this.bookings.filter(u => u !== booking);
+//         console.log("Selected data deleted.");
+//       })
+//   };
+
+
 
 }

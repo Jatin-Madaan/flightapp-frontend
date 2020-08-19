@@ -37,8 +37,6 @@ export class AddBookingComponent implements OnInit {
 
   id: string;
   
-  //form: FormGroup = new FormGroup({});
-
   constructor(private customerService: CustomerService,
     private router: Router,
     private route: ActivatedRoute) 
@@ -55,10 +53,6 @@ export class AddBookingComponent implements OnInit {
       .findScheduleFlightById(this.scheduleFlightId+"")
       .subscribe((data) => this.handler(data));
   }
-
-  // get f() {
-  //   return this.form.controls;
-  // }
  
   get f() {
     return this.passengerForm.controls;
@@ -87,6 +81,7 @@ export class AddBookingComponent implements OnInit {
   //       this.router.navigateByUrl("customer/pay",)
   //     });
   // }
+
   addPassenger() {
     // this.customerService.addPassenger(this.passenger).subscribe(
     //   (data) => {
