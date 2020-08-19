@@ -6,7 +6,7 @@
   </nav>
 </div>
 
-<!-- <div class="jumbotron" class="shadow-lg p-3 mb-5 bg-white rounded">
+<div class="jumbotron" class="shadow-lg p-3 mb-5 bg-white rounded">
   <h1 class="display-4">Booking Review</h1>
   <div class="row">
     <div class="row r1" *ngFor="let scr of sc" style="margin-left: 20px;">
@@ -17,7 +17,9 @@
         <h4>{{ scr.flight.carrierName }}</h4>
       </div>
       <div class="col-md-3" style="margin-top: 15px;">
-        <h6>{{ scr.schedule.departureTime | date: "shortTime" }}</h6>
+        <h6>{{ scr.schedule.departureTime | date: "shortTime" }} ({{
+          scr.schedule.departureTime | date: "mediumDate"
+        }})</h6>
       </div>
       <div class="col-md-1" style="margin-top: 15px;">
         <h6 style="color: skyblue; font-size: 30px;">
@@ -30,11 +32,9 @@
             scr.schedule.arrivalTime | date: "mediumDate"
           }})
         </h6>
-        <h6>8:40 AM (31-12-2020)</h6>
       </div>
-      <div class="col-md-2" style="margin-top: 15px; color: blue;"> -->
-        <!-- <h4>{{ scr.ticketCost * count | currency: "INR" }}</h4> -->
-        <!-- <h4><span style="font-size: 10px;">Total Fare:</span>9000</h4>
+      <div class="col-md-2" style="margin-top: 15px; color: blue;">
+        <h4><span style="font-size: 10px;">Total Fare:</span> {{ scr.ticketCost | currency: "INR" }}</h4>
       </div>
       <p class="col-md-1" style="
           font-size: x-small;
@@ -42,9 +42,8 @@
           margin-left: 95px;
           margin-top: -25px;
           color: crimson;
-        "> -->
-        <!-- {{ scr.flight.flightModel }} -->
-        <!-- Airbus 852
+        ">
+        {{ scr.flight.flightModel }}
       </p>
       <p class="col-md-1" style="
           font-size: x-small;
@@ -52,9 +51,8 @@
           margin-left: 80px;
           margin-top: -30px;
           color: crimson;
-        "> -->
-        <!-- {{ from }} -->
-        <!-- Chennai
+        ">
+        {{ scr.schedule.sourceAirport.address }}
       </p>
       <p class="col-md-1" style="
           font-size: x-small;
@@ -62,13 +60,12 @@
           margin-left: 255px;
           margin-top: -30px;
           color: crimson;
-        "> -->
-        <!-- {{ to }} -->
-        <!-- Ranchi
+        ">
+        {{ scr.schedule.destinationAirport.address }}
       </p>
     </div>
   </div>
-</div> -->
+</div>
 
 
 
