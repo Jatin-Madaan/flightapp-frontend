@@ -1,30 +1,58 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Passenger } from 'src/app/models/Passenger';
 import { ScheduleFlight } from 'src/app/models/scheduleFlight';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CustomerService } from '../customerservice/customer.service';
 import { formatDate } from '@angular/common';
+import { User } from 'src/app/models/User';
+import { Flight } from "src/app/models/Flight";
+import { Schedule } from "src/app/models/Schedule";
 
 @Component({
-  selector: 'app-add-booking',
-  templateUrl: './add-booking.component.html',
-  styleUrls: ['./add-booking.component.css']
+  selector: "app-add-booking",
+  templateUrl: "./add-booking.component.html",
+  styleUrls: ["./add-booking.component.css"],
 })
-export class AddBookingComponent implements OnInit 
-{
- 
+export class AddBookingComponent implements OnInit {
   passenger: Passenger = new Passenger();
+  user: User = new User();
   msg: string;
   errorMsg: string;
 
-  form: FormGroup = new FormGroup({});
+  form: FormGroup = new FormGroup({
+    luggageForm: new FormControl(''),
+    seatForm: new FormControl('')
+  });
+  id: number;
+  sc: ScheduleFlight[];
+  //form: FormGroup = new FormGroup({});
 
-  constructor(private customerService: CustomerService, private router: Router) { }
-  
-  ngOnInit(): void { }
+  constructor(
+    private customerService: CustomerService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+    this.route.params.subscribe((params) => {
+      this.id = params["id"];
+    });
+  }
 
-  get f() { return this.form.controls; }
+  ngOnInit() {
+    this.customerService
+      .findScheduleFlightById(this.id)
+      .subscribe((data) => this.handler(data));
+  }
+
+  get f() {
+    return this.form.controls;
+  }
+
+  handler(data) {
+    console.log(data);
+    this.sc = data;
+    console.log(this.sc);
+  }
 
   addPassenger() 
   {
@@ -32,19 +60,31 @@ export class AddBookingComponent implements OnInit
       .customerService
       .addPassenger(this.passenger)
       .subscribe((data) => {
-        console.log("new user added");
-        this.msg = data;
-        this.errorMsg = undefined;
-        this.passenger = new Passenger()
-        this.router.navigateByUrl("/login")
-      },
-      error => 
-      {
-        this.errorMsg = JSON.parse(error.error).message;
-        console.log(error.error);
-        this.msg = undefined
-        this.router.navigateByUrl("pay/:bookingid")
-      });
+        console.log("Add Passenger")});
   }
+  
+  // addPassenger() {
+   // this.customerService.addPassenger(this.passenger).subscribe(
+   //   (data) => {
+   //     console.log("new user added");
+   //     this.msg = data;
+   //     this.errorMsg = undefined;
+   //     this.passenger = new Passenger();
+   //     this.router.navigateByUrl("/login");
+   //   },
+   //   (error) => {
+   //     this.errorMsg = JSON.parse(error.error).message;
+   //     console.log(error.error);
+   //     this.msg = undefined
+   //     this.router.navigateByUrl("customer/pay",)
+   //   });    
 
-}
+  ProceedPayment(id:{BookingId:number}) 
+  {
+    console.log("Proceeding to Payment");
+    this.router.navigate(["customer/addBooking/", id.BookingId]);
+        this.msg = undefined;
+        this.router.navigateByUrl("pay/:bookingid");
+  }
+    
+  }
