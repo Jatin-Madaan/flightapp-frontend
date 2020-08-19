@@ -49,4 +49,9 @@ export class CustomerService {
   findScheduleFlightById(id: number) {
     return this.http.get<ScheduleFlight[]>(`${this.url}getFlightById/${id}`);
   }
+
+  addBooking(bookFlight : Booking)
+  {
+    return this.http.post(this.url+"/addBooking"+bookFlight,{ responseType: "json" });
+  }
 }

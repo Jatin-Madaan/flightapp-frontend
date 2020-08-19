@@ -82,9 +82,10 @@ export class AddBookingComponent implements OnInit {
     );
   }
 
-  ProceedPayment(id: { BookingId: number }) {
+  ProceedPayment() {
     console.log("Proceeding to Payment");
-    this.router.navigate(["customer/addBooking/", id.BookingId]);
+    console.log(this.f.modelpassengerName.value);
+    //this.router.navigate(["customer/addBooking/", id.BookingId]);
     this.msg = undefined;
     this.router.navigateByUrl("pay/:bookingid");
   }
