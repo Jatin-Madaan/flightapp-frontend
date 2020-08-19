@@ -1,1 +1,306 @@
-<p>flights works</p>
+<p>flights works!</p>
+
+<div class="container register">
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">ADD</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">View</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="search-tab" data-toggle="tab" href="#search" role="tab" aria-controls="search" aria-selected="false">Search</a>
+                </li>
+                <li class="nav-item" *ngIf="showtab">
+                    <a class="nav-link" id="update-tab" data-toggle="tab" href="#update" role="tab" aria-controls="update" aria-selected="false">Update</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active text-align form-new" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div *ngIf="ok" class="alert alert-danger">
+                        <span>Flight Id already exists</span>
+                        </div>
+                        <div *ngIf="addStatus" class="alert alert-success">
+                            <span>New Flight is Added!</span>
+                            </div>
+                    <h3 class="register-heading">Add Flight Details</h3>
+                    <div class="row register-form">
+                        <div class="col-md-12">
+                            <form  #addFlightForm="ngForm" (ngSubmit)="addFlight(flight,addFlightForm);"  ngNativeValidate #f>
+                                <div class="row">
+                                <div class="col-md-6">
+                                <div class="form-group" >
+                                    <label for="flightId" >Flight Id</label>
+                                   
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group span">
+                                    
+                                    <input id="flightId" type="number" required  min="1"  name="flightId"  [(ngModel)]="flight.flightId" class="form-control" placeholder="Flight Id"   #flightId1="ngModel">
+                                
+					  <span  class="help-block" *ngIf="flightId1.touched && flightId1.errors?.required">flightId is required</span>
+					  <span class="help-block" *ngIf="flightId1.touched && flightId1.errors?.pattern">flightId is not valid</span>
+					  <span class="help-block" *ngIf="flightId1.touched && flightId1.errors?.min">flightId is not valid</span>
+                    
+                    </div>            
+                    </div>
+                            </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="email2" class="label label-info">Carrier Name</label>
+                                       
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group span">
+                                        <input id="carrierName" type="text" name="carrierName" #carrierName1="ngModel" [(ngModel)]="flight.carrierName" class="form-control" placeholder="Carrier Name"  required pattern ="([a-zA-Z]).{3,15}">
+                                        <span class="help-block"
+                                        *ngIf="carrierName1.touched && carrierName1.errors?.required">
+                                    carrierName is required
+                                   </span>
+                                   <span class="help-block" *ngIf="carrierName1.touched && carrierName1.errors?.pattern">carrierName is not valid</span>
+                                    </div>
+                                </div>
+                                    </div>
+                               
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="email2" class="label label-info">Flight Model</label>
+                                           
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group span">
+                                            <input id="flightModel" type="text" name="flightModel" #flightModel1="ngModel" [(ngModel)]="flight.flightModel" class="form-control" placeholder="Flight Model"  required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%/-]).{6,12}">
+                                            <span class="help-block" *ngIf="flightModel1.touched && flightModel1.errors?.required">flightModel1 required</span>
+                                            <span class="help-block" *ngIf="flightModel1.touched && flightModel1.errors?.pattern">flightModel1 is not valid</span>
+                                        </div>
+                                    </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="email2" class="label label-info">Seat Capacity</label>
+                                               
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group span">
+                                                
+                                                <input id="seatCapacity" type="number" name="seatCapacity"  min="100" max="500" #seatCapacity1="ngModel" [(ngModel)]="flight.seatCapacity" class="form-control" placeholder="Seat Capacity"   required=""/>
+                                                <span class="help-block" *ngIf="seatCapacity1.touched && seatCapacity1.errors?.required">seatCapacity is required</span>
+                                                <span class="help-block" *ngIf="seatCapacity1.touched && seatCapacity1.errors?.pattern">seatCapacity is not valid</span>
+                                                <span class="help-block" *ngIf="seatCapacity1.touched && seatCapacity1.errors?.min">seatCapacity is not valid</span>
+                                            </div>
+                                        </div>
+                                            </div>
+                                <div class="form-group">
+                                    <button type="submit"  class="btnContactSubmit" [disabled]="addFlightForm.invalid">ADD</button>
+                                    {{addFlightForm.invalid|json}}
+                                    {{seatCapacity1.errors?.min|json}}
+                                    <!-- {{addFlightForm.value|json}}
+                                    {{flightId1.errors?.required|json}}
+                                    <input id="name" name="name" class="form-control"
+                                    required minlength="4" appForbiddenName="bob"
+                                    [(ngModel)]="name1" #flightId2="ngModel" >
+                                    
+                              
+                              <div *ngIf="flightId2.invalid && (flightId2.dirty || flightId2.touched)"
+                                  class="alert alert-danger">
+                              
+                                <div *ngIf="flightId2.errors.required">
+                                  Name is required.
+                                </div>
+                                <div *ngIf="flightId2.errors.minlength">
+                                  Name must be at least 4 characters long.
+                                </div>
+                                <div *ngIf="flightId2.errors.forbiddenName">
+                                  Name cannot be Bob.
+                                </div>
+                              
+                              </div> -->
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade show text-align form-new2" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <h3  class="register-heading">View Flight Details</h3>
+                
+                        <div >
+                            <table class="table table-striped" style="background-color: ivory;">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Flight Id</th>
+                                        <th scope="col">Carrier Name</th>
+                                        <th scope="col">Flight Model</th>
+                                        <th scope="col">Seat Capacity</th>
+                                        <th scope="col">Action</th>
+        
+                                      </tr>
+                                </thead>
+                                <tbody > 
+                                    <tr *ngFor="let flight of flights;let i=index;">
+                                        <th scope="row">{{i+1}}</th>
+                                        <td>{{flight.flightId}}</td>
+                                        <td>{{flight.carrierName}}</td>
+                                        <td>{{flight.flightModel}}</td>
+                                        <td>{{flight.seatCapacity}}</td>
+                                      <td><button (click)="updateTab(flight)" class="btn btn-success">Update</button>
+                                        &nbsp;<button (click)="delete(flight.flightId)" class="btn btn-danger">Delete</button>
+                                        </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            
+
+                        </div>
+                        
+                    
+                </div>
+                <div class="tab-pane fade show text-align form-new2" id="search" role="tabpanel" aria-labelledby="search-tab">
+                    <div class="row" style="margin-left:10%;margin-right: 16%;">
+                        
+                    <div class="col-md-9">
+                        <div class="form-group">
+                            <input id="search" type="number" name="search" #search1="ngModel" [(ngModel)]="id" class="form-control" placeholder="Search By Flight Id"   required=""/>
+                        </div>
+                        
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <button (click)="search()" class="btn btn-danger">Search</button>
+                           
+                        </div>
+                    </div>
+                        </div>
+                        <div *ngIf="submitted" class="row" class="alert alert-danger" style="margin-left:10%;margin-right: 16%;">
+                            <span>{{this.er.error.message}}</span>
+                            </div>
+                    <h3  class="register-heading">View Flight Details</h3>
+                         <div > 
+                            <table class="table table-striped">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Flight Id</th>
+                                    <th scope="col">Carrier Name</th>
+                                    <th scope="col">Flight Model</th>
+                                    <th scope="col">Seat Capacity</th>
+                                    <th scope="col">Action</th>
+    
+                                  </tr>
+                                </thead>
+                                <tbody *ngIf="show" >
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>{{flight2.flightId}}</td>
+                                        <td>{{flight2.carrierName}}</td>
+                                        <td>{{flight2.flightModel}}</td>
+                                        <td>{{flight2.seatCapacity}}</td>
+                                      <td><button (click)="updateTab(flight2)" class="btn btn-success">Update</button>
+                                        &nbsp;<button (click)="delete(flight2.flightId)" class="btn btn-danger">Delete</button>
+                                        </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            
+
+                        </div> 
+                      
+                </div>
+                <div class="tab-pane fade show  text-align form-new" id="update" role="tabpanel" aria-labelledby="update-tab">
+                    <div *ngIf="updateStatus" class="alert alert-success">
+                        <span>Flight Details Updated!</span>
+                        </div>
+                    <h3 class="register-heading">Update Flight Details</h3>
+                    <div class="row register-form">
+                        <div class="col-md-12">
+                            <form #updateFlightForm="ngForm" (ngSubmit)="update(flight2.flightId,flight2)">
+                                <div class="row">
+                                <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="email2" >Flight Id</label>
+                                   
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input id="UflightId" type="number" name="flightId" #flightId2="ngModel" [(ngModel)]="flight2.flightId" class="form-control" placeholder="Flight Id"  required=""/>
+                                    <span  class="help-block" *ngIf="flightId2.touched && flightId2.errors?.required">flightId is required</span>
+                                    <span class="help-block" *ngIf="flightId2.touched && flightId2.errors?.pattern">flightId is not valid</span>
+                                    <span class="help-block" *ngIf="flightId2.touched && flightId2.errors?.min">flightId is not valid</span>
+                                </div>
+                            </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="email2" class="label label-info">Carrier Name</label>
+                                       
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input id="UcarrierName" type="text" name="carrierName" #carrierName2="ngModel" [(ngModel)]="flight2.carrierName" class="form-control" placeholder="Carrier Name"  required=""/>
+                                        <span class="help-block"
+                                        *ngIf="carrierName2.touched && carrierName2.errors?.required">
+                                    carrierName is required
+                                   </span>
+                                   <span class="help-block" *ngIf="carrierName2.touched && carrierName2.errors?.pattern">carrierName is not valid</span>
+                                    </div>
+                                </div>
+                                    </div>
+                               
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="email2" class="label label-info">Flight Model</label>
+                                           
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            
+                                            
+                                    <input id="uflightModel" type="text" name="flightModel" #flightModel2="ngModel" [(ngModel)]="flight2.flightModel" class="form-control" placeholder="Flight Model"  required=""/>
+                                    <span class="help-block" *ngIf="flightModel2.touched && flightModel2.errors?.required">flightModel1 required</span>
+                                    <span class="help-block" *ngIf="flightModel2.touched && flightModel2.errors?.pattern">flightModel1 is not valid</span>    
+                                </div>
+                                    </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="email2" class="label label-info">Seat Capacity</label>
+                                               
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input id="useatCapacity" type="number" name="seatCapacity" #seatCapacity2="ngModel" [(ngModel)]="flight2.seatCapacity" class="form-control" placeholder="Seat Capacity"   required=""/>
+                                                <span class="help-block" *ngIf="seatCapacity2.touched && seatCapacity2.errors?.required">seatCapacity is required</span>
+                                                <span class="help-block" *ngIf="seatCapacity2.touched && seatCapacity2.errors?.pattern">seatCapacity is not valid</span>
+                                                <span class="help-block" *ngIf="seatCapacity2.touched && seatCapacity2.errors?.min">seatCapacity is not valid</span>
+                                            </div>
+                                        </div>
+                                            </div>
+                                <div class="form-group">
+                                    <input type="submit"  class="btnContactSubmit" value="UPDATE" />
+                                    
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
