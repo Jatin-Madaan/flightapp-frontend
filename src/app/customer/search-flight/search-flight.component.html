@@ -1,0 +1,88 @@
+<div id="booking">
+  <div class="container">
+    <div class="row">
+      <div class="booking-form">
+        <form [formGroup]="searchForm" (ngSubmit)="searchFlight()">
+          <h1 style="color: white; text-align: center;">Make your Booking</h1>
+          <div class="form-group row">
+            <div class="col-md-6">
+              <span class="form-label">From <span class="text-danger">*</span></span>
+              <select class="form-control" formControlName="from" required>
+                <option value="" disabled selected>Select City</option>
+                <option>Amritsar</option>
+                <option>Chennai</option>
+                <option>Delhi</option>
+                <option>Hyderabad</option>
+                <option>Lucknow</option>
+                <option>Ranchi</option>
+                <option>Gorakhpur</option>
+                <option>Kolkata</option>
+              </select>
+              <div *ngIf="submitted && searchForm.controls.from.errors">
+                <div class="text-danger" style="font-size: small;" *ngIf="searchForm.controls.from.errors.required">
+                  Required!
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <span class="form-label">To <span class="text-danger">*</span></span>
+              <select class="form-control" formControlName="to" required>
+                <option value="" disabled selected>Select City</option>
+                <option>Amritsar</option>
+                <option>Chennai</option>
+                <option>Delhi</option>
+                <option>Hyderabad</option>
+                <option>Lucknow</option>
+                <option>Ranchi</option>
+                <option>Gorakhpur</option>
+                <option>Kolkata</option>
+              </select>
+              <div *ngIf="submitted && searchForm.controls.to.errors">
+                <div class="text-danger" style="font-size: small;" *ngIf="searchForm.controls.to.errors.required">
+                  Required!
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <span class="form-label">Departure <span class="text-danger">*</span></span>
+                <input class="form-control" type="date" formControlName="date" />
+                <div *ngIf="submitted && searchForm.controls.date.errors">
+                  <div class="text-danger" style="font-size: small;" *ngIf="searchForm.controls.date.errors.required">
+                    Required!
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <span class="form-label">Travellers <span class="text-danger">*</span></span>
+                <input class="form-control" type="number" placeholder="Enter Passengers" formControlName="passengers" />
+                <div *ngIf="submitted && searchForm.controls.passengers.errors">
+                  <div class="text-danger" style="font-size: small;"
+                    *ngIf="searchForm.controls.passengers.errors.required">
+                    Required!
+                  </div>
+                  <div class="text-danger" style="font-size: small;" *ngIf="searchForm.controls.passengers.errors.min">
+                    Minimum 1 passengers
+                  </div>
+                  <div class="text-danger" style="font-size: small;" *ngIf="searchForm.controls.passengers.errors.max">
+                    Maximum 4 passengers
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <button class="btn btn-block btn-danger">Show flights</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

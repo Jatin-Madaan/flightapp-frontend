@@ -7,10 +7,10 @@
                  <br>
                     <h5>Accepted Cards </h5>
                     <div class="icon-container" style="font-size: 30px;margin-bottom: 20px;">
-                        <i class="fa fa-cc-visa" style="color:navy;padding-right: 30px;"></i>
-                        <i class="fa fa-cc-amex" style="color:blue;padding-right: 30px;"></i>
-                        <i class="fa fa-cc-mastercard" style="color:red;padding-right: 30px;"></i>
-                        <i class="fa fa-cc-discover" style="color:orange;padding-right: 30px;"></i>
+                        <i class="fab fa-cc-visa fa-2x" style="color:navy;padding-right: 40px;"></i>
+                        <i class="fab fa-cc-amex fa-2x" style="color:blue;padding-right: 40px;"></i>
+                        <i class="fab fa-cc-mastercard fa-2x" style="color:red;padding-right: 40px;"></i>
+                        <i class="fab fa-cc-discover fa-2x" style="color:orange;padding-right: 40px;"></i>
                     </div>
                     <div class="form-group">
                         <div class="row">
@@ -20,7 +20,7 @@
                                 <label for="password"><i class="fa fa-key" aria-hidden="true"></i>
                                     <h5>Password: </h5>
                                 </label>
-                                <input type="text" class="form-control" formControlName="password"
+                                <input type="password" class="form-control" formControlName="password"
                                     placeholder="Enter your password">
                                 <div *ngIf=" submitted  && PaymentForm.controls.password.errors">
                                     <div class="text-danger" *ngIf="PaymentForm.controls.password.errors.required">

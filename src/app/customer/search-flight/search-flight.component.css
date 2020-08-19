@@ -1,0 +1,40 @@
+ #booking {
+   align-content: center;
+  font-family: "PT Sans", sans-serif;
+  background-size: cover;
+  background-position: center;
+}
+
+.booking-form {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 40px;
+  border-radius: 6px;
+}
+
+.booking-form .form-control {
+  background-color: #fff;
+  height: 50px;
+  color: #191a1e;
+  border: none;
+  font-size: 16px;
+  font-weight: 400;
+  box-shadow: none;
+  border-radius: 2px;
+  padding: 0px 25px;
+}
+
+.booking-form .form-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 24px;
+  height: 24px;
+  font-size: 12px;
+  color: #fff;
+}
+
+.booking-form .form-group {
+  position: relative;
+  margin-bottom: 20px;
+}

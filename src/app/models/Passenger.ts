@@ -2,11 +2,9 @@
 import { Booking } from './Booking';
 
 export class Passenger{
-    age:number;
-    booking:Booking;
-    luggage:string;
-    passengerName:string;
     pnrNumber:number;
+    passengerName:string;
+    luggage:string;
     seatNumber:string;
-    travelClass :string;
+    booking:Booking;
 }
