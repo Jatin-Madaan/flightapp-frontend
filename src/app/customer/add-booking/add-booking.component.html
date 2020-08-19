@@ -17,9 +17,7 @@
         <h4>{{ scr.flight.carrierName }}</h4>
       </div>
       <div class="col-md-3" style="margin-top: 15px;">
-        <h6>{{ scr.schedule.departureTime | date: "shortTime" }} ({{
-          scr.schedule.departureTime | date: "mediumDate"
-        }})</h6>
+        <h6>{{ scr.schedule.departureTime | date: "shortTime" }} ({{ scr.schedule.departureTime | date: "mediumDate" }})</h6>
       </div>
       <div class="col-md-1" style="margin-top: 15px;">
         <h6 style="color: skyblue; font-size: 30px;">
@@ -27,11 +25,7 @@
         </h6>
       </div>
       <div class="col-md-3" style="margin-top: 15px;">
-        <h6>
-          {{ scr.schedule.arrivalTime | date: "shortTime" }} ({{
-            scr.schedule.arrivalTime | date: "mediumDate"
-          }})
-        </h6>
+        <h6> {{ scr.schedule.arrivalTime | date: "shortTime" }} ({ scr.schedule.arrivalTime | date: "mediumDate" }}) </h6>
       </div>
       <div class="col-md-2" style="margin-top: 15px; color: blue;">
         <!-- <h4>{{ scr.ticketCost * count | currency: "INR" }}</h4> -->
@@ -45,8 +39,6 @@
           margin-top: -25px;
           color: crimson;
         ">
-        <!-- {{ scr.flight.flightModel }} -->
-        Airbus 852
         {{ scr.flight.flightModel }}
       </p>
       <p class="col-md-1" style="
@@ -56,8 +48,6 @@
           margin-top: -30px;
           color: crimson;
         ">
-        <!-- {{ from }} -->
-        Chennai
         {{ scr.schedule.sourceAirport.address }}
       </p>
       <p class="col-md-1" style="
@@ -67,8 +57,6 @@
           margin-top: -30px;
           color: crimson;
         ">
-        <!-- {{ to }} -->
-        Ranchi
         {{ scr.schedule.destinationAirport.address }}
       </p>
     </div>
