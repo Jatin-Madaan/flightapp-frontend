@@ -31,4 +31,4 @@ import { SortPipe } from "./customerpipes/sort.pipe";
     FormsModule,
   ],
 })
-export class CustomerModule {}
+export class CustomerModule { }
