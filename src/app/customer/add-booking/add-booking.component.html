@@ -24,9 +24,9 @@
             <div class="alert alert-dark" *ngIf="modelemail.invalid && modelemail.dirty">Please use correct Email syntax</div>
         
             <label for="contact"> Contact </label>
-            <div><input type="number" pattern="[6-9]{1}[0-9]{9}" name="userContact" [(ngModel)]="user.userContact" required #modeluserContact="ngModel" class="form-control"> </div>
-            <div class="alert alert-danger" *ngIf="modeluserContact.invalid && modeluserContact.touched"> Contact is Required </div>
-            <div class="alert alert-dark" *ngIf="modeluserContact.invalid && modeluserContact.dirty"> Putting wrong contact number. </div>
+            <div><input type="number" pattern="[6-9]{1}[0-9]{9}" name="phone" [(ngModel)]="user.phone" required #modelphone="ngModel" class="form-control"> </div>
+            <div class="alert alert-danger" *ngIf="modelphone.invalid && modelphone.touched"> Contact is Required </div>
+            <div class="alert alert-dark" *ngIf="modelphone.invalid && modelphone.dirty"> Putting wrong contact number. </div>
     
             <p class="lead">Your booking details will be sent to this email address and mobile number.</p>
         </div>
