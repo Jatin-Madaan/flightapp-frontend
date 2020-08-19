@@ -19,9 +19,7 @@ const routes: Routes = [
       { path: "pay/:bookingid", component: PaymentComponent },
       { path: "invoice/:bookingid", component: InvoiceComponent },
       { path: "searchFlights", component: SearchFlightComponent },
-      {
-        path: "listFlights/:from/:to/:date/:count",
-        component: ListFlightsComponent,
+      {path: "listFlights/:from/:to/:date/:count",component: ListFlightsComponent,
       },
     ],
   },
