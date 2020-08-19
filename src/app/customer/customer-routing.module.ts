@@ -11,6 +11,8 @@ import { ListFlightsComponent } from "./list-flights/list-flights.component";
 const routes: Routes = [
   {
     //routing for the customer module
+
+
     path: "",
     component: HomeComponent,
     children: [
@@ -18,6 +20,7 @@ const routes: Routes = [
       { path: "viewBooking", component: ViewBookingComponent },
       { path: "pay/:bookingid", component: PaymentComponent },
       { path: "invoice/:bookingid", component: InvoiceComponent },
+
       { path: "searchFlights", component: SearchFlightComponent },
       {path: "listFlights/:from/:to/:date/:count",component: ListFlightsComponent,
       },

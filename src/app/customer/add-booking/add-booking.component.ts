@@ -38,9 +38,12 @@ export class AddBookingComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute
   ) {
+
+
     this.route.params.subscribe((params) => {
       this.scheduleFlightId = params["scheduleflightid"];
       console.log(this.scheduleFlightId);
+
     });
   }
 
