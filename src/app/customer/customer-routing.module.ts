@@ -13,9 +13,8 @@ const routes: Routes = [
   {
 
     path: '', component: HomeComponent, children: [
-      { path: 'addBooking', component: AddBookingComponent},
+      { path: 'addBooking/:id', component: AddBookingComponent},
       { path: 'viewBooking', component: ViewBookingComponent },
-      { path: 'addBooking', component: AddBookingComponent },
       { path: 'pay/:bookingid', component: PaymentComponent },
       { path: 'invoice/:bookingid', component: InvoiceComponent },
       //{ path: 'modifyBooking', component: ModifyBookingComponent },
