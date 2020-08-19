@@ -6,6 +6,9 @@
 
 <div class="jumbotron" class="shadow-lg p-3 mb-5 bg-white rounded">
     <h1 class="display-4">Booking Review</h1>
+
+
+    
 </div>
   
   <div class="container p-3 my-3 border">
@@ -38,30 +41,70 @@
             <h6 class="display-4">Traveller Information</h6>
             <p class="lead">Important Note: Please ensure that the names of the passengers on the travel documents is the same as on their government issued identity proof.</p>
 
+            <select formControlName="gender">
+              <option disabled> Title </option>
+              <option> Mr. </option>
+              <option> Mrs. </option>
+              <option> Ms. </option>
+              <option *ngFor="let gen of gender">{{gen}}</option>
+            </select>
+            <br>
+            <label for="name"> Full Name </label>
+              <div><input type="text" pattern="[A-Za-z]{1,10}" name="passengerName" [(ngModel)]="passenger.passengerName" required #modelpassengerName="ngModel" class="form-control" required> </div>
+              <div class="alert alert-danger" *ngIf="modelpassengerName.invalid && modelpassengerName.touched"> Name is Required </div>
+              <div class="alert alert-dark" *ngIf="modelpassengerName.invalid && modelpassengerName.dirty"> Name should not have any special symbol.</div>
+            <br>
             <div class = "row">
-                <div class = "col">
-                    <select formControlName="name">
-                    <option> Title </option>
-                    <option> Mr. </option>
-                    <option> Mrs. </option>
-                    <option> Ms. </option>
-                    <option *ngFor="let gen of gender">{{gen}}</option>
-                    </select>
-                </div>
-                <div class = "col">
-                    <label for="name"> First Name </label>
-                    <div><input type="text" pattern="[A-Za-z]{1,10}" name="userName" [(ngModel)]="user.userName" required #modeluserName="ngModel" class="form-control" required> </div>
-                    <div class="alert alert-danger" *ngIf="modeluserName.invalid && modeluserName.touched"> Name is Required </div>
-                    <div class="alert alert-dark" *ngIf="modeluserName.invalid && modeluserName.dirty"> Name should not have any special symbol.</div>
-                </div>
-                <div class="col">
-                    <label for="name"> Last Name </label>
-                    <div><input type="text" pattern="[A-Za-z]{1,10}" name="userName" [(ngModel)]="user.userName" required #modeluserName="ngModel" class="form-control" required> </div>
-                    <div class="alert alert-danger" *ngIf="modeluserName.invalid && modeluserName.touched"> Name is Required </div>
-                    <div class="alert alert-dark" *ngIf="modeluserName.invalid && modeluserName.dirty"> Name should not have any special symbol.</div>
-                </div>
+              <div class = "col">
+                <label for="luggage"> User Luggage Option: </label>
+                <br>
+                <select formControlName="luggageForm">
+                <option> Usual luggage </option>
+                <option> Extra luggage </option>
+                <option *ngFor="let lug of luggage">{{lug}}</option>
+                </select>
+              </div>
+              <div class = "col">
+                <label for = "seat"> Choose a seat: </label>
+                <br>
+                <select formControlName="luggageForm">
+                <option> 1A </option>
+                <option> 1B </option>
+                <option> 1C </option>
+                <option> 1D </option>
+                <option> 1E </option>
+                <option> 1F </option>
+                <option> 2A </option>
+                <option> 2B </option>
+                <option> 2C </option>
+                <option> 2D </option>
+                <option> 2E </option>
+                <option> 2F </option>
+                <option> 3A </option>
+                <option> 3B </option>
+                <option> 3C </option>
+                <option> 3D </option>
+                <option> 3E </option>
+                <option> 3F </option>
+                <option> 4A </option>
+                <option> 4B </option>
+                <option> 4C </option>
+                <option> 4D </option>
+                <option> 4E </option>
+                <option> 4F </option>
+                <option> 5A </option>
+                <option> 5B </option>
+                <option> 5C </option>
+                <option> 5D </option>
+                <option> 5E </option>
+                <option> 5F </option>
+                <option *ngFor="let lug of luggage">{{lug}}</option>
+                </select>
+              </div>  
             </div>
         </div>
+
+         
 
         <div class="mt-2 text-center">
          <input type="submit" class="btn btn-dark"  value="Proceed for Payment" [disabled]="!frm.valid"  data-toggle="modal" data-target="#cnfrmReg"/>
