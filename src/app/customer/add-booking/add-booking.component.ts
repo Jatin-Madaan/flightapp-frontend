@@ -24,33 +24,39 @@ export class AddBookingComponent implements OnInit
 
   id: number;
   sc: ScheduleFlight[];
-  form: FormGroup = new FormGroup({});
+
+  form: FormGroup = new FormGroup({
+    luggageForm: new FormControl(''),
+    seatForm: new FormControl('')
+  });
 
   constructor(
     private customerService: CustomerService,
     private router: Router,
     private route: ActivatedRoute
   ) {
-    this.route.params.subscribe((params) => {
-      this.id = params["id"];
-    });
+    // this.route.params.subscribe((params) => {
+    //   this.id = params["id"];
+    //   console.log(this.id);
+    // });
   }
 
   ngOnInit() {
-    this.customerService
-      .findScheduleFlightById(this.id)
-      .subscribe((data) => this.handler(data));
+    // console.log(this.id);
+    // this.customerService
+    //   .findScheduleFlightById(this.id)
+    //   .subscribe((data) => this.handler(data));
   }
 
   get f() {
     return this.form.controls;
   }
 
-  handler(data) {
-    console.log(data);
-    this.sc = data;
-    console.log(this.sc);
-  }
+  // handler(data) {
+  //   console.log(data);
+  //   this.sc = data;
+  //   console.log(this.sc);
+  // }
 
   addPassenger() 
   {
