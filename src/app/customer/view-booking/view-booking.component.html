@@ -1,50 +1,64 @@
+<!-- container for the view booking module -->
+
 <div class="container-fluid">
   <div class="row">
     <div class="offset-lg-1 col-lg-10">
       <h4>My Bookings</h4>
-  
+
+      <!-- panel to show list of bookings, used list of booking objects -->
       <div class="card mb-3 mt-1 shadow-lg p-3 bg-light rounded" *ngFor="let book of bookings,let i=index">
+        <!-- panel header for the booking -->
         <div class="card-header">
           <div class="row">
             <div class="col-lg-4">
-              <span style="float:left;color: green;" *ngIf="status[i]"><b>Booked</b></span>
-              <span style="float:left;color: red;" *ngIf="!status[i]"><b>Cancelled</b></span>
+              <!-- booking status color set as per the status -->
+              <span style="float:left;color: green;" *ngIf="status[i]"><i class="far fa-check-square"></i>&nbsp;<b>Booked</b></span>
+              <span style="float:left;color: red;" *ngIf="!status[i]"><i class="far fa-window-close"></i> &nbsp; <b>Cancelled</b></span>
             </div>
             <div class="col-lg-4 text-center">
-              <b style="text-transform: uppercase;font-size:20px;"> {{book.scheduleFlight.schedule.sourceAirport.address}}-{{book.scheduleFlight.schedule.destinationAirport.address}}</b>
+              <b style="text-transform: uppercase;font-size:20px;">
+                {{book.scheduleFlight.schedule.sourceAirport.address}}&nbsp;<i class="fas fa-plane"></i>&nbsp;{{book.scheduleFlight.schedule.destinationAirport.address}}</b>
             </div>
             <div class="col-lg-4">
               <span style="float:right;">Booking ID: &nbsp; {{book.bookingId}}</span>
             </div>
           </div>
         </div>
+        <!-- panel body -->
         <div class="card-body text-center">
-          <span style="float:left;"><b>Departure:</b>&nbsp;
+          <span style="float:left;"><i class="fas fa-plane-departure"></i>&nbsp;<b>Departure:</b>&nbsp;
             {{book.scheduleFlight.schedule.departureTime | date:'medium'}}</span>
+            <i class="fas fa-plane-arrival"></i>&nbsp;
           <b>Arrival</b>:&nbsp; {{book.scheduleFlight.schedule.arrivalTime | date:'medium'}}
-          <span style="float:right;"><b>Booking Date:</b> &nbsp; {{book.bookingDate | date :'mediumDate'}}</span>
+          <span style="float:right;"><b><i class="far fa-clock"></i> &nbsp;Booking Date:</b> &nbsp; {{book.bookingDate | date :'mediumDate'}}</span>
         </div>
+        <!-- panel footer -->
         <div class="card-footer text-center">
+          <!-- button for flight details -->
           <button class="btn btn-sm btn-outline-success" (click)="viewFlight(i)" data-toggle="modal"
-            data-target="#flightModal">View Flight</button> &nbsp;
+            data-target="#flightModal">View Flight &nbsp;<i class="fas fa-plane"></i></button> &nbsp;
+          <!-- button for passenger details -->
           <button class="btn btn-sm btn-outline-success" (click)="viewPassenger(i)" data-toggle="modal"
-            data-target="#passengerModal">View Passengers</button> &nbsp;
+            data-target="#passengerModal">View Passengers &nbsp;<i class="fas fa-users"></i></button> &nbsp;
+          <!-- button for cancellation -->
           <button class="btn btn-sm btn-outline-danger" (click)="setIndex(i)" data-toggle="modal"
-            data-target="#cancelModal">Cancel</button>
+            data-target="#cancelModal">Cancel &nbsp; <i class="fas fa-power-off"></i></button>
         </div>
       </div>
-  
-      <!-- Modal -->
+
+      <!-- Modal for showing flight details-->
       <div class="modal fade bg-primary" id="flightModal" tabindex="-1" role="dialog" aria-labelledby="flightModalTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content bg-light">
             <div class="modal-header">
-              <h5 class="modal-title">Flight Details</h5>
+              <!-- header for modal -->
+              <h5 class="modal-title">Flight Details &nbsp;<i class="fas fa-plane"></i></h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
+            <!-- modal body -->
             <div class="modal-body rounded" *ngIf="checkFlight">
               <table class="table table-sm table-bordered shadow-lg p-3 bg-white rounded">
                 <tr class="text-center">
@@ -61,25 +75,28 @@
                 </tr>
               </table>
             </div>
+            <!-- modal footer -->
             <div class="modal-footer">
-              <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fas fa-power-off"></i></button>
             </div>
           </div>
         </div>
       </div>
-  
-  
-      <!-- Modal -->
+
+
+      <!-- Modal for showing passenger details-->
       <div class="modal fade bg-success" id="passengerModal" tabindex="-1" role="dialog"
         aria-labelledby="passengerModalTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
+            <!-- header -->
             <div class="modal-header">
-              <h5 class="modal-title">Passenger Details</h5>
+              <h5 class="modal-title">Passenger Details &nbsp;<i class="fas fa-users"></i></h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
+            <!-- modal body -->
             <div class="modal-body text-center" *ngIf="checkPassenger">
               <table class="table table-sm table-bordered shadow-lg p-3 bg-white rounded">
                 <tr class="text-center">
@@ -90,6 +107,7 @@
                   <td class="bg-success text-light">Seat No</td>
                   <td class="bg-success text-light">Class</td>
                 </tr>
+                <!-- listing all passengers in the booking -->
                 <tr *ngFor="let pass of passenger" class="text-center">
                   <td>{{pass.pnrNumber}}</td>
                   <td>{{pass.passengerName}}</td>
@@ -100,29 +118,33 @@
                 </tr>
               </table>
             </div>
+            <!-- modal footer -->
             <div class="modal-footer">
-              <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fas fa-power-off"></i></button>
             </div>
           </div>
         </div>
       </div>
-  
-  
-      <!-- Modal -->
+
+
+      <!-- Modal to cancel a booking-->
       <div class="modal fade bg-danger" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="flightModalTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Cancel Booking</h5>
+              <!-- header -->
+              <h5 class="modal-title">Cancel Booking&nbsp; <i class="fas fa-power-off"></i></h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
+            <!-- modal body -->
             <div class="modal-body text-center">
               <h6 style="color:red;">Are you sure you want to cancel this booking?</h6>
               <h6 *ngIf="bookings">Refund Amount: &#8377; {{bookings[index].ticketPrice}}</h6>
             </div>
+            <!-- modal footer with button to cancel and to go back -->
             <div class="modal-footer">
               <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Take me Back</button>
               <button class="btn btn-sm btn-danger" (click)="cancelBooking()">Yes, Sure</button>

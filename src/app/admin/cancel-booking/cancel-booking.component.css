@@ -1,0 +1,58 @@
+.zoom 
+{
+    transition: transform .2s;
+    width: 121.97px;
+    height: 38px;
+}
+.zoom:hover 
+{
+    -ms-transform: scale(1.2); /* IE 9 */
+    -webkit-transform: scale(1.2); /* Safari 3-8 */
+    transform: scale(1.2); 
+}
+.zoom1
+{
+    transition: transform .5s;
+    width: 1210px;
+    height: 223.5px;
+}
+.zoom1:hover 
+{
+    -ms-transform: scale(1.2); /* IE 9 */
+    -webkit-transform: scale(1.2); /* Safari 3-8 */
+    transform: scale(1.2); 
+}
+.zoom2
+{
+    transition: transform .2s;
+    width: 1225px;
+    height: 220px;
+}
+.zoom2:hover 
+{
+    -ms-transform: scale(1.5); /* IE 9 */
+    -webkit-transform: scale(1.5); /* Safari 3-8 */
+    transform: scale(1.5); 
+}
+.zoom3
+{
+    transition: transform .2s;
+}
+.zoom3:hover 
+{
+    -ms-transform: scale(1.15); /* IE 9 */
+    -webkit-transform: scale(1.15); /* Safari 3-8 */
+    transform: scale(1.15); 
+}
+.flip
+{
+    transition: transform .2s;
+}
+.flip:hover
+{
+    transform: rotateY(360deg);
+}
+.customInputTag:invalid 
+{
+    border: solid red;
+}

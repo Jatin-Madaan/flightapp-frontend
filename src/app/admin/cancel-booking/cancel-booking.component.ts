@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Booking } from 'src/app/models/Booking';
+import { AdminService } from '../adminservice/admin.service';
+import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cancel-booking',
@@ -7,9 +11,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CancelBookingComponent implements OnInit {
 
-  constructor() { }
+  BookingList: Booking[];
+  error: string;
+  errorpass: string;
+  bookings: Booking[] = [];
 
-  ngOnInit(): void {
+  constructor(private adminService:AdminService, private route:Router, private formBuilder:FormBuilder ) { }
+
+  ngOnInit(): void 
+  {
+    this.adminService.getBookings().subscribe(data=>
+      {
+        this.BookingList = data;
+      },
+      error=>{
+        alert("No data present in the database");
+        console.log("No data present in the database");
+      });
   }
+
+deleteBookings(booking: Booking): void {
+    console.log("Row Deleted!!")
+    this.adminService.deleteBooking(booking)
+      .subscribe(data => {
+        this.bookings = this.bookings.filter(u => u !== booking);
+        console.log("Selected data deleted.");
+      })
+  };
 
 }

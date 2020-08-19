@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
+
     if(localStorage.length != 0){
       this.isLoggedIn = true;
     }
@@ -21,5 +22,8 @@ export class HomeComponent implements OnInit {
   onLogout(){
     localStorage.removeItem("userId");
     window.location.href = "/login";
+
+    //this.router.navigate(["customer/searchFlights"]);
+
   }
 }
