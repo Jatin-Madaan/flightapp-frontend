@@ -12,12 +12,12 @@
           <div class="row">
             <div class="col-lg-4">
               <!-- booking status color set as per the status -->
-              <span style="float:left;color: green;" *ngIf="status[i]"><b>Booked</b></span>
-              <span style="float:left;color: red;" *ngIf="!status[i]"><b>Cancelled</b></span>
+              <span style="float:left;color: green;" *ngIf="status[i]"><i class="far fa-check-square"></i>&nbsp;<b>Booked</b></span>
+              <span style="float:left;color: red;" *ngIf="!status[i]"><i class="far fa-window-close"></i> &nbsp; <b>Cancelled</b></span>
             </div>
             <div class="col-lg-4 text-center">
               <b style="text-transform: uppercase;font-size:20px;">
-                {{book.scheduleFlight.schedule.sourceAirport.address}}-{{book.scheduleFlight.schedule.destinationAirport.address}}</b>
+                {{book.scheduleFlight.schedule.sourceAirport.address}}&nbsp;<i class="fas fa-plane"></i>&nbsp;{{book.scheduleFlight.schedule.destinationAirport.address}}</b>
             </div>
             <div class="col-lg-4">
               <span style="float:right;">Booking ID: &nbsp; {{book.bookingId}}</span>
@@ -26,22 +26,23 @@
         </div>
         <!-- panel body -->
         <div class="card-body text-center">
-          <span style="float:left;"><b>Departure:</b>&nbsp;
+          <span style="float:left;"><i class="fas fa-plane-departure"></i>&nbsp;<b>Departure:</b>&nbsp;
             {{book.scheduleFlight.schedule.departureTime | date:'medium'}}</span>
+            <i class="fas fa-plane-arrival"></i>&nbsp;
           <b>Arrival</b>:&nbsp; {{book.scheduleFlight.schedule.arrivalTime | date:'medium'}}
-          <span style="float:right;"><b>Booking Date:</b> &nbsp; {{book.bookingDate | date :'mediumDate'}}</span>
+          <span style="float:right;"><b><i class="far fa-clock"></i> &nbsp;Booking Date:</b> &nbsp; {{book.bookingDate | date :'mediumDate'}}</span>
         </div>
         <!-- panel footer -->
         <div class="card-footer text-center">
           <!-- button for flight details -->
           <button class="btn btn-sm btn-outline-success" (click)="viewFlight(i)" data-toggle="modal"
-            data-target="#flightModal">View Flight</button> &nbsp;
+            data-target="#flightModal">View Flight &nbsp;<i class="fas fa-plane"></i></button> &nbsp;
           <!-- button for passenger details -->
           <button class="btn btn-sm btn-outline-success" (click)="viewPassenger(i)" data-toggle="modal"
-            data-target="#passengerModal">View Passengers</button> &nbsp;
+            data-target="#passengerModal">View Passengers &nbsp;<i class="fas fa-users"></i></button> &nbsp;
           <!-- button for cancellation -->
           <button class="btn btn-sm btn-outline-danger" (click)="setIndex(i)" data-toggle="modal"
-            data-target="#cancelModal">Cancel</button>
+            data-target="#cancelModal">Cancel &nbsp; <i class="fas fa-power-off"></i></button>
         </div>
       </div>
 
@@ -52,7 +53,7 @@
           <div class="modal-content bg-light">
             <div class="modal-header">
               <!-- header for modal -->
-              <h5 class="modal-title">Flight Details</h5>
+              <h5 class="modal-title">Flight Details &nbsp;<i class="fas fa-plane"></i></h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -76,7 +77,7 @@
             </div>
             <!-- modal footer -->
             <div class="modal-footer">
-              <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fas fa-power-off"></i></button>
             </div>
           </div>
         </div>
@@ -90,7 +91,7 @@
           <div class="modal-content">
             <!-- header -->
             <div class="modal-header">
-              <h5 class="modal-title">Passenger Details</h5>
+              <h5 class="modal-title">Passenger Details &nbsp;<i class="fas fa-users"></i></h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -119,7 +120,7 @@
             </div>
             <!-- modal footer -->
             <div class="modal-footer">
-              <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fas fa-power-off"></i></button>
             </div>
           </div>
         </div>
@@ -133,7 +134,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <!-- header -->
-              <h5 class="modal-title">Cancel Booking</h5>
+              <h5 class="modal-title">Cancel Booking&nbsp; <i class="fas fa-power-off"></i></h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
