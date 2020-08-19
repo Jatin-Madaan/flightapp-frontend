@@ -14,19 +14,17 @@ import { Schedule } from "src/app/models/Schedule";
   templateUrl: "./add-booking.component.html",
   styleUrls: ["./add-booking.component.css"],
 })
-export class AddBookingComponent implements OnInit {
+export class AddBookingComponent implements OnInit 
+{
+  
   passenger: Passenger = new Passenger();
   user: User = new User();
   msg: string;
   errorMsg: string;
 
-  form: FormGroup = new FormGroup({
-    luggageForm: new FormControl(''),
-    seatForm: new FormControl('')
-  });
   id: number;
   sc: ScheduleFlight[];
-  //form: FormGroup = new FormGroup({});
+  form: FormGroup = new FormGroup({});
 
   constructor(
     private customerService: CustomerService,
@@ -56,28 +54,21 @@ export class AddBookingComponent implements OnInit {
 
   addPassenger() 
   {
-    this
-      .customerService
-      .addPassenger(this.passenger)
-      .subscribe((data) => {
-        console.log("Add Passenger")});
-  }
-  
-  // addPassenger() {
-   // this.customerService.addPassenger(this.passenger).subscribe(
-   //   (data) => {
-   //     console.log("new user added");
-   //     this.msg = data;
-   //     this.errorMsg = undefined;
-   //     this.passenger = new Passenger();
-   //     this.router.navigateByUrl("/login");
-   //   },
-   //   (error) => {
-   //     this.errorMsg = JSON.parse(error.error).message;
-   //     console.log(error.error);
-   //     this.msg = undefined
-   //     this.router.navigateByUrl("customer/pay",)
-   //   });    
+    this.customerService.addPassenger(this.passenger).subscribe(
+    (data) => {
+       console.log("new user added");
+       this.msg = data;
+        this.errorMsg = undefined;
+       this.passenger = new Passenger();
+        this.router.navigateByUrl("/login");
+     },
+     (error) => {
+        this.errorMsg = JSON.parse(error.error).message;
+        console.log(error.error);
+        this.msg = undefined
+        this.router.navigateByUrl("customer/pay",)
+    });  
+  }  
 
   ProceedPayment(id:{BookingId:number}) 
   {
