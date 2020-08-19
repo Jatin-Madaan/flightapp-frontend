@@ -11,8 +11,10 @@ import { Observable } from 'rxjs';
 })
 export class CustomerService {
 
+  //injecting http object to run the http methods
   constructor(private http:HttpClient) { }
 
+  //base url for the backend server
   url:string="http://localhost:8085/";
 
   getpaggenger(bookingid:any){
@@ -27,16 +29,14 @@ export class CustomerService {
     return this.http.get(this.url+"getbookingbyid/"+bookingid);
   }
 
+  //to get a list of bookings
   getBookings(userId:number){
     return this.http.get<Booking[]>(this.url+"customer/bookings/"+userId.toString());
   }
 
+  //to cancel a particular booking
   cancelBooking(bookingId:number){
     return this.http.get<Booking>(this.url+"customer/cancelBooking/"+bookingId);
-  }
-
-  modifyBooking(bookingId:number,schedule:Schedule){
-    return this.http.put(this.url+"customer/modifyBookings/"+bookingId,schedule,{ responseType: 'text' as 'json' });
   }
   
   getFlights(source:string, destination: string, dest_date:string, passengers:number)
