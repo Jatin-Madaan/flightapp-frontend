@@ -22,17 +22,7 @@ export class CustomerService {
   }
 
   setbookingstatus(bookingid: any, userid: any, status: any, amount: any) {
-    return this.http.get(
-      this.url +
-      "setbookingstatusbyid/" +
-      bookingid +
-      "/" +
-      userid +
-      "/" +
-      status +
-      "/" +
-      amount
-    );
+    return this.http.get(this.url +"setbookingstatusbyid/" + bookingid + "/" + userid +"/" + status + "/" + amount);
   }
 
   getbookingdetails(bookingid: any) {
@@ -48,16 +38,15 @@ export class CustomerService {
   cancelBooking(bookingId: number) {
     return this.http.get<Booking>(this.url + "customer/cancelBooking/" + bookingId);
   }
-
-  getFlights(source: string, destination: string, dest_date: string, passengers: number) {
-    return this.http.get<ScheduleFlight[]>(this.url + "customer/getFlights/" + source + "/" + destination + "/" + dest_date + "/" + passengers);
+  getFlights(source: string,destination: string,dest_date: string,passengers: number ) {
+    return this.http.get<ScheduleFlight[]>( this.url + "customer/getFlights/" + source + "/" + destination + "/" + dest_date + "/" + passengers
+    );
   }
-
   addPassenger(passenger: Passenger) {
     return this.http.post(this.url + passenger, { responseType: "text" });
   }
 
   findScheduleFlightById(id: number) {
-    return this.http.get<ScheduleFlight[]>(this.url + "getFlightById/" + id);
+    return this.http.get<ScheduleFlight[]>(`${this.url}getFlightById/${id}`);
   }
 }
