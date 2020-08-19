@@ -9,8 +9,7 @@ import { CancelBookingComponent } from './cancel-booking/cancel-booking.componen
 
 
 const routes: Routes = [
-  {
-    path: '', component: DashboardComponent, children: [
+  { path: '', component: DashboardComponent, children: [
       { path: 'adminpage', component: DashboardComponent },
       { path: 'cancelBooking', component: CancelBookingComponent},
       { path: 'flights', component: FlightsComponent },

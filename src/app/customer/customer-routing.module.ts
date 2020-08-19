@@ -9,21 +9,21 @@ import { SearchFlightComponent } from "./search-flight/search-flight.component";
 import { ListFlightsComponent } from "./list-flights/list-flights.component";
 
 const routes: Routes = [
-  {
-    //routing for the customer module
-    path: '', component: HomeComponent, children: [
-      { path: 'addBooking/:scheduleflightid', component: AddBookingComponent },
-      { path: 'viewBooking', component: ViewBookingComponent },
-      { path: 'pay/:bookingid', component: PaymentComponent },
-      { path: 'invoice/:bookingid', component: InvoiceComponent },
+  //routing for the customer module
+    { 
+        path: "",component: HomeComponent, children: [
+      { path: "addBooking/:scheduleflightid", component: AddBookingComponent },
+      { path: "viewBooking", component: ViewBookingComponent },
+      { path: "pay/:bookingid", component: PaymentComponent },
+      { path: "invoice/:bookingid", component: InvoiceComponent },
       { path: "searchFlights", component: SearchFlightComponent },
-      { path: "listFlights/:from/:to/:date/:count", component: ListFlightsComponent },
+      {path: "listFlights/:from/:to/:date/:count",component: ListFlightsComponent }
     ],
-  },
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class CustomerRoutingModule { }
+export class CustomerRoutingModule {}
