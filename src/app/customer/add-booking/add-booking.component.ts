@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormBuilder } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Passenger } from 'src/app/models/Passenger';
+import { ScheduleFlight } from 'src/app/models/scheduleFlight';
+import { Router, ActivatedRoute } from '@angular/router';
+import { CustomerService } from '../customerservice/customer.service';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-add-booking',
@@ -8,26 +13,38 @@ import { Validators, FormBuilder } from '@angular/forms';
 })
 export class AddBookingComponent implements OnInit 
 {
-  DetailsForm: any;
-  formBuilder: any;
+ 
+  passenger: Passenger = new Passenger();
+  msg: string;
+  errorMsg: string;
 
-  gender: any = ['Mr', 'Mrs', 'Ms.']
+  form: FormGroup = new FormGroup({});
 
-  constructor(public fb: FormBuilder) { }
-
-  genderForm = this.fb.group({
-    name: ['']})
-
-  ngOnInit(): void 
-  {
-    this.DetailsForm = this.formBuilder.group({
-      userMail: ['', Validators.required],
-      userPassword: ['', Validators.required]
-    });
-  }
+  constructor(private customerService: CustomerService, private router: Router) { }
   
-  proceedToPayment()
-  { 
-    alert(JSON.stringify(this.genderForm.value))
+  ngOnInit(): void { }
+
+  get f() { return this.form.controls; }
+
+  addPassenger() 
+  {
+    this
+      .customerService
+      .addPassenger(this.passenger)
+      .subscribe((data) => {
+        console.log("new user added");
+        this.msg = data;
+        this.errorMsg = undefined;
+        this.passenger = new Passenger()
+        this.router.navigateByUrl("/login")
+      },
+      error => 
+      {
+        this.errorMsg = JSON.parse(error.error).message;
+        console.log(error.error);
+        this.msg = undefined
+        this.router.navigateByUrl("pay/:bookingid")
+      });
   }
+
 }

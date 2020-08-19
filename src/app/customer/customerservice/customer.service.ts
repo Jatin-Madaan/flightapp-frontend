@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Booking } from '../../models/Booking';
 import { Schedule } from '../../models/Schedule';
 import { ScheduleFlight } from 'src/app/models/scheduleFlight';
+import { Passenger } from 'src/app/models/Passenger';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -41,4 +43,10 @@ export class CustomerService {
   {
     return this.http.get<ScheduleFlight[]>(this.url+"customer/getFlights/"+source+"/"+destination+"/"+dest_date+"/"+passengers);
   }
+
+  addPassenger(passenger:Passenger):Observable<any>
+  {
+    return this.http.post(this.url +passenger,{responseType:'text'})
+  }
+
 }
