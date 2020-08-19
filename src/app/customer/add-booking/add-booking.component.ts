@@ -19,7 +19,7 @@ export class AddBookingComponent implements OnInit
   
   passenger: Passenger = new Passenger();
   user: User = new User();
-  msg: string;
+  msg: any;
   errorMsg: string;
 
   id: number;
