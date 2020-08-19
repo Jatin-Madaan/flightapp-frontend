@@ -12,10 +12,10 @@ import { Observable } from "rxjs";
 export class CustomerService {
 
   //injecting http object to run the http methods
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   //base url for the backend server
-  url:string="http://localhost:8085/";
+  url: string = "http://localhost:8085/";
 
   getpaggenger(bookingid: any) {
     return this.http.get(this.url + "getpassengerdetails/" + bookingid);
@@ -24,14 +24,14 @@ export class CustomerService {
   setbookingstatus(bookingid: any, userid: any, status: any, amount: any) {
     return this.http.get(
       this.url +
-        "setbookingstatusbyid/" +
-        bookingid +
-        "/" +
-        userid +
-        "/" +
-        status +
-        "/" +
-        amount
+      "setbookingstatusbyid/" +
+      bookingid +
+      "/" +
+      userid +
+      "/" +
+      status +
+      "/" +
+      amount
     );
   }
 
@@ -40,21 +40,20 @@ export class CustomerService {
   }
 
   //to get a list of bookings
-  getBookings(userId:number){
-    return this.http.get<Booking[]>(this.url+"customer/bookings/"+userId.toString());
+  getBookings(userId: number) {
+    return this.http.get<Booking[]>(this.url + "customer/bookings/" + userId);
   }
 
   //to cancel a particular booking
-  cancelBooking(bookingId:number){
-    return this.http.get<Booking>(this.url+"customer/cancelBooking/"+bookingId);
-  }
-  
-  getFlights(source:string, destination: string, dest_date:string, passengers:number)
-  {
-    return this.http.get<ScheduleFlight[]>(this.url+"customer/getFlights/"+source+"/"+destination+"/"+dest_date+"/"+passengers);
+  cancelBooking(bookingId: number) {
+    return this.http.get<Booking>(this.url + "customer/cancelBooking/" + bookingId);
   }
 
-  addPassenger(passenger: Passenger){
+  getFlights(source: string, destination: string, dest_date: string, passengers: number) {
+    return this.http.get<ScheduleFlight[]>(this.url + "customer/getFlights/" + source + "/" + destination + "/" + dest_date + "/" + passengers);
+  }
+
+  addPassenger(passenger: Passenger) {
     return this.http.post(this.url + passenger, { responseType: "text" });
   }
 

@@ -16,7 +16,8 @@
               <span style="float:left;color: red;" *ngIf="!status[i]"><b>Cancelled</b></span>
             </div>
             <div class="col-lg-4 text-center">
-              <b style="text-transform: uppercase;font-size:20px;"> {{book.scheduleFlight.schedule.sourceAirport.address}}-{{book.scheduleFlight.schedule.destinationAirport.address}}</b>
+              <b style="text-transform: uppercase;font-size:20px;">
+                {{book.scheduleFlight.schedule.sourceAirport.address}}-{{book.scheduleFlight.schedule.destinationAirport.address}}</b>
             </div>
             <div class="col-lg-4">
               <span style="float:right;">Booking ID: &nbsp; {{book.bookingId}}</span>
@@ -35,10 +36,10 @@
           <!-- button for flight details -->
           <button class="btn btn-sm btn-outline-success" (click)="viewFlight(i)" data-toggle="modal"
             data-target="#flightModal">View Flight</button> &nbsp;
-            <!-- button for passenger details -->
+          <!-- button for passenger details -->
           <button class="btn btn-sm btn-outline-success" (click)="viewPassenger(i)" data-toggle="modal"
             data-target="#passengerModal">View Passengers</button> &nbsp;
-            <!-- button for cancellation -->
+          <!-- button for cancellation -->
           <button class="btn btn-sm btn-outline-danger" (click)="setIndex(i)" data-toggle="modal"
             data-target="#cancelModal">Cancel</button>
         </div>
@@ -94,7 +95,7 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-              <!-- modal body -->
+            <!-- modal body -->
             <div class="modal-body text-center" *ngIf="checkPassenger">
               <table class="table table-sm table-bordered shadow-lg p-3 bg-white rounded">
                 <tr class="text-center">
