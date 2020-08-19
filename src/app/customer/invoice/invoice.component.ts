@@ -9,7 +9,7 @@ import { Passenger } from 'src/app/models/Passenger';
 import { Airport } from 'src/app/models/Airport';
 import { Schedule } from 'src/app/models/Schedule';
 //import { jsPDF } from 'jspdf';
-
+//import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-invoice',
@@ -53,16 +53,20 @@ export class InvoiceComponent implements OnInit {
     this.passenger = passengerdetails;
     console.log(this.passenger)
   }
-  downloadPDF(){
-    //const doc = new jsPDF('p')
-    //const ta = document.getElementById('content');
-    //doc.fromHTML(ta, 15, 15);
-   // doc.save('demo.pdf')
- //   const doc = new jsPDF('p')
-    const ta = document.getElementById('content');
-  //  doc.fromHTML(ta, 15, 15);
-  //  doc.save('demo.pdf')
-  }
+  /*downloadPDF(){
+    html2canvas(document.body).then(canvas =>{
+      var imgwidth = 208;
+      var pageheight = 450;
+      var imgheight = canvas.height * imgwidth / canvas.width;
+      var heightleft = imgheight;
+      
+      const contentdataurl = canvas.toDataURL('image/png');
+      let pdf = new jsPDF('p', 'mm' ,'a4');
+      var position  =0;
+      pdf.addImage(contentdataurl,'PNG',0,position,imgwidth,imgheight)
+      pdf.save("Invoice.pdf");
+    });
+  }*/
 
   ifbookingnotfound(error){
     alert(error.error.message)
