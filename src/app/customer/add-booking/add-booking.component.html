@@ -68,96 +68,52 @@
 <div class="container p-3 my-3 border">
   <section class="col-md-2 mx-auto" class="shadow-lg p-3 mb-5 bg-white rounded">
     <h2 class="text-center">Traveller Details!</h2>
-    <form #frm="ngForm">
-      <div class="jumbotron" class="shadow-lg p-3 mb-5 bg-white rounded">
+    <form [formGroup]="passengerForm" (ngSubmit)="addPassenger()">
 
-        <label for="mail"> Email Id </label>
-        <div> <input type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" name="email" [(ngModel)]="user.email"
-            required #modelemail="ngModel" class="form-control" id="email" aria-describedby="emailHelpBlock" required>
-        </div>
-        <small id="emailHelpBlock" class="form-text text-muted">
-          Type in small characters.
-        </small>
-        <div class="alert alert-danger" *ngIf="modelemail.invalid && modelemail.touched"> Mail is Required </div>
-        <div class="alert alert-dark" *ngIf="modelemail.invalid && modelemail.dirty">Please use correct Email syntax
-        </div>
-
-        <label for="contact"> Contact </label>
-        <div><input type="number" pattern="[6-9]{1}[0-9]{9}" name="phone" [(ngModel)]="user.phone" required
-            #modelphone="ngModel" class="form-control"> </div>
-        <div class="alert alert-danger" *ngIf="modelphone.invalid && modelphone.touched"> Contact is Required </div>
-        <div class="alert alert-dark" *ngIf="modelphone.invalid && modelphone.dirty"> Putting wrong contact number.
-        </div>
-        <p class="lead">Your booking details will be sent to this email address and mobile number.</p>
+      <label for="passengerName"> Full Name </label>
+      <div>
+        <input type="text" class="form-control" id="passengerName" formControlName="passengerName">
       </div>
-
-      <label for="name"> Full Name </label>
-      <div><input type="text" pattern="[A-Za-z]{1,10}\s[A-Za-z]{1,10}" name="passengerName"
-          [(ngModel)]="passenger.passengerName" required #modelpassengerName="ngModel" class="form-control" required>
-      </div>
-      <div class="alert alert-danger" *ngIf="modelpassengerName.invalid && modelpassengerName.touched"> Name is
-        Required </div>
-      <div class="alert alert-dark" *ngIf="modelpassengerName.invalid && modelpassengerName.dirty"> Name should not
-        have any special symbol.</div>
       <br>
 
       <div class="row">
-        <div class="col" [formGroup]="form">
+        <div class="col">
           <label for="luggage"> User Luggage Option: </label>
           <br>
-          <select formControlName="luggageForm">
-            <option> Usual luggage </option>
-            <option> Extra luggage </option>
-            <option *ngFor="let lug of luggage">{{lug}}</option>
+          <select id="luggage" formControlName="luggage">
+            <option value="Usual luggage"> Usual luggage </option>
+            <option value="Extra luggage"> Extra luggage </option>
           </select>
         </div>
 
-        <div class="col" [formGroup]="form">
+        <div class="col">
           <label for="seat"> Choose a seat: </label>
           <br>
-          <select formControlName="seatForm">
-            <option> 1A </option>
-            <option> 1B </option>
-            <option> 1C </option>
-            <option> 1D </option>
-            <option> 1E </option>
-            <option> 1F </option>
-            <option> 2A </option>
-            <option> 2B </option>
-            <option> 2C </option>
-            <option> 2D </option>
-            <option> 2E </option>
-            <option> 2F </option>
-            <option> 3A </option>
-            <option> 3B </option>
-            <option> 3C </option>
-            <option> 3D </option>
-            <option> 3E </option>
-            <option> 3F </option>
-            <option> 4A </option>
-            <option> 4B </option>
-            <option> 4C </option>
-            <option> 4D </option>
-            <option> 4E </option>
-            <option> 4F </option>
-            <option> 5A </option>
-            <option> 5B </option>
-            <option> 5C </option>
-            <option> 5D </option>
-            <option> 5E </option>
-            <option> 5F </option>
-            <option *ngFor="let s of seat">{{s}}</option>
+          <select id="seatNumber" formControlName="seatNumber">
+            <option value="1A"> 1A </option>
+            <option value="1B"> 1B </option>
+            <option value="1C"> 1C </option>
+            <option value="1D"> 1D </option>
+            <option value="1E"> 1E </option>
+            <option value="1F"> 1F </option>
+            <option value="2A"> 2A </option>
+            <option value="2B"> 2B </option>
+            <option value="2C"> 2C </option>
+            <option value="2D"> 2D </option>
+            <option value="2E"> 2E </option>
+            <option value="2F"> 2F </option>
+            <option value="3A"> 3A </option>
+            <option value="3B"> 3B </option>
+            <option value="3C"> 3C </option>
+            <option value="3D"> 3D </option>
+            <option value="3E"> 3E </option>
           </select>
         </div>
       </div>
 
       <div class="mt-2 text-center">
-        <input type="submit" (click)="ProceedPayment()" class="btn btn-dark" value="Proceed for Payment"
-          [disabled]="!frm.valid" data-toggle="modal" data-target="#cnfrmReg" />
+        <input type="submit" class="btn btn-dark" value="Proceed for Payment"/>
       </div>
     </form>
-
-    <div class="alert alert-success" *ngIf="msg!=undefined"> {{msg}} </div>
-    <div class="alert alert-danger" *ngIf="errorMsg!=undefined" [innerHTML]="errorMsg"></div>
   </section>
 </div>

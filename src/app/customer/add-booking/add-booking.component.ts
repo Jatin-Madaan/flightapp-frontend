@@ -29,16 +29,20 @@ export class AddBookingComponent implements OnInit {
   scheduleFlightId: number;
   sc: ScheduleFlight[];
 
-  form: FormGroup = new FormGroup({
-    luggageForm: new FormControl(""),
-    seatForm: new FormControl(""),
+  passengerForm: FormGroup = new FormGroup({
+    passengerName: new FormControl(""),
+    luggage: new FormControl(""),
+    seatNumber: new FormControl("")
   });
 
-  constructor(
-    private customerService: CustomerService,
+  id: string;
+  
+  //form: FormGroup = new FormGroup({});
+
+  constructor(private customerService: CustomerService,
     private router: Router,
-    private route: ActivatedRoute
-  ) {
+    private route: ActivatedRoute) 
+  {
     this.route.params.subscribe((params) => {
       this.scheduleFlightId = params["scheduleflightid"];
       console.log(this.scheduleFlightId);
@@ -48,12 +52,16 @@ export class AddBookingComponent implements OnInit {
   ngOnInit() {
     console.log(this.scheduleFlightId);
     this.customerService
-      .findScheduleFlightById(this.scheduleFlightId)
+      .findScheduleFlightById(this.scheduleFlightId+"")
       .subscribe((data) => this.handler(data));
   }
 
+  // get f() {
+  //   return this.form.controls;
+  // }
+ 
   get f() {
-    return this.form.controls;
+    return this.passengerForm.controls;
   }
 
   handler(data) {
@@ -62,22 +70,44 @@ export class AddBookingComponent implements OnInit {
     console.log(this.sc);
   }
 
+  // addPassenger() {
+  //   this.customerService.addPassenger(this.passenger).subscribe(
+  //     (data) => {
+  //       console.log("new user added");
+  //       this.msg = undefined;
+  //       this.msg = data;
+  //       this.errorMsg = undefined;
+  //       this.passenger = new Passenger();
+  //       this.router.navigateByUrl("/login");
+  //     },
+  //     (error) => {
+  //       this.errorMsg = JSON.parse(error.error).message;
+  //       console.log(error.error);
+  //       this.msg = undefined
+  //       this.router.navigateByUrl("customer/pay",)
+  //     });
+  // }
   addPassenger() {
-    this.customerService.addPassenger(this.passenger).subscribe(
-      (data) => {
-        console.log("new user added");
-        this.msg = undefined;
-        this.msg = data;
-        this.errorMsg = undefined;
-        this.passenger = new Passenger();
-        this.router.navigateByUrl("/login");
-      },
-      (error) => {
-        this.errorMsg = JSON.parse(error.error).message;
-        console.log(error.error);
-        this.msg = undefined
-        this.router.navigateByUrl("customer/pay",)
-      });
+    // this.customerService.addPassenger(this.passenger).subscribe(
+    //   (data) => {
+    //     console.log("new user added");
+    //     this.msg = undefined;
+    //     this.msg = data;
+    //     this.errorMsg = undefined;
+    //     this.passenger = new Passenger();
+    //     this.router.navigateByUrl("/login");
+    //   },
+    //   (error) => {
+    //     this.errorMsg = JSON.parse(error.error).message;
+    //     console.log(error.error);
+    //     this.msg = undefined
+    //     this.router.navigateByUrl("customer/pay",)
+    //   });
+
+    this.passenger.passengerName = this.passengerForm.controls.passengerName.value;
+    this.passenger.luggage = this.passengerForm.controls.luggage.value;
+    this.passenger.seatNumber = this.passengerForm.controls.luggage.value;
+    console.log(this.passenger);
   }
 
   ProceedPayment() {
