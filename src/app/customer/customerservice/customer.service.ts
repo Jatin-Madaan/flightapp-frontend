@@ -10,8 +10,11 @@ import { Observable } from "rxjs";
   providedIn: "root",
 })
 export class CustomerService {
-  constructor(private http: HttpClient) {}
 
+  //injecting http object to run the http methods
+  constructor(private http: HttpClient) { }
+
+  //base url for the backend server
   url: string = "http://localhost:8085/";
 
   getpaggenger(bookingid: any) {
@@ -26,32 +29,20 @@ export class CustomerService {
     return this.http.get(this.url + "getbookingbyid/" + bookingid);
   }
 
+  //to get a list of bookings
   getBookings(userId: number) {
-    return this.http.get<Booking[]>(
-      this.url + "customer/bookings/" + userId.toString()
-    );
+    return this.http.get<Booking[]>(this.url + "customer/bookings/" + userId);
   }
 
+  //to cancel a particular booking
   cancelBooking(bookingId: number) {
-    return this.http.get<Booking>(
-      this.url + "customer/cancelBooking/" + bookingId
-    );
+    return this.http.get<Booking>(this.url + "customer/cancelBooking/" + bookingId);
   }
-
-  modifyBooking(bookingId: number, schedule: Schedule) {
-    return this.http.put(
-      this.url + "customer/modifyBookings/" + bookingId,
-      schedule,
-      { responseType: "text" as "json" }
-    );
-  }
-
   getFlights(source: string,destination: string,dest_date: string,passengers: number ) {
     return this.http.get<ScheduleFlight[]>( this.url + "customer/getFlights/" + source + "/" + destination + "/" + dest_date + "/" + passengers
     );
   }
-
-  addPassenger(passenger: Passenger): Observable<any> {
+  addPassenger(passenger: Passenger) {
     return this.http.post(this.url + passenger, { responseType: "text" });
   }
 
