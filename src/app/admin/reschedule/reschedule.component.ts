@@ -17,6 +17,8 @@ export class RescheduleComponent implements OnInit {
   scheduleFlightsList:ScheduleFlight[];
   updatedSchedule:ScheduleFlight;
   rescheduleId:number;
+  error: any;
+  errorpass: string;
   
   rescheduleFlightForm: FormGroup;
 
@@ -27,8 +29,8 @@ export class RescheduleComponent implements OnInit {
       this.scheduleFlightsList = data;
     },
     error=>{
-      alert("error occured while subscribing data from server");
-      console.log("error occured while subscribing data from server");
+      alert("No data present in the database");
+      console.log("No data present in the database");
     });
     this.rescheduleFlightForm = this.formBuilder.group({arrivalTime:['',[Validators.required]],departureTime:['',[Validators.required]]});
   }
@@ -57,14 +59,30 @@ export class RescheduleComponent implements OnInit {
   {
     this.submitted=true
     if(this.rescheduleFlightForm.invalid)
+    {
+      return;
+    }
     this.updatedSchedule.schedule.departureTime = this.rescheduleFlightForm.controls.departureTime.value;
     this.updatedSchedule.schedule.arrivalTime = this.rescheduleFlightForm.controls.arrivalTime.value;
-    this.service.rescheduleFlightSchedule(this.rescheduleId,this.updatedSchedule).subscribe(data => {
-      this.service.getSchedulesFlights().subscribe(data=>
-        {
-          this.scheduleFlightsList = data;
+    if( this.updatedSchedule.schedule.departureTime == this.updatedSchedule.schedule.arrivalTime || this.updatedSchedule.schedule.arrivalTime < this.updatedSchedule.schedule.departureTime)
+    {
+      console.log("Invalid arguments");
+      this.errorpass = "Invalid arguments";
+      alert(this.errorpass);
+    }
+    else
+    {
+      this.service.rescheduleFlightSchedule(this.rescheduleId,this.updatedSchedule).subscribe(data => {
+        this.service.getSchedulesFlights().subscribe(data=>
+          {
+            this.scheduleFlightsList = data;
+          });
+        }, error => {
+          this.error = error;
+          console.log(this.error.error.message);
+          alert(this.error.error.message);
         });
-    });
+    }
     window.location.reload(true);
   }
 }
