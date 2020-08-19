@@ -5,6 +5,7 @@ import { Schedule } from "../../models/Schedule";
 import { ScheduleFlight } from "src/app/models/scheduleFlight";
 import { Passenger } from "src/app/models/Passenger";
 import { Observable } from "rxjs";
+import { User } from 'src/app/models/User';
 
 @Injectable({
   providedIn: "root",
@@ -52,6 +53,14 @@ export class CustomerService {
 
   addBooking(bookFlight : Booking)
   {
-    return this.http.post<Booking>(this.url + "/addBooking", bookFlight);
+    return this.http.post(this.url + "/addBooking", bookFlight);
+  }
+
+  getUserById(id : number){
+    return this.http.get<User>(this.url + "/Users/id/" + id);
+  }
+
+  saveBooking(booking : Booking){
+    return this.http.post<Booking>(this.url + "/saveBooking", booking);
   }
 }
