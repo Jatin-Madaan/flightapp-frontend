@@ -28,7 +28,9 @@
         <h6> {{ scr.schedule.arrivalTime | date: "shortTime" }} ({{ scr.schedule.arrivalTime | date: "mediumDate" }}) </h6>
       </div>
       <div class="col-md-2" style="margin-top: 15px; color: blue;">
+
         <!-- <h4>{{ scr.ticketCost * count | currency: "INR" }}</h4> -->
+
         <h4><span style="font-size: 10px;">Total Fare:</span> {{ scr.ticketCost | currency: "INR" }}</h4>
       </div>
       <p class="col-md-1" style="
@@ -125,7 +127,7 @@
       </div>
 
       <div class="mt-2 text-center">
-        <input type="submit" class="btn btn-dark" value="Proceed for Payment"/>
+        <button type="submit" class="btn btn-dark">Proceed to pay</button>
       </div>
     </form>
   </section>

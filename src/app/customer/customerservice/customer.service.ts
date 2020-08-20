@@ -15,15 +15,24 @@ export class CustomerService {
   //injecting http object to run the http methods
   constructor(private http: HttpClient) { }
 
+  booking:Booking;
+
+  getBooking(){
+    return this.booking;
+  }
+  setBooking(booking:Booking){
+    this.booking = booking;
+  }
+
   //base url for the backend server
   url: string = "http://localhost:8085/";
 
-  getpaggenger(bookingid: any) {
-    return this.http.get(this.url + "getpassengerdetails/" + bookingid);
+  getpaggenger(pnr: any) {
+    return this.http.get(this.url + "getpassengerdetails/" + pnr);
   }
 
   setbookingstatus(bookingid: any, userid: any, status: any, amount: any) {
-    return this.http.get(this.url +"setbookingstatusbyid/" + bookingid + "/" + userid +"/" + status + "/" + amount);
+    return this.http.get(this.url +"setbookingstatusbyid/" + bookingid + "/" + userid +"/" + status + "/" + amount,{ responseType: 'number' as 'json' });
   }
 
   getbookingdetails(bookingid: any) {
@@ -63,4 +72,6 @@ export class CustomerService {
   saveBooking(booking : Booking){
     return this.http.post<Booking>(this.url + "/saveBooking", booking);
   }
+
+
 }

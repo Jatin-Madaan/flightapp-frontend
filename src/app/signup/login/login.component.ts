@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
         this.errorpass = "Password did not match";
       }
     }, error => {
-      this.error = error;
+      this.error = error.error.message;
       console.log(this.error);
     });
   }

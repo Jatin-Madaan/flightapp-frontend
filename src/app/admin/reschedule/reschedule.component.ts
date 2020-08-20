@@ -23,6 +23,10 @@ export class RescheduleComponent implements OnInit {
   today = new Date();
   rescheduleFlightForm: FormGroup;
 
+  /* Method: ngOnInit
+	 * Description: ngOnInit is a lifecycle hook called by angular at first, here we are getting the list of all SchedulesFlight by subscribing
+	 * @author YashYo
+	 */
   ngOnInit(): void 
   {
     this.service.getSchedulesFlights().subscribe(data=>
@@ -36,10 +40,23 @@ export class RescheduleComponent implements OnInit {
     this.rescheduleFlightForm = this.formBuilder.group({arrivalTime:['',[Validators.required]],departureTime:['',[Validators.required]]});
   }
 
+  /* Method: deleteScheduleFlight
+	 * Description: deleteScheduleFlight is used to subscribe removeSchedule service
+	 * @params: scheduleFlight 
+	 * @author YashYo
+	 */
   deleteScheduleFlight(scheduleFlight:ScheduleFlight)
   {
     console.log(scheduleFlight);
-    this.service.removeSchedule(scheduleFlight.scheduleFlightId).subscribe(data => console.log(data));
+    this.service.removeSchedule(scheduleFlight.scheduleFlightId).subscribe(data => 
+      {
+        console.log(data)
+        alert("Deleted successfully the schedule associated with ID:"+scheduleFlight.scheduleFlightId);
+      }, 
+      error=>{
+        alert("Error occured while deleting.");
+        console.log(error);
+      });
     this.service.getSchedulesFlights().subscribe(data=>
       {
         this.scheduleFlightsList = data;
@@ -48,7 +65,14 @@ export class RescheduleComponent implements OnInit {
         alert("No data present in the database");
         console.log("No data present in the database");
       });
+      window.location.reload(true);
   }
+
+  /* Method: reschedule
+	 * Description: reschedule() is used to activate the modal comprising of a Reschedule Form
+	 * @params: scheduleFlight 
+	 * @author YashYo
+	 */
   reschedule(scheduleFlight:ScheduleFlight)
   {
     this.updatedSchedule = scheduleFlight;
@@ -56,6 +80,11 @@ export class RescheduleComponent implements OnInit {
     this.rescheduleId = scheduleFlight.scheduleFlightId;
 
   }
+
+  /* Method: submitFunc
+	 * Description: submitFunc() is used to fetch rescheduleFlightForm's data and use it accordingly and later to subscribe the respective service
+	 * @author YashYo
+	 */
   submitFunc()
   {
     let currentdate: any = formatDate(this.today, "yyyy-MM-dd", "en_US");

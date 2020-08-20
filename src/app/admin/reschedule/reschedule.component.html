@@ -19,7 +19,7 @@
             <td><a class="btn btn-light" style="width: 100%;">{{p.schedule.departureTime | date:'medium'}}</a></td>
             <td><a class="btn btn-light" style="width: 100%;">{{p.schedule.arrivalTime | date:'medium'}}</a></td>
             <td><a (click)="deleteScheduleFlight(p)" class="zoom flip btn btn-outline-warning mx-auto" style="width: 100%;">Delete</a></td>
-            <td><a (click)="reschedule(p)"data-toggle="modal" data-target="#staticBackdrop" class="zoom flip btn btn-outline-danger mx-auto" style="width: 100%;">Reschedule</a></td>
+            <td><a (click)="reschedule(p)" data-toggle="modal" data-target="#staticBackdrop" class="zoom flip btn btn-outline-danger mx-auto" style="width: 100%;">Reschedule</a></td>
         </tr>
     </tbody>
 </table><hr><hr>
@@ -49,7 +49,7 @@
                     </tr>
                     <tr>
                         <td><div class="form-group"> Departure Time: </div></td>
-                        <td><div><input class="form-control customInputTag" type="datetime-local" formControlName="departureTime"></div>
+                        <td><div><input class="form-control customInputTag" type="datetime-local" formControlName="departureTime" required></div>
                         <div *ngIf=" submitted  && rescheduleFlightForm.controls.departureTime.errors">
                             <div class="text-danger" *ngIf="rescheduleFlightForm.controls.departureTime.errors.required">
                                 Departure Time is Required...
@@ -58,7 +58,7 @@
                     </tr>
                     <tr>
                         <td><div class="form-group"> Arival Time: </div></td>
-                        <td><div><input class="form-control customInputTag" type="datetime-local" formControlName="arrivalTime"></div>
+                        <td><div><input class="form-control customInputTag" type="datetime-local" formControlName="arrivalTime" required></div>
                         <div *ngIf=" submitted  && rescheduleFlightForm.controls.arrivalTime.errors">
                             <div class="text-danger" *ngIf="rescheduleFlightForm.controls.arrivalTime.errors.required">
                                 ArrivalTIme is Required...

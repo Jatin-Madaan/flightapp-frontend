@@ -38,7 +38,7 @@ export class AdminService {
   }
 
   getFlightById(id: number){
-    return this.http.get<Flight>(this.url + "getFlights/" + id);
+    return this.http.get<Flight>(this.url + "Admin/flights/getFlights/" + id);
   }
 
   getAirportById(id: number){

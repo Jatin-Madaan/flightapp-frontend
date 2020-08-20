@@ -14,7 +14,7 @@ const routes: Routes = [
         path: "",component: HomeComponent, children: [
       { path: "addBooking/:scheduleflightid", component: AddBookingComponent },
       { path: "viewBooking", component: ViewBookingComponent },
-      { path: "pay/:bookingid", component: PaymentComponent },
+      { path: "pay", component: PaymentComponent },
       { path: "invoice/:bookingid", component: InvoiceComponent },
       { path: "searchFlights", component: SearchFlightComponent },
       {path: "listFlights/:from/:to/:date/:count",component: ListFlightsComponent }

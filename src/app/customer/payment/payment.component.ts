@@ -19,9 +19,7 @@ export class PaymentComponent implements OnInit {
   status:any;
   submitted: boolean=false; 
   constructor(private router: Router, private route: ActivatedRoute, private ser: CustomerService,private formBuilder:FormBuilder) { 
-    this.route.params.subscribe(params => {
-      this.bookingid=params['bookingid'];
-    })
+  this.bookingid = localStorage.bookingId;
   }
 
   ngOnInit(): void {
