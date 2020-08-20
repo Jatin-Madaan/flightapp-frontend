@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
 
 
-    if(localStorage.length != 0){
+    if(localStorage.userId != null && localStorage.userId!='10001'){
       this.isLoggedIn = true;
     }
     this.router.navigate(["customer/searchFlights"]);
