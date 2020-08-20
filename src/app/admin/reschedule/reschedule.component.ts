@@ -40,6 +40,7 @@ export class RescheduleComponent implements OnInit {
   {
     console.log(scheduleFlight);
     this.service.removeSchedule(scheduleFlight.scheduleFlightId).subscribe(data => console.log(data));
+    alert("Deleted successfully the schedule associated with ID:"+scheduleFlight.scheduleFlightId);
     this.service.getSchedulesFlights().subscribe(data=>
       {
         this.scheduleFlightsList = data;
