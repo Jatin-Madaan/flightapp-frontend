@@ -68,7 +68,7 @@ export class ListFlightsComponent implements OnInit {
     }
   }
 
-  bookFlight(scr:{scheduleFlightId:number}) {
+  bookFlight(scr: ScheduleFlight) {
     this.router.navigate(["customer/addBooking", scr.scheduleFlightId]);
   }
 }

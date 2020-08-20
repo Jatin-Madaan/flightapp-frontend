@@ -6,5 +6,4 @@ export class Passenger{
     passengerName:string;
     luggage:string;
     seatNumber:string;
-    booking:Booking;
 }

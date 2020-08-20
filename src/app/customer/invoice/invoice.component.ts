@@ -8,8 +8,8 @@ import { User } from 'src/app/models/User';
 import { Passenger } from 'src/app/models/Passenger';
 import { Airport } from 'src/app/models/Airport';
 import { Schedule } from 'src/app/models/Schedule';
-import { jsPDF } from 'jspdf';
-import html2canvas from 'html2canvas';
+//import { jsPDF } from 'jspdf';
+//import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-invoice',
@@ -53,7 +53,7 @@ export class InvoiceComponent implements OnInit {
     this.passenger = passengerdetails;
     console.log(this.passenger)
   }
-  downloadPDF(){
+  /*downloadPDF(){
     html2canvas(document.body).then(canvas =>{
       var imgwidth = 208;
       var pageheight = 450;
@@ -66,7 +66,7 @@ export class InvoiceComponent implements OnInit {
       pdf.addImage(contentdataurl,'PNG',0,position,imgwidth,imgheight)
       pdf.save("Invoice.pdf");
     });
-  }
+  }*/
 
   ifbookingnotfound(error){
     alert(error.error.message)
