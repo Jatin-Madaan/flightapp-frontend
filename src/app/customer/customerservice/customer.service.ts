@@ -32,7 +32,7 @@ export class CustomerService {
   }
 
   setbookingstatus(bookingid: any, userid: any, status: any, amount: any) {
-    return this.http.get(this.url +"setbookingstatusbyid/" + bookingid + "/" + userid +"/" + status + "/" + amount);
+    return this.http.get(this.url +"setbookingstatusbyid/" + bookingid + "/" + userid +"/" + status + "/" + amount,{ responseType: 'number' as 'json' });
   }
 
   getbookingdetails(bookingid: any) {
