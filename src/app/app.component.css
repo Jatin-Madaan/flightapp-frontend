@@ -10,7 +10,7 @@
   }
 
   .image{
-    height:40em; background-size:cover; width:auto;
-    background-image:url(../assets/plane7.jpg);
-    background-position:50% 50%;
+    height:auto; width:auto;
+    background-image:url(../assets/Scattered-Forcefields.svg);
+    background-position:100% 100%;
   }
