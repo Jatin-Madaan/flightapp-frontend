@@ -39,8 +39,15 @@ export class RescheduleComponent implements OnInit {
   deleteScheduleFlight(scheduleFlight:ScheduleFlight)
   {
     console.log(scheduleFlight);
-    this.service.removeSchedule(scheduleFlight.scheduleFlightId).subscribe(data => console.log(data));
-    alert("Deleted successfully the schedule associated with ID:"+scheduleFlight.scheduleFlightId);
+    this.service.removeSchedule(scheduleFlight.scheduleFlightId).subscribe(data => 
+      {
+        console.log(data)
+        alert("Deleted successfully the schedule associated with ID:"+scheduleFlight.scheduleFlightId);
+      }, 
+      error=>{
+        alert("Error occured while deleting.");
+        console.log(error);
+      });
     this.service.getSchedulesFlights().subscribe(data=>
       {
         this.scheduleFlightsList = data;
@@ -49,6 +56,7 @@ export class RescheduleComponent implements OnInit {
         alert("No data present in the database");
         console.log("No data present in the database");
       });
+      window.location.reload(true);
   }
   reschedule(scheduleFlight:ScheduleFlight)
   {
