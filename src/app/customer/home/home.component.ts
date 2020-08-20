@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
     if(localStorage.length != 0){
       this.isLoggedIn = true;
     }
-    this.router.navigate(["customer/searchFlights"]);
+    // this.router.navigate(["customer/searchFlights"]);
   }
 
   onLogout(){

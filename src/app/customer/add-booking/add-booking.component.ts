@@ -41,6 +41,7 @@ export class AddBookingComponent implements OnInit {
 
   id: string;
   bookingId : number;
+  bookingid : number;
 
   constructor(private customerService: CustomerService,
     private router: Router,
@@ -106,7 +107,7 @@ export class AddBookingComponent implements OnInit {
 
     this.passenger.passengerName = this.passengerForm.controls.passengerName.value;
     this.passenger.luggage = this.passengerForm.controls.luggage.value;
-    this.passenger.seatNumber = this.passengerForm.controls.luggage.value;
+    this.passenger.seatNumber = this.passengerForm.controls.seatNumber.value;
     this.customerService.addPassenger(this.passenger).subscribe(data =>{
       //data.pnrNumber = 1;
       this.passengers.luggage = data.luggage;
@@ -115,18 +116,25 @@ export class AddBookingComponent implements OnInit {
       this.booking.passengers = [this.passengers];
       this.booking.bookingDate = new Date();
       this.booking.noOfPassengers = 1;
-      this.booking.bookingStatus = "Booked"
+      this.booking.bookingStatus = "Payment Pending"
       this.booking.status = "Pending";
       this.booking.ticketPrice = this.sc[0].ticketCost;
       this.booking.scheduleFlight = this.sc[0];
       this.customerService.getUserById(localStorage.userId).subscribe(data =>{
         this.booking.user = data;
+        this.booking.passengers
         this.customerService.saveBooking(this.booking).subscribe(data => {
           console.log(data);
-          localStorage.setItem("bookingId", data.bookingId + "");
+          this.customerService.setBooking(data);
+          this. bookingid = data.bookingId;
+          localStorage.pnr = data.passengers[0].pnrNumber;
+          localStorage.bookingId = data.bookingId;
         })
       })
+      
     });
+    alert("Please wait for 5 Seconds")
+    setTimeout(() => {  this.router.navigate(["/customer/pay"]); }, 5000);
   }
 
   ProceedPayment() {
@@ -134,6 +142,6 @@ export class AddBookingComponent implements OnInit {
     console.log(this.f.modelpassengerName.value);
     //this.router.navigate(["customer/addBooking/", id.BookingId]);
     this.msg = undefined;
-    this.router.navigateByUrl("pay/:bookingid");
+    this.router.navigate(["/customer/pay/",this.bookingid]);
   }
 }

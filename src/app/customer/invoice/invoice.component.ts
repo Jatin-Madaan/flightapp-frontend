@@ -8,8 +8,8 @@ import { User } from 'src/app/models/User';
 import { Passenger } from 'src/app/models/Passenger';
 import { Airport } from 'src/app/models/Airport';
 import { Schedule } from 'src/app/models/Schedule';
-//import { jsPDF } from 'jspdf';
-//import html2canvas from 'html2canvas';
+import { jsPDF } from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-invoice',
@@ -25,7 +25,7 @@ export class InvoiceComponent implements OnInit {
   user:User = new User();
   scheduleflight:ScheduleFlight = new ScheduleFlight();
   schedule:Schedule = new Schedule();
-  passenger?:Passenger[];
+  passenger:Passenger = new Passenger();
   airportsource:Airport = new Airport();
   airportdestination:Airport = new Airport();
   constructor(private router: Router, private route: ActivatedRoute, private ser: CustomerService) { 
@@ -36,13 +36,13 @@ export class InvoiceComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.ser.getpaggenger(this.bookingid).subscribe(
+
+    alert(localStorage.pnr)
+    this.ser.getpaggenger(localStorage.pnr).subscribe(
       passengerdetails=>{
         return this.pass(passengerdetails);
       }
     );
-
-
     this.ser.getbookingdetails(this.bookingid).subscribe(
       data => {
         return this.getbooking(data);
@@ -53,7 +53,7 @@ export class InvoiceComponent implements OnInit {
     this.passenger = passengerdetails;
     console.log(this.passenger)
   }
-  /*downloadPDF(){
+  downloadPDF(){
     html2canvas(document.body).then(canvas =>{
       var imgwidth = 208;
       var pageheight = 450;
@@ -66,7 +66,7 @@ export class InvoiceComponent implements OnInit {
       pdf.addImage(contentdataurl,'PNG',0,position,imgwidth,imgheight)
       pdf.save("Invoice.pdf");
     });
-  }*/
+  }
 
   ifbookingnotfound(error){
     alert(error.error.message)
@@ -80,7 +80,7 @@ export class InvoiceComponent implements OnInit {
     if(data.bookingStatus == "Payment Successful" || data.bookingStatus == "Successful"){
       this.paymentsuccess = data.bookingStatus;
     }
-    this.flight = data.flight;
+    this.flight = data.scheduleFlight.flight;
     this.scheduleflight = data.scheduleFlight;
     this.schedule = data.scheduleFlight.schedule;
     this.user = data.user;

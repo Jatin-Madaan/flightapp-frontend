@@ -1,20 +1,13 @@
-<div style="margin-left: 10%;margin-right: 10%;margin-top: 2%;">
+<div style="margin-left: 10%;margin-right: 10%">
     <audio autoplay preload="auto">
         <source src="/assets/audio1.mp3" type="audio/mp3">
     </audio>
     <div class="row">
-        <div class="offset-3"></div>
         <div class="col-2">
             <button class="btn btn-success" (click)="downloadPDF()">Print Ticket</button>
         </div>
-        <div class="col-2">
-            <button class="btn btn-warning" (click)="home()">Go to Home</button>
-        </div>
-        <div class="col-3">
-            <button class="btn btn-warning" (click)="mybooking()">Go to My Booking</button>
-        </div>
     </div>
-    <br><br><br><br>
+    <br><br>
     <div class="row">
         <div class="col-lg-12" *ngIf="paymentcancel" style="background-color:#C44F6A;">
             <div class="offset-lg-5">
@@ -109,22 +102,22 @@
                 <span>Seat Number</span>
             </div>
         </div>
-        <div class="row" style="font-size:large;font-weight: bolder" *ngFor="let i of passenger; index as in">
+        <div class="row" style="font-size:large;font-weight: bolder">
             <div class="offset-1"></div>
             <div class="col-2" style="text-align: center;">
-                <span>{{in+1}}</span>
+                <span>1</span>
             </div>
             <div class="col-2" style="text-align: center;">
-                <span>{{i.passengerName}}</span>
+                <span>{{passenger.passengerName}}</span>
             </div>
             <div class="col-2" style="text-align: center;">
-                <span>{{i.pnrNumber}}</span>
+                <span>{{passenger.pnrNumber}}</span>
             </div>
             <div class="col-2" style="text-align: center;">
-                <span>{{i.age}}</span>
+                <span>{{passenger.age}}</span>
             </div>
             <div class="col-2" style="text-align: center;">
-                <span>{{i.seatNumber}}</span>
+                <span>{{passenger.seatNumber}}</span>
             </div>
         </div>
         <div style="text-align: center;margin-top: 3%;font-size: x-large;">
@@ -142,15 +135,15 @@
                 <span>Baggage Details</span>
             </div>
         </div>
-        <div class="row" style="font-size:large;font-weight: bolder" *ngFor="let i of passenger; index as in">
+        <div class="row" style="font-size:large;font-weight: bolder">
             <div class="col-4" style="text-align: center;">
-                <span>{{in+1}}</span>
+                <span>1</span>
             </div>
             <div class="col-4" style="text-align: center;">
-                <span>{{i.pnrNumber}}</span>
+                <span>{{passenger.pnrNumber}}</span>
             </div>
             <div class="col-4" style="text-align: center;">
-                <span>{{i. luggage}}</span>
+                <span>{{passenger. luggage}}</span>
             </div>
         </div>
         <br>
@@ -169,7 +162,5 @@
                 PhoneNumber: {{user.phone}}
             </div>
         </div>
-        <br>
     </div>
-    <br><br><br>
 </div>
