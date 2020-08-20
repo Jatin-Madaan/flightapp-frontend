@@ -35,14 +35,12 @@ export class InvoiceComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-
-    alert(localStorage.pnr)
     this.ser.getpaggenger(localStorage.pnr).subscribe(
       passengerdetails=>{
         return this.pass(passengerdetails);
       }
     );
+
     this.ser.getbookingdetails(this.bookingid).subscribe(
       data => {
         return this.getbooking(data);
@@ -52,6 +50,7 @@ export class InvoiceComponent implements OnInit {
   pass(passengerdetails){
     this.passenger = passengerdetails;
     console.log(this.passenger)
+    localStorage.clear();
   }
   downloadPDF(){
     html2canvas(document.body).then(canvas =>{

@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
     if(localStorage.userId != null && localStorage.userId!='10001'){
       this.isLoggedIn = true;
     }
-    this.router.navigate(["customer/searchFlights"]);
+    // this.router.navigate(["customer/searchFlights"]);
   }
 }
 

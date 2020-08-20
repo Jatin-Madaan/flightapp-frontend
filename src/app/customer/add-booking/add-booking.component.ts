@@ -54,6 +54,11 @@ export class AddBookingComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    if(localStorage.length == 0){
+      window.location.href="/login"
+    }
+
     console.log(this.scheduleFlightId);
     this.customerService
       .findScheduleFlightById(this.scheduleFlightId+"")
