@@ -38,7 +38,7 @@ export class AdminService {
   }
 
   getFlightById(id: number){
-    return this.http.get<Flight>(this.url + "getFlights/" + id);
+    return this.http.get<Flight>(this.url + "Admin/flights/getFlights/" + id);
   }
 
   getAirportById(id: number){
@@ -56,7 +56,17 @@ export class AdminService {
 
   getBookings()
   {
-    return this.http.get<Booking[]>(this.url+"customer/bookings/");
+    return this.http.get<Booking[]>(this.url+"viewAllBooking");
+  }
+
+  deleteBooking(booking: Booking) 
+  {
+    return this.http.delete<Booking>(this.url+ "deleteBooking" + "/"+ booking.bookingId);
+  }
+
+  modifyBooking(booking: Booking)
+  {
+    return this.http.put<Booking>(this.url+ "modifyBooking", booking);
   }
 
   removeSchedule(scheduleFlightId:number)

@@ -20,7 +20,8 @@ export class ScheduleFlightComponent implements OnInit {
   schedule: Schedule = new Schedule();
   scheduleFlight: ScheduleFlight = new ScheduleFlight();
   scheduleSubmitted: Schedule;
-
+  errMsg : string = "";
+  success : boolean = false;
   airportForm = new FormGroup({
     airportName: new FormControl(''),
     address: new FormControl(''),
@@ -42,12 +43,10 @@ export class ScheduleFlightComponent implements OnInit {
   ngOnInit() {
     this.adminService.getAllAirports().subscribe(data => {
       this.airports = data;
-      console.log(this.airports)
     })
 
     this.adminService.getFlights().subscribe(data => {
       this.flights = data;
-      console.log(this.flights);
     })
   }
 
@@ -77,8 +76,14 @@ export class ScheduleFlightComponent implements OnInit {
             console.log(this.scheduleFlight);
             this.adminService.addScheduleFlight(this.scheduleFlight).subscribe(data => {
               console.log(data);
-            })
+              this.success= true;
+              setTimeout(() => window.location.reload(), 2000 );
+            });
           });       
+        }, error => {
+          this.errMsg = error.error.message;
+          console.log(this.errMsg);
+          setTimeout(() => window.location.reload(), 2000 );
         });
       });
     });   

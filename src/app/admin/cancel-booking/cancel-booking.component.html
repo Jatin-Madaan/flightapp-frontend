@@ -1,0 +1,50 @@
+<hr><hr><table class="table table-sm table-bordered table-resolution zoom1 shadow-lg p-3 mb-5 bg-white rounded mx-auto" style="background-color: aliceblue;">
+    <thead class="thead-dark">
+        <tr>
+            <th><a class="btn btn-info flip" scope="col" style="width: 100%;">BOOKING ID</a></th>
+            <th><a class="btn btn-info flip" scope="col" style="width: 100%;">BOOKING DATE</a></th>
+            <th><a class="btn btn-info flip" scope="col" style="width: 100%;">BOOKING TIME</a></th>
+            <th><a class="btn btn-info flip" scope="col" style="width: 100%;">TICKET PRICE</a></th>
+            <th><a class="btn btn-info flip" scope="col" style="width: 100%;">No. OF PASSENGERS</a></th>
+            <th><a class="btn btn-info flip" scope="col" style="width: 100%;">STATUS</a></th>
+            <th><a class="btn btn-info flip" scope="col" style="width: 100%;">BOOKING STATUS</a></th>
+            <th><a class="btn btn-info flip" scope="col" style="width: 100%;">USER</a></th>
+            <th><a class="btn btn-info flip" scope="col" style="width: 100%;">FLIGHT</a></th> 
+            <th><a class="btn btn-warning flip" scope="col" style="width: 100%;">CANCEL BOOKING</a></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let booking of BookingList">
+            <th scope="row"><a class="btn btn-light" style="width: 100%;">{{booking.bookingId}}</a></th>
+            <td><a class="btn btn-light" style="width: 100%;">{{booking.bookingDate | date:'fullDate'}}</a></td>
+            <td><a class="btn btn-light" style="width: 100%;">{{booking.bookingTime | date: 'shortTime'}}</a></td>
+            <td><a class="btn btn-light" style="width: 100%;">{{booking.ticketPrice}}</a></td>
+            <td><a class="btn btn-light" style="width: 100%;">{{booking.passengers.length}}</a></td>
+            <td><a class="btn btn-light" style="width: 100%;">{{booking.status}}</a></td>
+            <td><a class="btn btn-light" style="width: 100%;">{{booking.bookingStatus}}</a></td>
+            <td><a class="btn btn-light" style="width: 100%;">{{booking.user.userName}}</a></td>
+            <td><a class="btn btn-light" style="width: 100%;">{{booking.scheduleFlight.flight.flightId}}</a></td>
+            <td><button class="btn btn-danger" (click)="cancelBooking(booking)" data-toggle="modal" data-target="#rowDeleted"> Cancel Booking </button></td>   
+        </tr>
+    </tbody>
+</table><hr><hr>
+
+<!-- Modal -->
+<div class="modal fade" id="rowDeleted" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle"> FlightBookingSystem [Admin] </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Booking has been Cancelled!
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-dismiss="modal"> Okay! </button>
+        </div>
+      </div>
+    </div>
+  </div>

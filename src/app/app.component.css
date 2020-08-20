@@ -8,3 +8,9 @@
     color: black;
     text-align: center;
   }
+
+  .image{
+    height:auto; width:auto;
+    background-image:url(../assets/Scattered-Forcefields.svg);
+    background-position:100% 100%;
+  }

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mb-sm-5">
     <br><br>
     <div class="row ">
         <div class="col-md-12  shadow-lg  bg-white rounded">
@@ -53,6 +53,13 @@
                 <div class="tab-pane fade" id="scheduleFlight">
                     <form [formGroup]="scheduleFlightForm" (ngSubmit)="onScheduleSubmit()">
                         <div class="form-row">
+                            <div class="form-group col">
+                                <div class="alert alert-success" role="alert" *ngIf="success">
+                                   Schedule Successfully added!!!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="departureAirport">Departure Airport</label>
                                 <select class="form-control" id="departureAirport" formControlName="departureAirport" required>
@@ -101,6 +108,8 @@
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary mb-sm-2" [disabled]="!scheduleFlightForm.valid">Submit</button>
+                        <br>
+                        <strong style="color: red;">{{errMsg}}</strong>
                     </form>
                 </div>
             </div>

@@ -3,15 +3,18 @@ import { Schedule } from './Schedule';
 import { Flight } from './Flight';
 import { Passenger } from './Passenger';
 import { Timestamp } from 'rxjs';
+import { ScheduleFlight } from './scheduleFlight';
+import { User } from './User';
 
 export class Booking{
     bookingId:number;
     bookingDate:Date;
-    bookingTime:Time;
     ticketPrice:number;
+    flight : Flight;
+    noOfPassengers: number;
     status:string;
     bookingStatus:string;
-    schedule:Schedule;
-    flight:Flight;
+    scheduleFlight:ScheduleFlight;
     passengers:Passenger[];
+    user : User;
 }
