@@ -3,6 +3,7 @@ import { AdminService } from '../adminservice/admin.service';
 import { ScheduleFlight } from 'src/app/models/scheduleFlight';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-reschedule',
@@ -19,7 +20,7 @@ export class RescheduleComponent implements OnInit {
   rescheduleId:number;
   error: any;
   errorpass: string;
-  
+  today = new Date();
   rescheduleFlightForm: FormGroup;
 
   ngOnInit(): void 
@@ -38,7 +39,15 @@ export class RescheduleComponent implements OnInit {
   deleteScheduleFlight(scheduleFlight:ScheduleFlight)
   {
     console.log(scheduleFlight);
-    this.service.removeSchedule(scheduleFlight.scheduleFlightId).subscribe(data => console.log(data));
+    this.service.removeSchedule(scheduleFlight.scheduleFlightId).subscribe(data => 
+      {
+        console.log(data)
+        alert("Deleted successfully the schedule associated with ID:"+scheduleFlight.scheduleFlightId);
+      }, 
+      error=>{
+        alert("Error occured while deleting.");
+        console.log(error);
+      });
     this.service.getSchedulesFlights().subscribe(data=>
       {
         this.scheduleFlightsList = data;
@@ -47,6 +56,7 @@ export class RescheduleComponent implements OnInit {
         alert("No data present in the database");
         console.log("No data present in the database");
       });
+      window.location.reload(true);
   }
   reschedule(scheduleFlight:ScheduleFlight)
   {
@@ -57,6 +67,7 @@ export class RescheduleComponent implements OnInit {
   }
   submitFunc()
   {
+    let currentdate: any = formatDate(this.today, "yyyy-MM-dd", "en_US");
     this.submitted=true
     if(this.rescheduleFlightForm.invalid)
     {
@@ -64,13 +75,27 @@ export class RescheduleComponent implements OnInit {
     }
     this.updatedSchedule.schedule.departureTime = this.rescheduleFlightForm.controls.departureTime.value;
     this.updatedSchedule.schedule.arrivalTime = this.rescheduleFlightForm.controls.arrivalTime.value;
-    if( this.updatedSchedule.schedule.departureTime == this.updatedSchedule.schedule.arrivalTime || this.updatedSchedule.schedule.arrivalTime < this.updatedSchedule.schedule.departureTime)
+    if( this.updatedSchedule.schedule.departureTime < currentdate )
     {
-      console.log("Invalid arguments");
-      this.errorpass = "Invalid arguments";
+      console.log("Invalid arguments condition:1");
+      this.errorpass = "Departure date can't be less then Current date";
       alert(this.errorpass);
-    }
-    else
+    } else if( this.updatedSchedule.schedule.arrivalTime < currentdate )
+    {
+      console.log("Invalid arguments condition:2");
+      this.errorpass = "Arrival date can't be less then Current date";
+      alert(this.errorpass);
+    } else if( this.updatedSchedule.schedule.departureTime == this.updatedSchedule.schedule.arrivalTime )
+    {
+      console.log("Invalid arguments condition:3");
+      this.errorpass = "Departure date and Arrival Date can't be same";
+      alert(this.errorpass);
+    } else if( this.updatedSchedule.schedule.arrivalTime < this.updatedSchedule.schedule.departureTime )
+    {
+      console.log("Invalid arguments condition:4");
+      this.errorpass = "Arrival time is be greater then Departure time";
+      alert(this.errorpass);
+    } else
     {
       this.service.rescheduleFlightSchedule(this.rescheduleId,this.updatedSchedule).subscribe(data => {
         this.service.getSchedulesFlights().subscribe(data=>

@@ -19,7 +19,7 @@
             <td><a class="btn btn-light" style="width: 100%;">{{p.schedule.departureTime | date:'medium'}}</a></td>
             <td><a class="btn btn-light" style="width: 100%;">{{p.schedule.arrivalTime | date:'medium'}}</a></td>
             <td><a (click)="deleteScheduleFlight(p)" class="zoom flip btn btn-outline-warning mx-auto" style="width: 100%;">Delete</a></td>
-            <td><a (click)="reschedule(p)"data-toggle="modal" data-target="#staticBackdrop" class="zoom flip btn btn-outline-danger mx-auto" style="width: 100%;">Reschedule</a></td>
+            <td><a (click)="reschedule(p)" data-toggle="modal" data-target="#staticBackdrop" class="zoom flip btn btn-outline-danger mx-auto" style="width: 100%;">Reschedule</a></td>
         </tr>
     </tbody>
 </table><hr><hr>

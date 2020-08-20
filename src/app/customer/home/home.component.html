@@ -14,18 +14,13 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/customer/addBooking"> Book </a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="isLoggedIn">
         <a class="nav-link" routerLink="/customer/viewBooking"> My Bookings </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link text-light" routerLink="/customer/viewBooking">
-          My Bookings
-        </a>
-      </li>
-      <li class="nav-item" *ngIf="!isLoggedIn">
+      <li class="nav-item" *ngIf="!isLoggedIn" style="float:right">
         <a class="nav-link" href="/login"> <i class="fas fa-sign-in-alt"></i> LOGIN! </a>
       </li>
-      <li class="nav-item" *ngIf="isLoggedIn">
+      <li class="nav-item" *ngIf="isLoggedIn" style="float:right">
         <a class="nav-link" (click)="onLogout()"> <i class="fas fa-sign-out-alt"></i> LOGOUT </a>
       </li>
     </ul>
