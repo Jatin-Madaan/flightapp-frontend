@@ -49,7 +49,7 @@
                     </tr>
                     <tr>
                         <td><div class="form-group"> Departure Time: </div></td>
-                        <td><div><input class="form-control customInputTag" type="datetime-local" formControlName="departureTime"></div>
+                        <td><div><input class="form-control customInputTag" type="datetime-local" formControlName="departureTime" required></div>
                         <div *ngIf=" submitted  && rescheduleFlightForm.controls.departureTime.errors">
                             <div class="text-danger" *ngIf="rescheduleFlightForm.controls.departureTime.errors.required">
                                 Departure Time is Required...
@@ -58,7 +58,7 @@
                     </tr>
                     <tr>
                         <td><div class="form-group"> Arival Time: </div></td>
-                        <td><div><input class="form-control customInputTag" type="datetime-local" formControlName="arrivalTime"></div>
+                        <td><div><input class="form-control customInputTag" type="datetime-local" formControlName="arrivalTime" required></div>
                         <div *ngIf=" submitted  && rescheduleFlightForm.controls.arrivalTime.errors">
                             <div class="text-danger" *ngIf="rescheduleFlightForm.controls.arrivalTime.errors.required">
                                 ArrivalTIme is Required...

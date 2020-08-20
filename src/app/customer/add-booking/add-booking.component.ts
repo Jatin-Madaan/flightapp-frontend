@@ -126,6 +126,7 @@ export class AddBookingComponent implements OnInit {
       this.booking.ticketPrice = this.sc[0].ticketCost;
       this.booking.scheduleFlight = this.sc[0];
       this.customerService.getUserById(localStorage.userId).subscribe(data =>{
+
         this.booking.user = data;
         this.booking.passengers
         this.customerService.saveBooking(this.booking).subscribe(data => {
