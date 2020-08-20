@@ -1,4 +1,4 @@
-<hr><hr><table class="table table-sm table-bordered table-hover zoom1 shadow-lg p-3 mb-5 bg-white rounded mx-auto" style="background-color: aliceblue;">
+<hr><hr><table class="table table-sm table-bordered table-resolution zoom1 shadow-lg p-3 mb-5 bg-white rounded mx-auto" style="background-color: aliceblue;">
     <thead class="thead-dark">
         <tr>
             <th><a class="btn btn-info flip" scope="col" style="width: 100%;">BOOKING ID</a></th>
@@ -17,13 +17,13 @@
         <tr *ngFor="let booking of BookingList">
             <th scope="row"><a class="btn btn-light" style="width: 100%;">{{booking.bookingId}}</a></th>
             <td><a class="btn btn-light" style="width: 100%;">{{booking.bookingDate | date:'fullDate'}}</a></td>
-            <td><a class="btn btn-light" style="width: 100%;">{{booking.bookingTime}}</a></td>
+            <td><a class="btn btn-light" style="width: 100%;">{{booking.bookingTime | date: 'shortTime'}}</a></td>
             <td><a class="btn btn-light" style="width: 100%;">{{booking.ticketPrice}}</a></td>
             <td><a class="btn btn-light" style="width: 100%;">{{booking.passengers.length}}</a></td>
             <td><a class="btn btn-light" style="width: 100%;">{{booking.status}}</a></td>
             <td><a class="btn btn-light" style="width: 100%;">{{booking.bookingStatus}}</a></td>
             <td><a class="btn btn-light" style="width: 100%;">{{booking.user.userName}}</a></td>
-            <td><a class="btn btn-light" style="width: 100%;">{{booking.flight.flightId}}</a></td>
+            <td><a class="btn btn-light" style="width: 100%;">{{booking.scheduleFlight.flight.flightId}}</a></td>
             <td><button class="btn btn-danger" (click)="cancelBooking(booking)" data-toggle="modal" data-target="#rowDeleted"> Cancel Booking </button></td>   
         </tr>
     </tbody>

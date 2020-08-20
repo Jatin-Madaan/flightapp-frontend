@@ -8,3 +8,9 @@
     color: black;
     text-align: center;
   }
+
+  .image{
+    height:40em; background-size:cover; width:auto;
+    background-image:url(../assets/plane7.jpg);
+    background-position:50% 50%;
+  }

@@ -16,12 +16,12 @@
     width: 1210px;
     height: 223.5px;
 }
-.zoom1:hover 
+/* .zoom1:hover 
 {
     -ms-transform: scale(1.2); /* IE 9 */
-    -webkit-transform: scale(1.2); /* Safari 3-8 */
-    transform: scale(1.2); 
-}
+    /* -webkit-transform: scale(1.2); /* Safari 3-8 */
+    /* transform: scale(1.2); 
+} */
 .zoom2
 {
     transition: transform .2s;
@@ -44,10 +44,10 @@
     -webkit-transform: scale(1.15); /* Safari 3-8 */
     transform: scale(1.15); 
 }
-.flip
+/* .flip
 {
     transition: transform .2s;
-}
+} */
 .flip:hover
 {
     transform: rotateY(360deg);
