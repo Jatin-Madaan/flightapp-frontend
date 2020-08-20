@@ -34,14 +34,16 @@
 
 .register-heading{
     margin-left: 21%;
-    margin-bottom: 10%;
+    margin-bottom: 5%;
     color: #e9ecef;
+    font:bold xx-large Gabriola;
     
 }
-.register-heading h1{
+.register-heading h3{
     margin-left: 21%;
     margin-bottom: 10%;
     color: #e9ecef;
+    font:bold medium Gabriola;
 }
 
 .btnLoginSubmit{
@@ -63,9 +65,11 @@
     border: 1px solid transparent;
     border-top-left-radius: .25rem;
     border-top-right-radius: .25rem;
-    color:red;
+    color:greenyellow;
+    font:bold 25px Gabriola;
 }
-.span
+span
 {
     color: red;
+    font: bold 23px Gabriola;
 }

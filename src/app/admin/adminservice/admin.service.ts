@@ -77,7 +77,7 @@ export class AdminService {
     }
     addFlight(flight:Flight)
     {
-      return this.http.post(this.url+"Admin/flights/newFlight",flight,{responseType:"text"})
+      return this.http.post<Flight>(this.url+"Admin/flights/newFlight",flight)
     }
     deleteFlight(id:number)
     {

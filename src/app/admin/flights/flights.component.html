@@ -22,12 +22,12 @@
                         <span>Flight Id already exists</span>
                         </div>
                         <div *ngIf="addStatus" class="alert alert-success">
-                            <span>New Flight is Added!</span>
+                            <span>New Flight with ID: {{actualFlightId}} is Added!</span>
                             </div>
                     <h3 class="register-heading">Add Flight Details</h3>
                     <div class="row register-form">
                         <div class="col-md-12">
-                            <form  #addFlightForm="ngForm" (ngSubmit)="addFlight(flight,addFlightForm);"  ngNativeValidate #f>
+                            <form  #addFlightForm="ngForm" ngNativeValidate #f>
                                 <div class="row">
                                 <div class="col-md-6">
                                 <div class="form-group" >
@@ -38,7 +38,7 @@
                             <div class="col-md-6">
                                 <div class="form-group span">
                                     
-                                    <input id="flightId" type="number" required  min="1"  name="flightId"  [(ngModel)]="flight.flightId" class="form-control" placeholder="Flight Id"   #flightId1="ngModel">
+                                    <input readonly id="flightId" type="text" required  min="1"  name="flightId"  [(ngModel)]="dFlightId" class="form-control" placeholder="Flight Id"    #flightId1="ngModel">
                                 
 					  <span  class="help-block" *ngIf="flightId1.touched && flightId1.errors?.required">flightId is required</span>
 					  <span class="help-block" *ngIf="flightId1.touched && flightId1.errors?.pattern">flightId is not valid</span>
@@ -59,10 +59,10 @@
                                     <div class="form-group span">
                                         <input id="carrierName" type="text" name="carrierName" #carrierName1="ngModel" [(ngModel)]="flight.carrierName" class="form-control" placeholder="Carrier Name"  required pattern ="([a-zA-Z]).{3,15}">
                                         <span class="help-block"
-                                        *ngIf="carrierName1.touched && carrierName1.errors?.required">
-                                    carrierName is required
+                                        *ngIf="carrierName1.pristine && carrierName1.touched && carrierName1.errors?.required">
+                                    Carrier Name is required
                                    </span>
-                                   <span class="help-block" *ngIf="carrierName1.touched && carrierName1.errors?.pattern">carrierName is not valid</span>
+                                   <span class="help-block" *ngIf="carrierName1.touched && carrierName1.errors?.pattern">Carrier Name is not valid</span>
                                     </div>
                                 </div>
                                     </div>
@@ -77,8 +77,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group span">
                                             <input id="flightModel" type="text" name="flightModel" #flightModel1="ngModel" [(ngModel)]="flight.flightModel" class="form-control" placeholder="Flight Model"  required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%/-]).{6,12}">
-                                            <span class="help-block" *ngIf="flightModel1.touched && flightModel1.errors?.required">flightModel1 required</span>
-                                            <span class="help-block" *ngIf="flightModel1.touched && flightModel1.errors?.pattern">flightModel1 is not valid</span>
+                                            <span class="help-block" *ngIf="flightModel1.pristine && flightModel1.touched && flightModel1.errors?.required">Flight Model is required</span>
+                                            <span class="help-block" *ngIf="flightModel1.touched && flightModel1.errors?.pattern">Flight Model is not valid</span>
                                         </div>
                                     </div>
                                         </div>
@@ -93,16 +93,17 @@
                                             <div class="form-group span">
                                                 
                                                 <input id="seatCapacity" type="number" name="seatCapacity"  min="100" max="500" #seatCapacity1="ngModel" [(ngModel)]="flight.seatCapacity" class="form-control" placeholder="Seat Capacity"   required=""/>
-                                                <span class="help-block" *ngIf="seatCapacity1.touched && seatCapacity1.errors?.required">seatCapacity is required</span>
-                                                <span class="help-block" *ngIf="seatCapacity1.touched && seatCapacity1.errors?.pattern">seatCapacity is not valid</span>
-                                                <span class="help-block" *ngIf="seatCapacity1.touched && seatCapacity1.errors?.min">seatCapacity is not valid</span>
+                                                <span class="help-block" *ngIf="seatCapacity1.pristine && seatCapacity1.touched && seatCapacity1.errors?.required">Seat Capacity is required</span>
+                                                <span class="help-block" *ngIf="seatCapacity1.touched && seatCapacity1.errors?.pattern">Seat Capacity is not valid</span>
+                                                <span class="help-block" *ngIf="seatCapacity1.touched && seatCapacity1.errors?.min">Seat Capacity is not valid</span>
                                             </div>
                                         </div>
                                             </div>
                                 <div class="form-group">
-                                    <button type="submit"  class="btnContactSubmit" [disabled]="addFlightForm.invalid">ADD</button>
-                                    {{addFlightForm.invalid|json}}
-                                    {{seatCapacity1.errors?.min|json}}
+                                    <input type="button" (click)="addFlight(flight,addFlightForm)" class="btnContactSubmit" [disabled]="addFlightForm.invalid" value="ADD"/>
+                                   <!-- {{addFlightForm.value|json}}
+                                     {{addFlightForm.invalid|json}}
+                                    {{seatCapacity1.errors?.min|json}} -->
                                     <!-- {{addFlightForm.value|json}}
                                     {{flightId1.errors?.required|json}}
                                     <input id="name" name="name" class="form-control"
@@ -232,7 +233,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input id="UflightId" type="number" name="flightId" #flightId2="ngModel" [(ngModel)]="flight2.flightId" class="form-control" placeholder="Flight Id"  required=""/>
+                                    <input disabled id="UflightId" type="number" name="flightId" #flightId2="ngModel" [(ngModel)]="flight2.flightId" class="form-control" placeholder="Flight Id"  required=""/>
                                     <span  class="help-block" *ngIf="flightId2.touched && flightId2.errors?.required">flightId is required</span>
                                     <span class="help-block" *ngIf="flightId2.touched && flightId2.errors?.pattern">flightId is not valid</span>
                                     <span class="help-block" *ngIf="flightId2.touched && flightId2.errors?.min">flightId is not valid</span>

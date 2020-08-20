@@ -23,6 +23,8 @@ submitted:boolean=false;
 form:FormGroup;
 updateStatus:boolean=false;
 addStatus:boolean=false;
+dFlightId:string;
+actualFlightId:number;
 @ViewChild('f', { static: true }) el: ElementRef;
 
    ngAfterViewInit() {
@@ -34,7 +36,7 @@ addStatus:boolean=false;
     this.flight=new Flight();
     this.flights=[];
     this.i=0;
-    
+  this.dFlightId="****";
     this.flight2=new Flight();
     this.getFlights();
   }
@@ -47,34 +49,40 @@ addStatus:boolean=false;
   {this.addStatus=false;
    // this.service.addFlight(this.flight).subscribe(data=>{console.log(data);  this.flight=new Flight(); this.getFlights()},error=>console.log("error in posting")
     //)
-   console.log(this.flight.flightId)
-    this.ok=false;
-    this.service.getFlights().subscribe(data=>{
-     for(let i=0;i<data.length;i++)
-     {console.log(this.flight.flightId)
-         if(data[i].flightId==this.flight.flightId)
-      {console.log(data[i].flightId)
-         this.ok=true;
-         break;
-       }
-     }
+   
+    // this.ok=false;
+    // this.service.getFlights().subscribe(data=>{
+    //  for(let i=0;i<data.length;i++)
+    //  {console.log(this.flight.flightId)
+    //      if(data[i].flightId==this.flight.flightId)
+    //   {console.log(data[i].flightId)
+    //      this.ok=true;
+    //      break;
+    //    }
+    //  }
     
        if(this.ok==false)
      {
        
        
-       this.service.addFlight(flight).subscribe(data=>{console.log(data),
+       this.service.addFlight(flight).subscribe(data=>{console.log(data);this.actualFlightId=data.flightId;
       this.addStatus=true;
-      form.form.reset();
-      this.flight=new Flight(); this.getFlights()},error=>console.log("error in posting")
+      this.dFlightId="****";
+      
+//form.onReset();
+      
+      
+     this.flight=new Flight(); 
+    
+      this.getFlights()},error=>console.log("error in posting")
       )
   }
 //     }
    
    
 //   }
-    })
-
+   // })
+console.log(this.dFlightId)
   }
   delete(id:number)
   {this.addStatus=false;
