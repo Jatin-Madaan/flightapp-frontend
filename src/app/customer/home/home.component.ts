@@ -8,11 +8,22 @@ import { Router } from "@angular/router";
 })
 export class HomeComponent implements OnInit {
   constructor(private router: Router) {}
+  isLoggedIn : boolean = false;
 
   ngOnInit() {
 
 
     // this.router.navigate(["customer/searchFlights"]);
+
+    if(localStorage.length != 0){
+      this.isLoggedIn = true;
+    }
+    this.router.navigate(["customer/searchFlights"]);
+  }
+
+  onLogout(){
+    localStorage.removeItem("userId");
+    window.location.href = "/login";
 
   }
 }
